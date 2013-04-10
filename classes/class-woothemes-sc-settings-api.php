@@ -261,6 +261,7 @@ class Woothemes_SC_Settings_API {
 	 * @return void
 	 */
 	public function settings_errors () {
+		echo $this->token; // DEBUG
 		echo settings_errors( $this->token . '-errors' );
 	} // End settings_errors()
 	

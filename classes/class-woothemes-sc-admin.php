@@ -85,7 +85,20 @@ class Woothemes_SC_Admin {
 		require_once( 'class-woothemes-sc-settings-api.php' );
 		$current_tab = $this->_get_current_tab();
 
+		// Load in the different settings sections.
+		require_once( 'class-woothemes-sc-settings-subscribe.php' );
+		require_once( 'class-woothemes-sc-settings-connect.php' );
 		require_once( 'class-woothemes-sc-settings-integration.php' );
+
+		// Setup "Subscribe" settings.
+		$this->settings_objs['subscribe'] = new Woothemes_SC_Settings_Subscribe();
+		$this->settings_objs['subscribe']->setup_settings();
+
+		// Setup "Connect" settings.
+		$this->settings_objs['connect'] = new Woothemes_SC_Settings_Connect();
+		$this->settings_objs['connect']->setup_settings();
+
+		// Setup "Integration" settings.
 		$this->settings_objs['integration'] = new Woothemes_SC_Settings_Integration();
 		$this->settings_objs['integration']->setup_settings();
 
