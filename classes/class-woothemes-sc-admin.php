@@ -33,6 +33,14 @@ class Woothemes_SC_Admin {
 	private $_plugin_path;
 
 	/**
+	 * An array of settings objects for the tabs.
+	 * @access  public
+	 * @var     object
+	 * @since   1.0.0
+	 */
+	public $settings_objs;
+
+	/**
 	 * Constructor.
 	 * @access  public
 	 * @since   1.0.0
@@ -42,8 +50,15 @@ class Woothemes_SC_Admin {
 		$this->_token = 'woothemes-sc';
 		$this->_plugin_url = plugin_dir_url( $file );
 		$this->_plugin_path = plugin_dir_path( $file );
+		$this->settings_objs = array();
 
 		add_action( 'admin_menu', array( $this, 'register_settings_screen' ) );
+
+		// Setup the settings object for the current tab.
+		add_action( 'admin_init', array( $this, 'setup_settings' ) );
+
+		// Register necessary scripts and styles, to enable others to enqueue them at will as well.
+		add_action( 'admin_init', array( $this, 'register_enqueues' ) );
 	} // End __construct()
 
 	/**
@@ -55,11 +70,29 @@ class Woothemes_SC_Admin {
 	public function register_settings_screen () {
 		$this->_hook = add_options_page( __( 'Subscribe & Connect', 'woothemes-sc' ), __( 'Subscribe & Connect', 'woothemes-sc' ), 'manage_options', $this->_token, array( $this, 'settings_screen' ) );
 
-		add_action( 'admin_init', array( $this, 'register_enqueues' ) );
-		
+		// Enqueue our registered scripts and styles on our own admin screen by default.
 		add_action( 'admin_print_scripts-' . $this->_hook, array( $this, 'enqueue_scripts' ) );
 		add_action( 'admin_print_styles-' . $this->_hook, array( $this, 'enqueue_styles' ) );
 	} // End register_settings_screen()
+
+	/**
+	 * Setup a settings object for our current tab, if applicable.
+	 * @access public
+	 * @since  1.0.0
+	 * @return void
+	 */
+	public function setup_settings () {
+		require_once( 'class-woothemes-sc-settings-api.php' );
+		$current_tab = $this->_get_current_tab();
+
+		require_once( 'class-woothemes-sc-settings-integration.php' );
+		$this->settings_objs['integration'] = new Woothemes_SC_Settings_Integration();
+		$this->settings_objs['integration']->setup_settings();
+
+		$this->settings_objs = (array)apply_filters( 'woothemes_sc_setup_settings', $this->settings_objs );
+
+		do_action( 'woothemes_sc_setup_settings_' . $current_tab );
+	} // End setup_settings()
 
 	/**
 	 * The settings screen markup.
@@ -68,7 +101,6 @@ class Woothemes_SC_Admin {
 	 * @return  void
 	 */
 	public function settings_screen () {
-		require_once( 'class-woothemes-sc-settings-api.php' );
 		$tabs = $this->_get_settings_tabs();
 		$current_tab = $this->_get_current_tab();
 ?>
@@ -80,24 +112,18 @@ echo $this->get_settings_tabs_html( $tabs, $current_tab );
 do_action( 'woothemes_sc_settings_tabs' );
 ?>
 </h2>
+<form action="options.php" method="post">
 <?php
-switch ( $current_tab ) {
-	case 'subscribe':
-	break;
-
-	case 'connect':
-	break;
-
-	case 'integration':
-	require_once( 'class-woothemes-sc-settings-integration.php' );
-	$settings = new Woothemes_SC_Settings_Integration();
-	$settings->settings_fields();
-	$settings->setup_settings();
-	$settings->settings_screen();
-	break;
+if ( is_object( $this->settings_objs[$current_tab] ) ) {
+	// $this->settings_objs[$current_tab]->settings_errors();
+	$this->settings_objs[$current_tab]->settings_screen();
 }
+
 do_action( 'woothemes_sc_settings_tabs_' . $current_tab );
+
+submit_button();
 ?>
+</form>
 </div><!--/.wrap-->
 <?php
 	} // End settings_screen()

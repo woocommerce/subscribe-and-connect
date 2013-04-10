@@ -23,8 +23,6 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  * 
  * private $_has_range
  * private $_has_imageselector
- * private $_has_tabs
- * private $_tabs
  *
  * - __construct()
  * - setup_settings()
@@ -70,8 +68,6 @@ class Woothemes_SC_Settings_API {
 
 	private $_has_range;
 	private $_has_imageselector;
-	public $has_tabs;
-	private $_tabs;
 	
 	/**
 	 * __construct function.
@@ -90,8 +86,6 @@ class Woothemes_SC_Settings_API {
 
 		$this->_has_range = false;
 		$this->_has_imageselector = false;
-		$this->has_tabs = false;
-		$this->_tabs = array();
 	} // End __construct()
 	
 	/**
@@ -104,9 +98,7 @@ class Woothemes_SC_Settings_API {
 		$this->init_sections();
 		$this->init_fields();
 		$this->get_settings();
-		if ( true == $this->has_tabs ) {
-			$this->create_tabs();
-		}
+		$this->settings_fields();
 	} // End setup_settings()
 	
 	/**
@@ -132,63 +124,6 @@ class Woothemes_SC_Settings_API {
 	} // End init_fields()
 
 	/**
-	 * settings_tabs function.
-	 * 
-	 * @access public
-	 * @since  1.1.0
-	 * @return void
-	 */
-	public function settings_tabs () {
-		if ( ! $this->has_tabs ) { return; }
-
-		if ( count( $this->_tabs ) > 0 ) {
-			$html = '';
-			
-			$html .= '<ul id="settings-sections" class="subsubsub hide-if-no-js">' . "\n";
-
-			$sections = array(
-						'all' => array( 'href' => '#all', 'name' => __( 'All', 'woothemes-sc' ), 'class' => 'current all tab' )
-					);
-					
-			foreach ( $this->_tabs as $k => $v ) {
-				$sections[$k] = array( 'href' => '#' . esc_attr( $k ), 'name' => esc_attr( $v['name'] ), 'class' => 'tab' );
-			}
-			
-			$count = 1;
-			foreach ( $sections as $k => $v ) {
-				$count++;
-				$html .= '<li><a href="' . $v['href'] . '"';
-				if ( isset( $v['class'] ) && ( $v['class'] != '' ) ) { $html .= ' class="' . esc_attr( $v['class'] ) . '"'; }
-				$html .= '>' . esc_attr( $v['name'] ) . '</a>';
-				if ( $count <= count( $sections ) ) { $html .= ' | '; }
-				$html .= '</li>' . "\n";
-			}
-
-			$html .= '</ul><div class="clear"></div>' . "\n";
-
-			echo $html;
-		}
-	} // End settings_tabs()
-
-	/**
-	 * create_tabs function.
-	 * 
-	 * @access private
-	 * @since  1.1.0
-	 * @return void
-	 */
-	private function create_tabs () {
-		if ( count( $this->sections ) > 0 ) {
-			$tabs = array();
-			foreach ( $this->sections as $k => $v ) {
-				$tabs[$k] = $v;
-			}
-
-			$this->_tabs = $tabs;
-		}
-	} // End create_tabs()
-
-	/**
 	 * create_sections function.
 	 * 
 	 * @access public
@@ -210,8 +145,6 @@ class Woothemes_SC_Settings_API {
 	 */
 	public function create_fields () {
 		if ( count( $this->sections ) > 0 ) {
-			// $this->parse_fields( $this->fields );
-			
 			foreach ( $this->fields as $k => $v ) {
 				$method = $this->determine_method( $v, 'form' );
 				$name = $v['name'];
@@ -275,43 +208,14 @@ class Woothemes_SC_Settings_API {
 	} // End determine_method()
 	
 	/**
-	 * parse_fields function.
-	 * 
-	 * @access public
-	 * @since 1.0.0
-	 * @param array $fields
-	 * @return void
-	 */
-	public function parse_fields ( $fields ) {
-		foreach ( $fields as $k => $v ) {
-			if ( isset( $v['section'] ) && ( $v['section'] != '' ) && ( isset( $this->sections[$v['section']] ) ) ) {
-				if ( ! isset( $this->sections[$v['section']]['fields'] ) ) {
-					$this->sections[$v['section']]['fields'] = array();
-				}
-				
-				$this->sections[$v['section']]['fields'][$k] = $v;
-			} else {
-				$this->remaining_fields[$k] = $v;
-			}
-		}
-	} // End parse_fields()
-	
-	/**
 	 * settings_screen function.
 	 * 
 	 * @access public
 	 * @return void
 	 */
 	public function settings_screen () {
-		$this->settings_errors();
-?>
-<form action="options.php" method="post">
-	<?php $this->settings_tabs(); ?>
-	<?php settings_fields( $this->token ); ?>
-	<?php do_settings_sections( $this->token ); ?>
-	<?php submit_button(); ?>
-</form>
-<?php
+		settings_fields( $this->token );
+		do_settings_sections( $this->token );
 	} // End settings_screen()
 	
 	/**
@@ -344,9 +248,9 @@ class Woothemes_SC_Settings_API {
 	 * @return void
 	 */
 	public function settings_fields () {
-		register_setting( $this->token, $this->token, array( $this, 'validate_fields' ) );
 		$this->create_sections();
 		$this->create_fields();
+		register_setting( $this->token, $this->token, array( $this, 'validate_fields' ) );
 	} // End settings_fields()
 	
 	/**

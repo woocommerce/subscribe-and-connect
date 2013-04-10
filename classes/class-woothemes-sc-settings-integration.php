@@ -32,8 +32,6 @@ class Woothemes_SC_Settings_Integration extends Woothemes_SC_Settings_API {
 	    parent::__construct(); // Required in extended classes.
 	    $this->token = 'woothemes-sc-integration';
 	    $this->name = __( 'Integration', 'woothemes-sc' );
-	    $this->settings_fields();
-	    $this->setup_settings();
 	} // End __construct()
 
 	/**
@@ -44,7 +42,6 @@ class Woothemes_SC_Settings_Integration extends Woothemes_SC_Settings_API {
 	 * @return void
 	 */
 	public function init_sections () {
-	
 		$sections = array();
 
 		$sections['automated'] = array(
@@ -58,7 +55,6 @@ class Woothemes_SC_Settings_Integration extends Woothemes_SC_Settings_API {
 				);
 		
 		$this->sections = $sections;
-		
 	} // End init_sections()
 	
 	/**
