@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  * @category Admin
  * @author WooThemes
  * @since 1.0.0
- * 
+ *
  * TABLE OF CONTENTS
  *
  * - __construct()
@@ -20,10 +20,10 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  * - get_duration_options()
  */
 class Woothemes_SC_Settings_Integration extends Woothemes_SC_Settings_API {
-	
+
 	/**
 	 * __construct function.
-	 * 
+	 *
 	 * @access public
 	 * @since 1.0.0
 	 * @return void
@@ -36,7 +36,7 @@ class Woothemes_SC_Settings_Integration extends Woothemes_SC_Settings_API {
 
 	/**
 	 * init_sections function.
-	 * 
+	 *
 	 * @access public
 	 * @since 1.0.0
 	 * @return void
@@ -45,21 +45,21 @@ class Woothemes_SC_Settings_Integration extends Woothemes_SC_Settings_API {
 		$sections = array();
 
 		$sections['automated'] = array(
-					'name' 			=> __( 'Automated Integration', 'woothemes-sc' ), 
+					'name' 			=> __( 'Automated Integration', 'woothemes-sc' ),
 					'description'	=> __( 'Attempt to automatically integrate Subscribe & Connect into your website.', 'woothemes-sc' )
 				);
 
 		$sections['manual'] = array(
-					'name' 			=> __( 'Manual Integration', 'woothemes-sc' ), 
+					'name' 			=> __( 'Manual Integration', 'woothemes-sc' ),
 					'description'	=> __( 'Finely tuned control over where Subscribe & Connect integrates into your website.', 'woothemes-sc' )
 				);
-		
+
 		$this->sections = $sections;
 	} // End init_sections()
-	
+
 	/**
 	 * init_fields function.
-	 * 
+	 *
 	 * @access public
 	 * @since 1.0.0
 	 * @uses  WooSlider_Utils::get_slider_types()
@@ -72,32 +72,39 @@ class Woothemes_SC_Settings_Integration extends Woothemes_SC_Settings_API {
 
     	// Automated
     	$fields['autoslide'] = array(
-								'name' => '', 
-								'description' => __( 'Animate the slideshows automatically', 'woothemes-sc' ), 
-								'type' => 'checkbox', 
-								'default' => true, 
+								'name' => '',
+								'description' => __( 'Animate the slideshows automatically', 'woothemes-sc' ),
+								'type' => 'checkbox',
+								'default' => true,
 								'section' => 'automated'
 								);
 
     	$fields['direction'] = array(
-								'name' => __( 'Slide Direction', 'woothemes-sc' ), 
-								'description' => __( 'The direction to slide (if using the "Slide" animation)', 'woothemes-sc' ), 
-								'type' => 'select', 
-								'default' => 'horizontal', 
-								'section' => 'automated', 
-								'required' => 0, 
+								'name' => __( 'Slide Direction', 'woothemes-sc' ),
+								'description' => __( 'The direction to slide (if using the "Slide" animation)', 'woothemes-sc' ),
+								'type' => 'select',
+								'default' => 'horizontal',
+								'section' => 'automated',
+								'required' => 0,
 								'options' => array( 'horizontal' => __( 'Horizontal', 'woothemes-sc' ), 'vertical' => __( 'Vertical', 'woothemes-sc' ) )
 								);
 
     	// Manual
-    	$fields['prev_text'] = array(
-								'name' => __( '"Previous" Link Text', 'woothemes-sc' ), 
-								'description' => __( 'The text to display on the "Previous" button.', 'woothemes-sc' ), 
-								'type' => 'text', 
-								'default' => __( 'Previous', 'woothemes-sc' ), 
+    	$fields['use_custom_hook'] = array(
+								'name' => '',
+								'description' => __( 'Display "Subscribe & Connect" on a Custom Hook', 'woothemes-sc' ),
+								'type' => 'checkbox',
+								'default' => true,
 								'section' => 'manual'
 								);
-		
+    	$fields['custom_hook_name'] = array(
+								'name' => __( 'Custom Hook Name', 'woothemes-sc' ),
+								'description' => __( 'The name of the hook you want to use (for example, loop_end).', 'woothemes-sc' ),
+								'type' => 'text',
+								'default' => '',
+								'section' => 'manual'
+								);
+
 		$this->fields = $fields;
 	} // End init_fields()
 } // End Class

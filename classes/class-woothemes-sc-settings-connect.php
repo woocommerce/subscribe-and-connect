@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  * @category Admin
  * @author WooThemes
  * @since 1.0.0
- * 
+ *
  * TABLE OF CONTENTS
  *
  * - __construct()
@@ -20,10 +20,10 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  * - get_duration_options()
  */
 class Woothemes_SC_Settings_Connect extends Woothemes_SC_Settings_API {
-	
+
 	/**
 	 * __construct function.
-	 * 
+	 *
 	 * @access public
 	 * @since 1.0.0
 	 * @return void
@@ -36,7 +36,7 @@ class Woothemes_SC_Settings_Connect extends Woothemes_SC_Settings_API {
 
 	/**
 	 * init_sections function.
-	 * 
+	 *
 	 * @access public
 	 * @since 1.0.0
 	 * @return void
@@ -44,25 +44,19 @@ class Woothemes_SC_Settings_Connect extends Woothemes_SC_Settings_API {
 	public function init_sections () {
 		$sections = array();
 
-		$sections['automated'] = array(
-					'name' 			=> __( 'Automated Integration', 'woothemes-sc' ), 
-					'description'	=> __( 'Attempt to automatically integrate Subscribe & Connect into your website.', 'woothemes-sc' )
+		$sections['networks'] = array(
+					'name' 			=> __( 'Social Networks', 'woothemes-sc' ),
+					'description'	=> __( 'Add links and icons to the social networks you\'d like to link to.', 'woothemes-sc' )
 				);
 
-		$sections['manual'] = array(
-					'name' 			=> __( 'Manual Integration', 'woothemes-sc' ), 
-					'description'	=> __( 'Finely tuned control over where Subscribe & Connect integrates into your website.', 'woothemes-sc' )
-				);
-		
 		$this->sections = $sections;
 	} // End init_sections()
-	
+
 	/**
 	 * init_fields function.
-	 * 
+	 *
 	 * @access public
 	 * @since 1.0.0
-	 * @uses  WooSlider_Utils::get_slider_types()
 	 * @return void
 	 */
 	public function init_fields () {
@@ -70,34 +64,15 @@ class Woothemes_SC_Settings_Connect extends Woothemes_SC_Settings_API {
 
 	    $fields = array();
 
-    	// Automated
-    	$fields['autoslide'] = array(
-								'name' => '', 
-								'description' => __( 'Animate the slideshows automatically', 'woothemes-sc' ), 
-								'type' => 'checkbox', 
-								'default' => true, 
-								'section' => 'automated'
-								);
-
     	$fields['direction'] = array(
-								'name' => __( 'Slide Direction', 'woothemes-sc' ), 
-								'description' => __( 'The direction to slide (if using the "Slide" animation)', 'woothemes-sc' ), 
-								'type' => 'select', 
-								'default' => 'horizontal', 
-								'section' => 'automated', 
-								'required' => 0, 
-								'options' => array( 'horizontal' => __( 'Horizontal', 'woothemes-sc' ), 'vertical' => __( 'Vertical', 'woothemes-sc' ) )
+								'name' => __( 'Social Networks', 'woothemes-sc' ),
+								'description' => __( 'The social networks to be linked to in the "Connect" portion of the output.', 'woothemes-sc' ),
+								'type' => 'network',
+								'default' => 'facebook',
+								'section' => 'networks',
+								'required' => 0
 								);
 
-    	// Manual
-    	$fields['prev_text'] = array(
-								'name' => __( '"Previous" Link Text', 'woothemes-sc' ), 
-								'description' => __( 'The text to display on the "Previous" button.', 'woothemes-sc' ), 
-								'type' => 'text', 
-								'default' => __( 'Previous', 'woothemes-sc' ), 
-								'section' => 'manual'
-								);
-		
 		$this->fields = $fields;
 	} // End init_fields()
 } // End Class

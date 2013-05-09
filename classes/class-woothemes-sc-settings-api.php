@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  * public $sections
  * public $fields
  * private $_errors
- * 
+ *
  * private $_has_range
  * private $_has_imageselector
  *
@@ -45,6 +45,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  * - form_field_multicheck()
  * - form_field_range()
  * - form_field_images()
+ * - form_field_network()
  * - form_field_info()
  * - validate_fields()
  * - validate_field_text()
@@ -68,10 +69,10 @@ class Woothemes_SC_Settings_API {
 
 	private $_has_range;
 	private $_has_imageselector;
-	
+
 	/**
 	 * __construct function.
-	 * 
+	 *
 	 * @access public
 	 * @return void
 	 */
@@ -87,10 +88,10 @@ class Woothemes_SC_Settings_API {
 		$this->_has_range = false;
 		$this->_has_imageselector = false;
 	} // End __construct()
-	
+
 	/**
 	 * setup_settings function.
-	 * 
+	 *
 	 * @access public
 	 * @return void
 	 */
@@ -100,10 +101,10 @@ class Woothemes_SC_Settings_API {
 		$this->get_settings();
 		$this->settings_fields();
 	} // End setup_settings()
-	
+
 	/**
 	 * init_sections function.
-	 * 
+	 *
 	 * @access public
 	 * @return void
 	 */
@@ -111,10 +112,10 @@ class Woothemes_SC_Settings_API {
 		// Override this function in your class and assign the array of sections to $this->sections.
 		_e( 'Override init_sections() in your class.', 'woothemes-sc' );
 	} // End init_sections()
-	
+
 	/**
 	 * init_fields function.
-	 * 
+	 *
 	 * @access public
 	 * @return void
 	 */
@@ -125,7 +126,7 @@ class Woothemes_SC_Settings_API {
 
 	/**
 	 * create_sections function.
-	 * 
+	 *
 	 * @access public
 	 * @return void
 	 */
@@ -136,10 +137,10 @@ class Woothemes_SC_Settings_API {
 			}
 		}
 	} // End create_sections()
-	
+
 	/**
 	 * create_fields function.
-	 * 
+	 *
 	 * @access public
 	 * @return void
 	 */
@@ -148,7 +149,7 @@ class Woothemes_SC_Settings_API {
 			foreach ( $this->fields as $k => $v ) {
 				$method = $this->determine_method( $v, 'form' );
 				$name = $v['name'];
-				if ( $v['type'] == 'info' ) { $name = ''; }
+				if ( 'info' == $v['type']/* || 'network' == $v['type']*/ ) { $name = ''; }
 				add_settings_field( $k, $name, $method, $this->token, $v['section'], array( 'key' => $k, 'data' => $v ) );
 
 				// Let the API know that we have a colourpicker field.
@@ -156,25 +157,25 @@ class Woothemes_SC_Settings_API {
 			}
 		}
 	} // End create_fields()
-	
+
 	/**
 	 * determine_method function.
-	 * 
+	 *
 	 * @access protected
 	 * @param array $data
 	 * @return array or string
 	 */
 	protected function determine_method ( $data, $type = 'form' ) {
 		$method = '';
-		
+
 		if ( ! in_array( $type, array( 'form', 'validate', 'check' ) ) ) { return; }
-		
+
 		// Check for custom functions.
 		if ( isset( $data[$type] ) ) {
 			if ( function_exists( $data[$type] ) ) {
 				$method = $data[$type];
 			}
-			
+
 			if ( $method == '' && method_exists( $this, $data[$type] ) ) {
 				if ( $type == 'form' ) {
 					$method = array( &$this, $data[$type] );
@@ -183,7 +184,7 @@ class Woothemes_SC_Settings_API {
 				}
 			}
 		}
-		
+
 		if ( $method == '' && method_exists ( $this, $type . '_field_' . $data['type'] ) ) {
 			if ( $type == 'form' ) {
 				$method = array( &$this, $type . '_field_' . $data['type'] );
@@ -191,11 +192,11 @@ class Woothemes_SC_Settings_API {
 				$method = $type . '_field_' . $data['type'];
 			}
 		}
-		
+
 		if ( $method == '' && function_exists ( $this->token . '_' . $type . '_field_' . $data['type'] ) ) {
 			$method = $this->token . '_' . $type . '_field_' . $data['type'];
 		}
-		
+
 		if ( $method == '' ) {
 			if ( $type == 'form' ) {
 				$method = array( &$this, $type . '_field_text' );
@@ -203,13 +204,13 @@ class Woothemes_SC_Settings_API {
 				$method = $type . '_field_text';
 			}
 		}
-		
+
 		return $method;
 	} // End determine_method()
-	
+
 	/**
 	 * settings_screen function.
-	 * 
+	 *
 	 * @access public
 	 * @return void
 	 */
@@ -217,10 +218,10 @@ class Woothemes_SC_Settings_API {
 		settings_fields( $this->token );
 		do_settings_sections( $this->token );
 	} // End settings_screen()
-	
+
 	/**
 	 * get_settings function.
-	 * 
+	 *
 	 * @access public
 	 * @return void
 	 */
@@ -228,7 +229,7 @@ class Woothemes_SC_Settings_API {
 		if ( ! is_array( $this->_settings ) ) {
 			$this->_settings = get_option( $this->token, array() );
 		}
-		
+
 		foreach ( $this->fields as $k => $v ) {
 			if ( ! isset( $this->_settings[$k] ) && isset( $v['default'] ) ) {
 				$this->_settings[$k] = $v['default'];
@@ -237,13 +238,13 @@ class Woothemes_SC_Settings_API {
 				$this->_settings[$k] = 0;
 			}
 		}
-		
+
 		return $this->_settings;
 	} // End get_settings()
-	
+
 	/**
 	 * settings_fields function.
-	 * 
+	 *
 	 * @access public
 	 * @return void
 	 */
@@ -252,22 +253,21 @@ class Woothemes_SC_Settings_API {
 		$this->create_fields();
 		register_setting( $this->token, $this->token, array( $this, 'validate_fields' ) );
 	} // End settings_fields()
-	
+
 	/**
 	 * settings_errors function.
-	 * 
+	 *
 	 * @access public
 	 * @since 1.0.0
 	 * @return void
 	 */
 	public function settings_errors () {
-		echo $this->token; // DEBUG
 		echo settings_errors( $this->token . '-errors' );
 	} // End settings_errors()
-	
+
 	/**
 	 * section_description function.
-	 * 
+	 *
 	 * @access public
 	 * @return void
 	 */
@@ -276,10 +276,10 @@ class Woothemes_SC_Settings_API {
 			echo wpautop( esc_html( $this->sections[$section['id']]['description'] ) );
 		}
 	} // End section_description_main()
-	
+
 	/**
 	 * form_field_text function.
-	 * 
+	 *
 	 * @access public
 	 * @since 1.0.0
 	 * @param array $args
@@ -293,10 +293,10 @@ class Woothemes_SC_Settings_API {
 			echo '<span class="description">' . esc_html( $args['data']['description'] ) . '</span>' . "\n";
 		}
 	} // End form_field_text()
-	
+
 	/**
 	 * form_field_checkbox function.
-	 * 
+	 *
 	 * @access public
 	 * @since 1.0.0
 	 * @param array $args
@@ -315,10 +315,10 @@ class Woothemes_SC_Settings_API {
 			echo esc_html( $args['data']['description'] ) . '</label>' . "\n";
 		}
 	} // End form_field_text()
-	
+
 	/**
 	 * form_field_textarea function.
-	 * 
+	 *
 	 * @access public
 	 * @since 1.0.0
 	 * @param array $args
@@ -332,10 +332,10 @@ class Woothemes_SC_Settings_API {
 			echo '<p><span class="description">' . esc_html( $args['data']['description'] ) . '</span></p>' . "\n";
 		}
 	} // End form_field_textarea()
-	
+
 	/**
 	 * form_field_select function.
-	 * 
+	 *
 	 * @access public
 	 * @since 1.0.0
 	 * @param array $args
@@ -343,7 +343,7 @@ class Woothemes_SC_Settings_API {
 	 */
 	public function form_field_select ( $args ) {
 		$options = $this->get_settings();
-		
+
 		if ( isset( $args['data']['options'] ) && ( count( (array)$args['data']['options'] ) > 0 ) ) {
 			$html = '';
 			$html .= '<select id="' . esc_attr( $args['key'] ) . '" name="' . esc_attr( $this->token ) . '[' . esc_attr( $args['key'] ) . ']">' . "\n";
@@ -352,16 +352,16 @@ class Woothemes_SC_Settings_API {
 				}
 			$html .= '</select>' . "\n";
 			echo $html;
-			
+
 			if ( isset( $args['data']['description'] ) ) {
 				echo '<p><span class="description">' . esc_html( $args['data']['description'] ) . '</span></p>' . "\n";
 			}
 		}
 	} // End form_field_select()
-	
+
 	/**
 	 * form_field_radio function.
-	 * 
+	 *
 	 * @access public
 	 * @since 1.0.0
 	 * @param array $args
@@ -369,23 +369,23 @@ class Woothemes_SC_Settings_API {
 	 */
 	public function form_field_radio ( $args ) {
 		$options = $this->get_settings();
-		
+
 		if ( isset( $args['data']['options'] ) && ( count( (array)$args['data']['options'] ) > 0 ) ) {
 			$html = '';
 			foreach ( $args['data']['options'] as $k => $v ) {
 				$html .= '<input type="radio" name="' . $this->token . '[' . esc_attr( $args['key'] ) . ']" value="' . esc_attr( $k ) . '"' . checked( esc_attr( $options[$args['key']] ), $k, false ) . ' /> ' . $v . '<br />' . "\n";
 			}
 			echo $html;
-			
+
 			if ( isset( $args['data']['description'] ) ) {
 				echo '<span class="description">' . esc_html( $args['data']['description'] ) . '</span>' . "\n";
 			}
 		}
 	} // End form_field_radio()
-	
+
 	/**
 	 * form_field_multicheck function.
-	 * 
+	 *
 	 * @access public
 	 * @since 1.0.0
 	 * @param array $args
@@ -393,7 +393,7 @@ class Woothemes_SC_Settings_API {
 	 */
 	public function form_field_multicheck ( $args ) {
 		$options = $this->get_settings();
-		
+
 		if ( isset( $args['data']['options'] ) && ( count( (array)$args['data']['options'] ) > 0 ) ) {
 			$html = '<div class="multicheck-container" style="height: 100px; overflow-y: auto;">' . "\n";
 			foreach ( $args['data']['options'] as $k => $v ) {
@@ -404,7 +404,7 @@ class Woothemes_SC_Settings_API {
 			}
 			$html .= '</div>' . "\n";
 			echo $html;
-			
+
 			if ( isset( $args['data']['description'] ) ) {
 				echo '<span class="description">' . esc_html( $args['data']['description'] ) . '</span>' . "\n";
 			}
@@ -413,7 +413,7 @@ class Woothemes_SC_Settings_API {
 
 	/**
 	 * form_field_range function.
-	 * 
+	 *
 	 * @access public
 	 * @since 1.0.0
 	 * @param array $args
@@ -421,7 +421,7 @@ class Woothemes_SC_Settings_API {
 	 */
 	public function form_field_range ( $args ) {
 		$options = $this->get_settings();
-		
+
 		if ( isset( $args['data']['options'] ) && ( count( (array)$args['data']['options'] ) > 0 ) ) {
 			$html = '';
 			$html .= '<select id="' . esc_attr( $args['key'] ) . '" name="' . esc_attr( $this->token ) . '[' . esc_attr( $args['key'] ) . ']" class="range-input">' . "\n";
@@ -430,7 +430,7 @@ class Woothemes_SC_Settings_API {
 				}
 			$html .= '</select>' . "\n";
 			echo $html;
-			
+
 			if ( isset( $args['data']['description'] ) ) {
 				echo '<p><span class="description">' . esc_html( $args['data']['description'] ) . '</span></p>' . "\n";
 			}
@@ -439,7 +439,7 @@ class Woothemes_SC_Settings_API {
 
 	/**
 	 * form_field_images function.
-	 * 
+	 *
 	 * @access public
 	 * @since 1.0.0
 	 * @param array $args
@@ -447,14 +447,14 @@ class Woothemes_SC_Settings_API {
 	 */
 	public function form_field_images ( $args ) {
 		$options = $this->get_settings();
-		
+
 		if ( isset( $args['data']['options'] ) && ( count( (array)$args['data']['options'] ) > 0 ) ) {
 			$html = '';
 			foreach ( $args['data']['options'] as $k => $v ) {
 				$html .= '<input type="radio" name="' . esc_attr( $this->token ) . '[' . esc_attr( $args['key'] ) . ']" value="' . esc_attr( $k ) . '"' . checked( esc_attr( $options[$args['key']] ), $k, false ) . ' /> ' . $v . '<br />' . "\n";
 			}
 			echo $html;
-			
+
 			if ( isset( $args['data']['description'] ) ) {
 				echo '<span class="description">' . esc_html( $args['data']['description'] ) . '</span>' . "\n";
 			}
@@ -462,8 +462,44 @@ class Woothemes_SC_Settings_API {
 	} // End form_field_images()
 
 	/**
+	 * form_field_network function.
+	 *
+	 * @access public
+	 * @since 1.0.0
+	 * @param array $args
+	 * @return void
+	 */
+	public function form_field_network ( $args ) {
+		$options = $this->get_settings();
+		$networks = Woothemes_SC_Utils::get_supported_networks();
+		$html = '';
+
+		$html .= '<div class="woothemes-sc-network-item">' . "\n";
+		$html .= '<input type="text" name="url" placeholder="' . __( 'Place your profile URL here', 'woothemes-sc' ) . '" value="" />' . "\n";
+		if ( 0 < count( $networks ) ) {
+			$html .= '<select name="network">' . "\n";
+			$html .= '<option value="custom">' . __( 'Custom', 'woothemes-sc' ) . '</option>' . "\n";
+			foreach ( $networks as $k => $v ) {
+				$html .= '<option value="' . esc_attr( $k ) . '">' . esc_html( $v ) . '</option>' . "\n";
+			}
+			$html .= '</select>' . "\n";
+		}
+		$html .= '<span class="image-upload">' . "\n";
+		$html .= '<input type="hidden" name="image" value="" />' . "\n";
+		$html .= '<button class="button-secondary button">' . __( 'Upload Icon', 'woothemes-sc' ) . '</button>' . "\n";
+		$html .= '</span>' . "\n";
+		$html .= '</div>' . "\n";
+
+		echo $html;
+
+		if ( isset( $args['data']['description'] ) ) {
+			echo '<span class="description">' . esc_html( $args['data']['description'] ) . '</span>' . "\n";
+		}
+	} // End form_field_network()
+
+	/**
 	 * form_field_info function.
-	 * 
+	 *
 	 * @access public
 	 * @since 1.0.0
 	 * @param array $args
@@ -488,7 +524,7 @@ class Woothemes_SC_Settings_API {
 
 	/**
 	 * validate_fields function.
-	 * 
+	 *
 	 * @access public
 	 * @since 1.0.0
 	 * @param array $input
@@ -497,11 +533,11 @@ class Woothemes_SC_Settings_API {
 	 */
 	public function validate_fields ( $input ) {
 		$options = $this->get_settings();
-		
+
 		foreach ( $this->fields as $k => $v ) {
 			// Make sure checkboxes are present even when false.
 			if ( $v['type'] == 'checkbox' && ! isset( $input[$k] ) ) { $input[$k] = false; }
-			
+
 			if ( isset( $input[$k] ) ) {
 				// Perform checks on required fields.
 				if ( isset( $v['required'] ) && ( $v['required'] == true ) ) {
@@ -545,15 +581,15 @@ class Woothemes_SC_Settings_API {
 				}
 			}
 		}
-		
+
 		// Parse error messages into the Settings API.
 		$this->parse_errors();
 		return $options;
 	} // End validate_fields()
-	
+
 	/**
 	 * validate_field_text function.
-	 * 
+	 *
 	 * @access public
 	 * @since 1.0.0
 	 * @param string $input
@@ -562,10 +598,10 @@ class Woothemes_SC_Settings_API {
 	public function validate_field_text ( $input ) {
 		return trim( esc_attr( $input ) );
 	} // End validate_field_text()
-	
+
 	/**
 	 * validate_field_checkbox function.
-	 * 
+	 *
 	 * @access public
 	 * @since 1.0.0
 	 * @param string $input
@@ -578,10 +614,10 @@ class Woothemes_SC_Settings_API {
 			return (bool)$input;
 		}
 	} // End validate_field_checkbox()
-	
+
 	/**
 	 * validate_field_multicheck function.
-	 * 
+	 *
 	 * @access public
 	 * @since 1.0.0
 	 * @param string $input
@@ -589,15 +625,15 @@ class Woothemes_SC_Settings_API {
 	 */
 	public function validate_field_multicheck ( $input ) {
 		$input = (array) $input;
-		
+
 		$input = array_map( 'esc_attr', $input );
-		
+
 		return $input;
 	} // End validate_field_multicheck()
-	
+
 	/**
 	 * validate_field_range function.
-	 * 
+	 *
 	 * @access public
 	 * @since 1.0.0
 	 * @param string $input
@@ -611,7 +647,7 @@ class Woothemes_SC_Settings_API {
 
 	/**
 	 * validate_field_url function.
-	 * 
+	 *
 	 * @access public
 	 * @since 1.0.0
 	 * @param string $input
@@ -635,7 +671,7 @@ class Woothemes_SC_Settings_API {
 
 	/**
 	 * add_error function.
-	 * 
+	 *
 	 * @access protected
 	 * @since 1.0.0
 	 * @param string $key
@@ -650,7 +686,7 @@ class Woothemes_SC_Settings_API {
 		}
 		$this->_errors[$key] = $message;
 	} // End add_error()
-	
+
 	/**
 	 * If there are error messages logged, parse them.
 	 * @access  protected
@@ -667,7 +703,7 @@ class Woothemes_SC_Settings_API {
 			add_settings_error( $this->token . '-errors', $this->token, $message, 'updated' );
 		}
 	} // End parse_errors()
-	
+
 	/**
 	 * get_array_field_types function.
 	 *
