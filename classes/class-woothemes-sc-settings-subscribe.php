@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  * @category Admin
  * @author WooThemes
  * @since 1.0.0
- * 
+ *
  * TABLE OF CONTENTS
  *
  * - __construct()
@@ -20,10 +20,10 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  * - get_duration_options()
  */
 class Woothemes_SC_Settings_Subscribe extends Woothemes_SC_Settings_API {
-	
+
 	/**
 	 * __construct function.
-	 * 
+	 *
 	 * @access public
 	 * @since 1.0.0
 	 * @return void
@@ -36,7 +36,7 @@ class Woothemes_SC_Settings_Subscribe extends Woothemes_SC_Settings_API {
 
 	/**
 	 * init_sections function.
-	 * 
+	 *
 	 * @access public
 	 * @since 1.0.0
 	 * @return void
@@ -44,22 +44,22 @@ class Woothemes_SC_Settings_Subscribe extends Woothemes_SC_Settings_API {
 	public function init_sections () {
 		$sections = array();
 
-		$sections['automated'] = array(
-					'name' 			=> __( 'Automated Integration', 'woothemes-sc' ), 
-					'description'	=> __( 'Attempt to automatically integrate Subscribe & Connect into your website.', 'woothemes-sc' )
+		$sections['text'] = array(
+					'name' 			=> __( 'Heading and Text', 'woothemes-sc' ),
+					'description'	=> __( 'Default settings for the heading and text of your "Subscribe" section.', 'woothemes-sc' )
 				);
 
-		$sections['manual'] = array(
-					'name' 			=> __( 'Manual Integration', 'woothemes-sc' ), 
-					'description'	=> __( 'Finely tuned control over where Subscribe & Connect integrates into your website.', 'woothemes-sc' )
+		$sections['subscriptions'] = array(
+					'name' 			=> __( 'Subscription Options', 'woothemes-sc' ),
+					'description'	=> __( 'Setup the various ways in which your visitors can subscribe to your content.', 'woothemes-sc' )
 				);
-		
+
 		$this->sections = $sections;
 	} // End init_sections()
-	
+
 	/**
 	 * init_fields function.
-	 * 
+	 *
 	 * @access public
 	 * @since 1.0.0
 	 * @uses  WooSlider_Utils::get_slider_types()
@@ -70,34 +70,40 @@ class Woothemes_SC_Settings_Subscribe extends Woothemes_SC_Settings_API {
 
 	    $fields = array();
 
-    	// Automated
-    	$fields['autoslide'] = array(
-								'name' => '', 
-								'description' => __( 'Animate the slideshows automatically', 'woothemes-sc' ), 
-								'type' => 'checkbox', 
-								'default' => true, 
-								'section' => 'automated'
+    	// Text
+    	$fields['title'] = array(
+								'name' => __( 'Title', 'woothemes-sc' ),
+								'description' => __( 'The default title text.', 'woothemes-sc' ),
+								'type' => 'text',
+								'default' => sprintf( __( 'Subscribe to %s', 'woothemes-sc' ), get_bloginfo( 'name' ) ),
+								'section' => 'text'
 								);
 
-    	$fields['direction'] = array(
-								'name' => __( 'Slide Direction', 'woothemes-sc' ), 
-								'description' => __( 'The direction to slide (if using the "Slide" animation)', 'woothemes-sc' ), 
-								'type' => 'select', 
-								'default' => 'horizontal', 
-								'section' => 'automated', 
-								'required' => 0, 
-								'options' => array( 'horizontal' => __( 'Horizontal', 'woothemes-sc' ), 'vertical' => __( 'Vertical', 'woothemes-sc' ) )
+    	$fields['text'] = array(
+								'name' => __( 'Text', 'woothemes-sc' ),
+								'description' => __( 'The default call-to-action text.', 'woothemes-sc' ),
+								'type' => 'textarea',
+								'default' => sprintf( __( 'Keep up to date on the latest content, here at %s. Subscribe below.', 'woothemes-sc' ), get_bloginfo( 'name' ) ),
+								'section' => 'text'
 								);
 
-    	// Manual
-    	$fields['prev_text'] = array(
-								'name' => __( '"Previous" Link Text', 'woothemes-sc' ), 
-								'description' => __( 'The text to display on the "Previous" button.', 'woothemes-sc' ), 
-								'type' => 'text', 
-								'default' => __( 'Previous', 'woothemes-sc' ), 
-								'section' => 'manual'
+    	// Subscriptions
+    	$fields['feedburner'] = array(
+								'name' => __( 'Feedburner ID', 'woothemes-sc' ),
+								'description' => sprintf( __( 'Your %sFeedburner ID%s for the e-mail subscription form.', 'woothemes-sc' ), '<a href="' . esc_url( 'http://www.woothemes.com/tutorials/how-to-find-your-feedburner-id-for-email-subscription/' ) . '">', '</a>' ),
+								'type' => 'text',
+								'default' => '',
+								'section' => 'subscriptions'
 								);
-		
+
+    	$fields['mailchimp'] = array(
+								'name' => __( 'MailChimp', 'woothemes-sc' ),
+								'description' => sprintf( __( 'The %sMailChimp List Subscribe URL%s for the list you want your visitors to subscribe to.', 'woothemes-sc' ), '<a href="' . esc_url( 'http://woochimp.heroku.com/' ) . '">', '</a>' ),
+								'type' => 'text',
+								'default' => '',
+								'section' => 'subscriptions'
+								);
+
 		$this->fields = $fields;
 	} // End init_fields()
 } // End Class

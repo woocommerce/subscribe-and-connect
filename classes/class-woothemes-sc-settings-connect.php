@@ -64,7 +64,16 @@ class Woothemes_SC_Settings_Connect extends Woothemes_SC_Settings_API {
 
 	    $fields = array();
 
-    	$fields['direction'] = array(
+	    $fields['rss'] = array(
+								'name' => __( 'Enable RSS', 'woothemes-sc' ),
+								'description' => __( 'Display an RSS icon along with your social networks.', 'woothemes-sc' ),
+								'type' => 'checkbox',
+								'default' => true,
+								'section' => 'networks',
+								'required' => 0
+								);
+
+    	$fields['networks'] = array(
 								'name' => __( 'Social Networks', 'woothemes-sc' ),
 								'description' => __( 'The social networks to be linked to in the "Connect" portion of the output.', 'woothemes-sc' ),
 								'type' => 'network',
