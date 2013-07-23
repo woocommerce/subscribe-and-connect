@@ -471,11 +471,15 @@ class Woothemes_SC_Settings_API {
 		$html = '';
 
 		if ( isset( $options['networks'] ) && 0 < count( (array)$options['networks'] ) ) {
+			$i = 0;
 			foreach ( $options['networks'] as $k => $v ) {
-				$this->_single_network_field( array( 'url' => $v['url'], 'network' => $v['network'], 'image' => $v['image'] ), $args, $networks );
+				$this->_single_network_field( array( 'url' => $v['url'], 'network' => $v['network'], 'image' => $v['image'] ), $args, $networks, $i );
+				$i++;
 			}
+			// Add a blank item each time, to cater for new additions without using JavaScript.
+			$this->_single_network_field( array( 'url' => '', 'network' => '', 'image' => '' ), $args, $networks, $i, false );
 		} else {
-			$this->_single_network_field( array( 'url' => '', 'network' => '', 'image' => '' ), $args, $networks );
+			$this->_single_network_field( array( 'url' => '', 'network' => '', 'image' => '' ), $args, $networks, 0, false );
 		}
 
 		echo $html;
@@ -489,18 +493,20 @@ class Woothemes_SC_Settings_API {
 	 * Output a single instance of a "network" field type.
 	 * @access  private
 	 * @since   1.0.0
-	 * @param   array $data      Data for the network to be output.
-	 * @param   array $args      Arguments used when generating the field instance.
-	 * @param   array $networks  Supported networks to list.
-	 * @return  string           Formatted HTML.
+	 * @param   array $data      	Data for the network to be output.
+	 * @param   array $args      	Arguments used when generating the field instance.
+	 * @param   array $networks  	Supported networks to list.
+	 * @param  	int   $i 		 	Itterator.
+	 * @param 	bool  $show_remove 	Whether or not to show the "Remove" link.
+	 * @return  string           	Formatted HTML.
 	 */
-	private function _single_network_field ( $data, $args, $networks ) {
+	private function _single_network_field ( $data, $args, $networks, $i, $show_remove = true ) {
 		$html = '';
 
 		$html .= '<div class="woothemes-sc-network-item">' . "\n";
-		$html .= '<input type="text" name="' . esc_attr( $this->token ) . '[' . esc_attr( $args['key'] ) . '][0][url]" placeholder="' . __( 'Place your profile URL here', 'woothemes-sc' ) . '" value="' . esc_attr( $data['url'] ) . '" />' . "\n";
+		$html .= '<input type="text" name="' . esc_attr( $this->token ) . '[' . esc_attr( $args['key'] ) . '][' . intval( $i ) . '][url]" placeholder="' . __( 'Place your profile URL here', 'woothemes-sc' ) . '" value="' . esc_attr( $data['url'] ) . '" />' . "\n";
 		if ( 0 < count( $networks ) ) {
-			$html .= '<select name="' . esc_attr( $this->token ) . '[' . esc_attr( $args['key'] ) . '][0][network]">' . "\n";
+			$html .= '<select name="' . esc_attr( $this->token ) . '[' . esc_attr( $args['key'] ) . '][' . intval( $i ) . '][network]">' . "\n";
 			$html .= '<option value="custom">' . __( 'Custom', 'woothemes-sc' ) . '</option>' . "\n";
 			foreach ( $networks as $k => $v ) {
 				$html .= '<option value="' . esc_attr( $k ) . '"' . selected( $k, $data['network'], false ) . '>' . esc_html( $v ) . '</option>' . "\n";
@@ -508,8 +514,11 @@ class Woothemes_SC_Settings_API {
 			$html .= '</select>' . "\n";
 		}
 		$html .= '<span class="image-upload">' . "\n";
-		$html .= '<input type="hidden" name="' . esc_attr( $this->token ) . '[' . esc_attr( $args['key'] ) . '][0][image]" value="' . esc_attr( $data['image'] ) . '" />' . "\n";
+		$html .= '<input type="hidden" name="' . esc_attr( $this->token ) . '[' . esc_attr( $args['key'] ) . '][' . intval( $i ) . '][image]" value="' . esc_attr( $data['image'] ) . '" />' . "\n";
 		$html .= '<button class="button-secondary button">' . __( 'Upload Icon', 'woothemes-sc' ) . '</button>' . "\n";
+		if ( true == $show_remove ) {
+			$html .= '<a href="#">' . __( 'Remove', 'woothemes-sc' ) . '</a>' . "\n"; // TODO
+		}
 		$html .= '</span>' . "\n";
 		$html .= '</div>' . "\n";
 
