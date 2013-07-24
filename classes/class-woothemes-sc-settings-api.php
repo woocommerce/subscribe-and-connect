@@ -504,6 +504,7 @@ class Woothemes_SC_Settings_API {
 		$html = '';
 
 		$html .= '<div class="woothemes-sc-network-item">' . "\n";
+		$html .= '<div class="fields">' . "\n";
 		$html .= '<input type="text" name="' . esc_attr( $this->token ) . '[' . esc_attr( $args['key'] ) . '][' . intval( $i ) . '][url]" placeholder="' . __( 'Place your profile URL here', 'woothemes-sc' ) . '" value="' . esc_attr( $data['url'] ) . '" />' . "\n";
 		if ( 0 < count( $networks ) ) {
 			$html .= '<select name="' . esc_attr( $this->token ) . '[' . esc_attr( $args['key'] ) . '][' . intval( $i ) . '][network]">' . "\n";
@@ -514,11 +515,18 @@ class Woothemes_SC_Settings_API {
 			$html .= '</select>' . "\n";
 		}
 		$html .= '<span class="image-upload">' . "\n";
-		$html .= '<input type="hidden" name="' . esc_attr( $this->token ) . '[' . esc_attr( $args['key'] ) . '][' . intval( $i ) . '][image]" value="' . esc_attr( $data['image'] ) . '" />' . "\n";
-		$html .= '<button class="button-secondary button">' . __( 'Upload Icon', 'woothemes-sc' ) . '</button>' . "\n";
+		$html .= '<input type="hidden" name="' . esc_attr( $this->token ) . '[' . esc_attr( $args['key'] ) . '][' . intval( $i ) . '][image]" value="' . esc_attr( $data['image'] ) . '" class="upload-url" />' . "\n";
+		$html .= '<a class="button-secondary button upload-button" data-uploader-title="' . esc_attr__( 'Select Icon', 'woothemes-sc' ) . '"
+			data-uploader-button-text="' . esc_attr__( 'Select Icon', 'woothemes-sc' ) . '">' . __( 'Upload Icon', 'woothemes-sc' ) . '</a>' . "\n";
 		if ( true == $show_remove ) {
-			$html .= '<a href="#">' . __( 'Remove', 'woothemes-sc' ) . '</a>' . "\n"; // TODO
+			$html .= '<a href="#" class="remove-button">' . __( 'Remove', 'woothemes-sc' ) . '</a>' . "\n"; // TODO
 		}
+		$html .= '</div><!--/.fields-->' . "\n";
+
+		$image_url = Woothemes_SC_Utils::get_placeholder_image();
+		if ( isset( $data['image'] ) && '' != $data['image'] ) $image_url = $data['image'];
+
+		$html .= '<span class="image-preview"><a href="' . esc_url( $image_url ) . '" title="' . esc_attr__( 'Preview', 'woothemes-sc' ) . '" target="_blank" class="preview-link"><img src="' . esc_url( $image_url ) . '" /></a><a href="#" class="remove-icon" title="' . esc_attr__( 'Remove Icon', 'woothemes-sc' ) . '"><span>' . __( 'Remove Icon', 'woothemes-sc' ) . '</span></a></span>' . "\n";
 		$html .= '</span>' . "\n";
 		$html .= '</div>' . "\n";
 

@@ -1,0 +1,8 @@
+.woothemes-sc-network-item { clear: both; float: left; padding: 0.4em 0; width: 500px; }
+.woothemes-sc-network-item .fields { float: left; padding-top: 0.8em; }
+.woothemes-sc-network-item .image-preview { display: block; float: right; max-width: 50px; margin-left: 3em; }
+.woothemes-sc-network-item .image-preview a.preview-link:hover img { border: 1px solid #CCCCCC; }
+.woothemes-sc-network-item .image-preview img { border: 1px solid #EBEBEB; max-width: 100%; }
+.woothemes-sc-network-item .image-preview .remove-icon { background: #CC0033; display: block; width: 16px; height: 16px; position: relative; top: -15px; right: -40px; -webkit-border-radius: 50%; -moz-border-radius: 50%; -o-border-radius: 50%; border-radius: 50%; }
+.woothemes-sc-network-item .image-preview .remove-icon span { display: none; }
+.description { clear: both; display: block; }

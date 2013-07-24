@@ -62,6 +62,26 @@ class Woothemes_SC_Admin {
 	} // End __construct()
 
 	/**
+	 * Generic getter for private data.
+	 * @access  public
+	 * @since   1.0.0
+	 * @param   string $key The key to retrieve.
+	 * @return  string      The information stored.
+	 */
+	public function __get ( $key ) {
+		switch ( $key ) {
+			case 'plugin_url':
+				return $this->_plugin_url;
+			break;
+			case 'plugin_path':
+				return $this->_plugin_path;
+			break;
+			default:
+			break;
+		}
+	} // End __get()
+
+	/**
 	 * Register the settings screen within the WordPress admin.
 	 * @access  public
 	 * @since   1.0.0
@@ -208,7 +228,8 @@ submit_button();
 	public function register_enqueues () {
 		global $woothemes_sc;
 		wp_register_script( $this->_token . '-admin', esc_url( $this->_plugin_url . 'assets/js/admin.js' ), array( 'jquery' ), $woothemes_sc->version );
-		wp_register_style( $this->_token . '-settings-api',  esc_url( $this->_plugin_url . 'assets/css/settings.css' ), '', '1.0.0' );
+		wp_register_script( $this->_token . '-uploaders', esc_url( $this->_plugin_url . 'assets/js/uploaders.js' ), array( 'jquery' ), $woothemes_sc->version );
+		wp_register_style( $this->_token . '-settings-api',  esc_url( $this->_plugin_url . 'assets/css/settings.css' ), '', $woothemes_sc->version );
 	} // End register_enqueues()
 
 	/**
@@ -218,7 +239,9 @@ submit_button();
 	 * @return void
 	 */
 	public function enqueue_scripts () {
+		wp_enqueue_media();
 		wp_enqueue_script( $this->_token . '-admin' );
+		wp_enqueue_script( $this->_token . '-uploaders' );
 	} // End enqueue_scripts()
 
 	/**

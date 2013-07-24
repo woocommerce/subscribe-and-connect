@@ -9,20 +9,12 @@ class Woothemes_SC {
 	public $version;
 
 	/**
-	 * Property to contain the Woothemes_SC_Admin object.
+	 * Property to contain the Woothemes_SC_Admin or Woothemes_SC_Frontend object.
 	 * @access  public
 	 * @since   1.0.0
 	 * @var     object
 	 */
-	public $admin;
-
-	/**
-	 * Property to contain the Woothemes_SC_Frontend object.
-	 * @access  public
-	 * @since   1.0.0
-	 * @var     object
-	 */
-	public $frontend;
+	public $context;
 	/**
 	 * Constructor.
 	 * @access  public
@@ -35,11 +27,11 @@ class Woothemes_SC {
 		if ( is_admin() ) {
 			// Load in the admin functionality.
 			require_once( 'class-woothemes-sc-admin.php' );
-			$this->admin = new Woothemes_SC_Admin( $file );
+			$this->context = new Woothemes_SC_Admin( $file );
 		} else {
 			// Load in the frontend functionality.
 			require_once( 'class-woothemes-sc-frontend.php' );
-			$this->frontend = new Woothemes_SC_Frontend( $file );
+			$this->context = new Woothemes_SC_Frontend( $file );
 		}
 	} // End __construct()
 } // End Class
