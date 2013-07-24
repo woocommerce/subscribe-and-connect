@@ -206,9 +206,9 @@ submit_button();
 	 * @return  void
 	 */
 	public function register_enqueues () {
-		wp_register_script( $this->_token . '-settings-tabs-navigation', $this->_plugin_url . 'assets/js/tabs-navigation.js', array( 'jquery' ), '1.0.0' );
-
-		wp_register_style( $this->_token . '-settings-api',  $this->_plugin_url . 'assets/css/settings.css', '', '1.0.0' );
+		global $woothemes_sc;
+		wp_register_script( $this->_token . '-admin', esc_url( $this->_plugin_url . 'assets/js/admin.js' ), array( 'jquery' ), $woothemes_sc->version );
+		wp_register_style( $this->_token . '-settings-api',  esc_url( $this->_plugin_url . 'assets/css/settings.css' ), '', '1.0.0' );
 	} // End register_enqueues()
 
 	/**
@@ -218,7 +218,7 @@ submit_button();
 	 * @return void
 	 */
 	public function enqueue_scripts () {
-			wp_enqueue_script( $this->_token . '-settings-tabs-navigation' );
+		wp_enqueue_script( $this->_token . '-admin' );
 	} // End enqueue_scripts()
 
 	/**

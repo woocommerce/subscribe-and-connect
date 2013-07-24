@@ -68,6 +68,8 @@ class Woothemes_SC_Settings_Subscribe extends Woothemes_SC_Settings_API {
 	public function init_fields () {
 		global $pagenow;
 
+		$newsletter_services = array( 'none' => __( 'None', 'woothemes-sc' ), 'aweber' => __( 'Aweber', 'woothemes-sc' ), 'campaign_monitor' => __( 'Campaign Monitor', 'woothemes-sc' ), 'feedburner' => __( 'Feedburner', 'woothemes-sc' ), 'mad_mimi' => __( 'Mad Mimi', 'woothemes-sc' ), 'mailchimp' => __( 'Mailchimp', 'woothemes-sc' ) );
+
 	    $fields = array();
 
     	// Text
@@ -88,19 +90,52 @@ class Woothemes_SC_Settings_Subscribe extends Woothemes_SC_Settings_API {
 								);
 
     	// Subscriptions
-    	$fields['feedburner'] = array(
-								'name' => __( 'Feedburner ID', 'woothemes-sc' ),
-								'description' => sprintf( __( 'Your %sFeedburner ID%s for the e-mail subscription form.', 'woothemes-sc' ), '<a href="' . esc_url( 'http://www.woothemes.com/tutorials/how-to-find-your-feedburner-id-for-email-subscription/' ) . '">', '</a>' ),
-								'type' => 'text',
-								'default' => '',
+    	$fields['newsletter_service'] = array(
+								'name' => __( 'Newsletter Service', 'woothemes-sc' ),
+								'description' => __( 'Select the newsletter service you are using', 'woothemes-sc' ),
+								'type' => 'select',
+								'default' => 'none',
+								'options' => $newsletter_services,
 								'section' => 'subscriptions'
 								);
 
-    	$fields['mailchimp'] = array(
-								'name' => __( 'MailChimp', 'woothemes-sc' ),
-								'description' => sprintf( __( 'The %sMailChimp List Subscribe URL%s for the list you want your visitors to subscribe to.', 'woothemes-sc' ), '<a href="' . esc_url( 'http://woochimp.heroku.com/' ) . '">', '</a>' ),
+    	$fields['newsletter_service_id'] = array(
+								'name' => __( 'Feedburner Feed ID', 'woothemes-sc' ),
+								'description' => sprintf( __( 'Enter the your Feedburner Feed ID %s(?)%s.', 'woothemes-sc' ), '<a href="' . esc_url( 'http://support.google.com/feedburner/bin/answer.py?hl=en&answer=78982' ) . '" target="_blank">', '</a>' ),
 								'type' => 'text',
-								'default' => '',
+								'default' => '' ,
+								'section' => 'subscriptions'
+								);
+
+		$fields['newsletter_service_form_action'] = array(
+								'name' => __( 'Newsletter Service Form Action', 'woothemes-sc' ),
+								'description' => __( 'Enter the the form action if required.', 'woothemes-sc' ),
+								'type' => 'text',
+								'default' => '' ,
+								'section' => 'subscriptions'
+								);
+
+		$fields['newsletter_mail_chimp_list_subscription_url'] = array(
+								'name' => __( 'MailChimp List Subscription URL', 'woothemes-sc' ),
+								'description' => sprintf( __( 'If you have a MailChimp account you can enter the %sMailChimp List Subscribe URL%s to allow your users to subscribe to a MailChimp List.', 'woothemes-sc' ), '<a href="' . esc_url( 'http://woochimp.heroku.com/' ) . '" target="_blank">', '</a>' ),
+								'type' => 'text',
+								'default' => '' ,
+								'section' => 'subscriptions'
+								);
+
+		$fields['newsletter_mad_mimi_subscription_url'] = array(
+								'name' => __( 'Mad Mimi Webform URL', 'woothemes-sc' ),
+								'description' => __( 'Your Mad Mini Webform URL, eg. https://madmimi.com/signups/subscribe/84680', 'woothemes-sc' ),
+								'type' => 'text',
+								'default' => '' ,
+								'section' => 'subscriptions'
+								);
+
+		$fields['newsletter_aweber_list_id'] = array(
+								'name' => __( 'Aweber List Name', 'woothemes-sc' ),
+								'description' => __( 'The name of the list to subscribe users to.', 'woothemes-sc' ),
+								'type' => 'text',
+								'default' => '' ,
 								'section' => 'subscriptions'
 								);
 

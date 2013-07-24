@@ -71,24 +71,18 @@ class Woothemes_SC_Settings_Integration extends Woothemes_SC_Settings_API {
 	    $fields = array();
 
     	// Automated
-    	$fields['autoslide'] = array(
-								'name' => '',
-								'description' => __( 'Animate the slideshows automatically', 'woothemes-sc' ),
-								'type' => 'checkbox',
-								'default' => true,
-								'section' => 'automated'
-								);
-
-    	$fields['direction'] = array(
-								'name' => __( 'Slide Direction', 'woothemes-sc' ),
-								'description' => __( 'The direction to slide (if using the "Slide" animation)', 'woothemes-sc' ),
-								'type' => 'select',
-								'default' => 'horizontal',
+    	$auto_options = array( 'none' => __( 'No automated integration', 'woothemes-sc' ), 'the_content' => __( 'Display after the post content', 'woothemes-sc' ) );
+    	if ( defined( 'THEME_FRAMEWORK' ) && 'woothemes' == constant( 'THEME_FRAMEWORK' ) ) {
+    		$auto_options['woo_post_after'] = sprintf( __( 'Display on the %s hook %s', 'woothemes-sc' ), '<code>woo_post_after-single</code>', '<small>(thanks for using WooThemes!)</small>' );
+    	}
+    	$fields['auto_integration'] = array(
+								'name' => __( 'Automated integration method', 'woothemes-sc' ),
+								'description' => '',
+								'type' => 'radio',
+								'default' => 'none',
 								'section' => 'automated',
-								'required' => 0,
-								'options' => array( 'horizontal' => __( 'Horizontal', 'woothemes-sc' ), 'vertical' => __( 'Vertical', 'woothemes-sc' ) )
+								'options' => $auto_options
 								);
-
     	// Manual
     	$fields['use_custom_hook'] = array(
 								'name' => '',

@@ -470,7 +470,7 @@ class Woothemes_SC_Settings_API {
 		$networks = Woothemes_SC_Utils::get_supported_networks();
 		$html = '';
 
-		if ( isset( $options['networks'] ) && 0 < count( (array)$options['networks'] ) ) {
+		if ( isset( $options['networks'] ) && is_array( $options['networks'] ) && 0 < count( $options['networks'] ) ) {
 			$i = 0;
 			foreach ( $options['networks'] as $k => $v ) {
 				$this->_single_network_field( array( 'url' => $v['url'], 'network' => $v['network'], 'image' => $v['image'] ), $args, $networks, $i );

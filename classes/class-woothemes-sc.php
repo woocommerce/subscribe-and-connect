@@ -1,6 +1,14 @@
 <?php
 class Woothemes_SC {
 	/**
+	 * Property to contain the version number.
+	 * @access  public
+	 * @since   1.0.0
+	 * @var     object
+	 */
+	public $version;
+
+	/**
 	 * Property to contain the Woothemes_SC_Admin object.
 	 * @access  public
 	 * @since   1.0.0
