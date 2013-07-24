@@ -49,8 +49,16 @@ class Woothemes_SC_Settings_Integration extends Woothemes_SC_Settings_API {
 					'description'	=> __( 'Attempt to automatically integrate Subscribe & Connect into your website.', 'woothemes-sc' )
 				);
 
+		if ( function_exists( 'woo_subscribe_connect' ) ) {
+			$theme = wp_get_theme();
+			$sections['woothemes'] = array(
+						'name' 			=> __( 'WooThemes Overrides', 'woothemes-sc' ),
+						'description'	=> sprintf( __( 'We noticed your current active theme, %s, uses the WooFramework and includes our original Subscribe & Connect feature. Override it here.', 'woothemes-sc' ), $theme->__get( 'name' ) )
+					);
+		}
+
 		$sections['manual'] = array(
-					'name' 			=> __( 'Manual Integration', 'woothemes-sc' ),
+					'name' 			=> __( 'Advanced Integration', 'woothemes-sc' ),
 					'description'	=> __( 'Finely tuned control over where Subscribe & Connect integrates into your website.', 'woothemes-sc' )
 				);
 
@@ -69,6 +77,8 @@ class Woothemes_SC_Settings_Integration extends Woothemes_SC_Settings_API {
 		global $pagenow;
 
 	    $fields = array();
+
+	    $theme = wp_get_theme();
 
     	// Automated
     	$auto_options = array( 'none' => __( 'No automated integration', 'woothemes-sc' ), 'the_content' => __( 'Display after the post content', 'woothemes-sc' ) );
@@ -97,6 +107,15 @@ class Woothemes_SC_Settings_Integration extends Woothemes_SC_Settings_API {
 								'type' => 'text',
 								'default' => '',
 								'section' => 'manual'
+								);
+
+    	// WooThemes
+    	$fields['disable_theme_sc'] = array(
+								'name' => '',
+								'description' => sprintf( __( 'Hide the Subscribe & Connect feature in %s', 'woothemes-sc' ), $theme->__get( 'name' ) ),
+								'type' => 'checkbox',
+								'default' => true,
+								'section' => 'woothemes'
 								);
 
 		$this->fields = $fields;
