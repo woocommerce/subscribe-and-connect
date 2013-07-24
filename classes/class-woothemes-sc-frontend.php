@@ -22,7 +22,7 @@ class Woothemes_SC_Frontend {
 	 * @since   1.0.0
 	 * @return  void
 	 */
-	public function __construct () {
+	public function __construct ( $file ) {
 		$this->_plugin_url = plugin_dir_url( $file );
 		$this->_plugin_path = plugin_dir_path( $file );
 	} // End __construct()
