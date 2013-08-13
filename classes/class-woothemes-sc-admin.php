@@ -54,9 +54,6 @@ class Woothemes_SC_Admin {
 
 		add_action( 'admin_menu', array( $this, 'register_settings_screen' ) );
 
-		// Setup the settings object for the current tab.
-		add_action( 'admin_init', array( $this, 'setup_settings' ) );
-
 		// Register necessary scripts and styles, to enable others to enqueue them at will as well.
 		add_action( 'admin_init', array( $this, 'register_enqueues' ) );
 	} // End __construct()
@@ -96,44 +93,13 @@ class Woothemes_SC_Admin {
 	} // End register_settings_screen()
 
 	/**
-	 * Setup a settings object for our current tab, if applicable.
-	 * @access public
-	 * @since  1.0.0
-	 * @return void
-	 */
-	public function setup_settings () {
-		require_once( 'class-woothemes-sc-settings-api.php' );
-		$current_tab = $this->_get_current_tab();
-
-		// Load in the different settings sections.
-		require_once( 'class-woothemes-sc-settings-subscribe.php' );
-		require_once( 'class-woothemes-sc-settings-connect.php' );
-		require_once( 'class-woothemes-sc-settings-integration.php' );
-
-		// Setup "Subscribe" settings.
-		$this->settings_objs['subscribe'] = new Woothemes_SC_Settings_Subscribe();
-		$this->settings_objs['subscribe']->setup_settings();
-
-		// Setup "Connect" settings.
-		$this->settings_objs['connect'] = new Woothemes_SC_Settings_Connect();
-		$this->settings_objs['connect']->setup_settings();
-
-		// Setup "Integration" settings.
-		$this->settings_objs['integration'] = new Woothemes_SC_Settings_Integration();
-		$this->settings_objs['integration']->setup_settings();
-
-		$this->settings_objs = (array)apply_filters( 'woothemes_sc_setup_settings', $this->settings_objs );
-
-		do_action( 'woothemes_sc_setup_settings_' . $current_tab );
-	} // End setup_settings()
-
-	/**
 	 * The settings screen markup.
 	 * @access  public
 	 * @since   1.0.0
 	 * @return  void
 	 */
 	public function settings_screen () {
+		global $woothemes_sc;
 		$tabs = $this->_get_settings_tabs();
 		$current_tab = $this->_get_current_tab();
 ?>
@@ -147,9 +113,9 @@ do_action( 'woothemes_sc_settings_tabs' );
 </h2>
 <form action="options.php" method="post">
 <?php
-if ( is_object( $this->settings_objs[$current_tab] ) ) {
-	// $this->settings_objs[$current_tab]->settings_errors();
-	$this->settings_objs[$current_tab]->settings_screen();
+if ( is_object( $woothemes_sc->settings_objs[$current_tab] ) ) {
+	// $woothemes_sc->settings_objs[$current_tab]->settings_errors();
+	$woothemes_sc->settings_objs[$current_tab]->settings_screen();
 }
 
 do_action( 'woothemes_sc_settings_tabs_' . $current_tab );

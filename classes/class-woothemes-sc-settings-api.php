@@ -99,7 +99,7 @@ class Woothemes_SC_Settings_API {
 		$this->init_sections();
 		$this->init_fields();
 		$this->get_settings();
-		$this->settings_fields();
+		if ( is_admin() ) $this->settings_fields(); // Run this only in the admin.
 	} // End setup_settings()
 
 	/**
@@ -131,7 +131,8 @@ class Woothemes_SC_Settings_API {
 	 * @return void
 	 */
 	public function create_sections () {
-		if ( count( $this->sections ) > 0 ) {
+		// if ( ! function_exists( 'add_settings_section' ) ) return;
+		if ( 0 < count( $this->sections ) ) {
 			foreach ( $this->sections as $k => $v ) {
 				add_settings_section( $k, $v['name'], array( $this, 'section_description' ), $this->token );
 			}
@@ -145,7 +146,8 @@ class Woothemes_SC_Settings_API {
 	 * @return void
 	 */
 	public function create_fields () {
-		if ( count( $this->sections ) > 0 ) {
+		// if ( ! function_exists( 'add_settings_field' ) ) return;
+		if ( 0 < count( $this->sections ) ) {
 			foreach ( $this->fields as $k => $v ) {
 				$method = $this->determine_method( $v, 'form' );
 				$name = $v['name'];
@@ -245,6 +247,7 @@ class Woothemes_SC_Settings_API {
 	 * @return void
 	 */
 	public function settings_fields () {
+		// if ( ! function_exists( 'register_setting' ) ) return;
 		$this->create_sections();
 		$this->create_fields();
 		register_setting( $this->token, $this->token, array( $this, 'validate_fields' ) );

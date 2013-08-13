@@ -27,9 +27,10 @@
     if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 	require_once( 'classes/class-woothemes-sc.php' );
-	if ( ! is_admin() ) require_once( 'woothemes-sc-template.php' );
 
 	global $woothemes_sc;
 	$woothemes_sc = new Woothemes_SC( __FILE__ );
 	$woothemes_sc->version = '1.0.0';
+
+    if ( ! is_admin() ) require_once( 'woothemes-sc-template.php' );
 ?>
