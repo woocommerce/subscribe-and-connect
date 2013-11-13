@@ -1,44 +1,52 @@
 (function($) {
 	$(document).ready(function() {
 		var frame;
-		$( 'a.upload-button' ).on( 'click', function( e ) {
-			var $el = $( this );
 
-			event.preventDefault();
+		$( 'a.preview-link' ).on( 'click', function( e ) {
+			if ( $( this ).hasClass( 'remove' ) ) {
+				var placeholder_image = $( this ).parents( 'td' ).find( '.woothemes-sc-placeholder-image' ).attr( 'src' );
+				$( this ).find( 'img' ).attr( 'src', placeholder_image );
+				$( this ).addClass( 'add' ).removeClass( 'remove' );
+				return false;
+			} else {
+				var $el = $( this );
 
-			file_path_field = $el.parent().find( '.upload-url' );
+				event.preventDefault();
 
-			// If the media frame already exists, reopen it.
-			if ( frame ) {
-			  frame.open();
-			  return;
-			}
+				file_path_field = $el.parents( '.woothemes-sc-network-item' ).find( '.upload-url' );
 
-			frame = wp.media({
-				title: $el.data( 'uploader-title' ),
-			    button: {
-			      text: $el.data( 'uploader-button-text' ),
-			    },
-			    multiple: false,  // Set to true to allow multiple files to be selected
-				library:   {
-					type: 'image'
+				// If the media frame already exists, reopen it.
+				if ( frame ) {
+				  frame.open();
+				  return;
 				}
-			});
 
-			// When an image is selected, run a callback.
-			frame.on( 'select', function() {
-			  // We set multiple to false so only get one image from the uploader
-			  attachment = frame.state().get('selection').first().toJSON();
+				frame = wp.media({
+					title: $el.data( 'uploader-title' ),
+				    button: {
+				      text: $el.data( 'uploader-button-text' ),
+				    },
+				    multiple: false,  // Set to true to allow multiple files to be selected
+					library:   {
+						type: 'image'
+					}
+				});
 
-			  // Do something with attachment.id and/or attachment.url here
-			  $( file_path_field ).val( attachment.url );
+				// When an image is selected, run a callback.
+				frame.on( 'select', function() {
+				  // We set multiple to false so only get one image from the uploader
+				  var attachment = frame.state().get('selection').first().toJSON();
 
-			  // Small preview of the image
-			  $( file_path_field ).parents( '.woothemes-sc-network-item' ).find( '.image-preview img' ).attr( 'src', attachment.url );
-			});
+				  // Do something with attachment.id and/or attachment.url here
+				  $( file_path_field ).val( attachment.url );
 
-			// Finally, open the modal
-			frame.open();
+				  // Small preview of the image
+				  $( file_path_field ).parents( '.woothemes-sc-network-item' ).find( '.image-preview img' ).attr( 'src', attachment.url );
+				});
+
+				// Finally, open the modal
+				frame.open();
+			}
 		});
 	});
 })(jQuery);

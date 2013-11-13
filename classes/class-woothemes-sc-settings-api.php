@@ -485,6 +485,8 @@ class Woothemes_SC_Settings_API {
 			$this->_single_network_field( array( 'url' => '', 'network' => '', 'image' => '' ), $args, $networks, 0, false );
 		}
 
+		$html .= '<img src="' . esc_url( Woothemes_SC_Utils::get_placeholder_image() ) . '" class="woothemes-sc-placeholder-image" style="display: none;" width="0" height="0" />' . "\n";
+
 		echo $html;
 
 		if ( isset( $args['data']['description'] ) ) {
@@ -519,17 +521,24 @@ class Woothemes_SC_Settings_API {
 		}
 		$html .= '<span class="image-upload">' . "\n";
 		$html .= '<input type="hidden" name="' . esc_attr( $this->token ) . '[' . esc_attr( $args['key'] ) . '][' . intval( $i ) . '][image]" value="' . esc_attr( $data['image'] ) . '" class="upload-url" />' . "\n";
-		$html .= '<a class="button-secondary button upload-button" data-uploader-title="' . esc_attr__( 'Select Icon', 'woothemes-sc' ) . '"
-			data-uploader-button-text="' . esc_attr__( 'Select Icon', 'woothemes-sc' ) . '">' . __( 'Upload Icon', 'woothemes-sc' ) . '</a>' . "\n";
 		if ( true == $show_remove ) {
 			$html .= '<a href="#" class="remove-button">' . __( 'Remove', 'woothemes-sc' ) . '</a>' . "\n"; // TODO
 		}
+		$html .= '</span>' . "\n";
 		$html .= '</div><!--/.fields-->' . "\n";
 
 		$image_url = Woothemes_SC_Utils::get_placeholder_image();
-		if ( isset( $data['image'] ) && '' != $data['image'] ) $image_url = $data['image'];
+		$button_type = 'add';
+		if ( isset( $data['image'] ) && '' != $data['image'] ) {
+			$image_url = $data['image'];
+			$button_type = 'remove';
+		}
 
-		$html .= '<span class="image-preview"><a href="' . esc_url( $image_url ) . '" title="' . esc_attr__( 'Preview', 'woothemes-sc' ) . '" target="_blank" class="preview-link"><img src="' . esc_url( $image_url ) . '" /></a><a href="#" class="remove-icon" title="' . esc_attr__( 'Remove Icon', 'woothemes-sc' ) . '"><span>' . __( 'Remove Icon', 'woothemes-sc' ) . '</span></a></span>' . "\n";
+		$html .= '<span class="image-preview">' . "\n";
+			$html .= '<a href="#" title="' . esc_attr__( 'Preview', 'woothemes-sc' ) . '" target="_blank" class="preview-link ' . esc_attr( $button_type ) . '" data-uploader-title="' . esc_attr__( 'Select Icon', 'woothemes-sc' ) . '" data-uploader-button-text="' . esc_attr__( 'Select Icon', 'woothemes-sc' ) . '">' . "\n";
+				$html .= '<img src="' . esc_url( $image_url ) . '" />' . "\n";
+				$html .= '<span class="overlay"></span>' . "\n";
+			$html .= '</a>' . "\n";
 		$html .= '</span>' . "\n";
 		$html .= '</div>' . "\n";
 
