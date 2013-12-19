@@ -1,22 +1,27 @@
 .woothemes-sc-network-item {
-  clear: both;
-  float: left;
   padding: 0.4em 0;
   width: 420px;
 }
 .woothemes-sc-network-item .fields {
-  float: right;
   padding-top: 0.8em;
 }
 .woothemes-sc-network-item .image-preview {
   display: block;
-  float: left;
   position: relative;
+  height: 50px;
+  width: 240px;
+  margin-bottom: 1em;
+  overflow: hidden;
+  float: left;
+  clear: both;
+}
+.woothemes-sc-network-item .image-preview a.preview-link {
+  float: right;
+  display: block;
   max-width: 50px;
-  margin-right: 3em;
+  height: 50px;
 }
 .woothemes-sc-network-item .image-preview a.preview-link img {
-  border: 1px solid #EBEBEB;
   max-width: 100%;
 }
 .woothemes-sc-network-item .image-preview a.preview-link .overlay {
@@ -24,15 +29,12 @@
   width: 50px;
   height: 50px;
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 1px;
+  left: 1px;
   margin: 0;
   padding: 0;
   opacity: 0.5;
   background: #eeeeee url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAXklEQVQYGW2OUQrAMAhDFy8+dnKnwiuh2I+aJulDZebDkfSie1b28Q7EXWrfvSm60RQnkQUC8ja7owpmL6d4GdDZ0cNNHyIhZEj4QYCxze6orsluAh8AnR0xKPR07weXJi8JGd3qqwAAAABJRU5ErkJggg==) no-repeat center center;
-}
-.woothemes-sc-network-item .image-preview a.preview-link:hover img {
-  border: 1px solid #CCCCCC;
 }
 .woothemes-sc-network-item .image-preview a.preview-link:hover .overlay {
   display: block;

@@ -485,6 +485,7 @@ class Woothemes_SC_Settings_API {
 			$this->_single_network_field( array( 'url' => '', 'network' => '', 'image' => '' ), $args, $networks, 0, false );
 		}
 
+		// Used to store the placeholder image temporarily, for use with JavaScript.
 		$html .= '<img src="' . esc_url( Woothemes_SC_Utils::get_placeholder_image() ) . '" class="woothemes-sc-placeholder-image" style="display: none;" width="0" height="0" />' . "\n";
 
 		echo $html;
@@ -521,10 +522,8 @@ class Woothemes_SC_Settings_API {
 		}
 		$html .= '<span class="image-upload">' . "\n";
 		$html .= '<input type="hidden" name="' . esc_attr( $this->token ) . '[' . esc_attr( $args['key'] ) . '][' . intval( $i ) . '][image]" value="' . esc_attr( $data['image'] ) . '" class="upload-url" />' . "\n";
-		if ( true == $show_remove ) {
-			$html .= '<a href="#" class="remove-button">' . __( 'Remove', 'woothemes-sc' ) . '</a>' . "\n"; // TODO
-		}
 		$html .= '</span>' . "\n";
+		$html .= '<a href="#" class="remove-button">' . __( 'Remove', 'woothemes-sc' ) . '</a>' . "\n";
 		$html .= '</div><!--/.fields-->' . "\n";
 
 		$image_url = Woothemes_SC_Utils::get_placeholder_image();
