@@ -26,6 +26,8 @@ class Woothemes_SC_Frontend {
 		$this->_plugin_url = plugin_dir_url( $file );
 		$this->_plugin_path = plugin_dir_path( $file );
 
+		add_action( 'wp_enqueue_scripts', array( $this, 'register_frontend_styles' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_frontend_styles' ) );
 		add_action( 'wp_footer', array( $this, 'maybe_load_theme_stylesheets' ) );
 	} // End __construct()
 
@@ -48,6 +50,27 @@ class Woothemes_SC_Frontend {
 			break;
 		}
 	} // End __get()
+
+	/**
+	 * Register frontend stylesheets.
+	 * @access  public
+	 * @since   1.0.0
+	 * @return  void
+	 */
+	public function register_frontend_styles () {
+		global $woothemes_sc;
+		wp_register_style( 'woothemes-sc', $this->__get( 'plugin_url' ) . '/assets/css/frontend.css', '', $woothemes_sc->version );
+	} // End register_frontend_styles()
+
+	/**
+	 * Enqueue frontend stylesheets.
+	 * @access  public
+	 * @since   1.0.0
+	 * @return  void
+	 */
+	public function enqueue_frontend_styles () {
+		wp_enqueue_style( 'woothemes-sc' );
+	} // End enqueue_frontend_styles()
 
 	/**
 	 * Make sure the desired theme is valid. If not, return 'default'.
