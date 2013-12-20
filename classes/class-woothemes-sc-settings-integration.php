@@ -102,15 +102,8 @@ class Woothemes_SC_Settings_Integration extends Woothemes_SC_Settings_API {
 								'options' => $auto_options
 								);
     	// Manual
-    	$fields['use_custom_hook'] = array(
-								'name' => '',
-								'description' => __( 'Display "Subscribe & Connect" on a Custom Hook', 'woothemes-sc' ),
-								'type' => 'checkbox',
-								'default' => true,
-								'section' => 'manual'
-								);
     	$fields['custom_hook_name'] = array(
-								'name' => __( 'Custom Hook Name', 'woothemes-sc' ),
+								'name' => __( 'Display on a Custom Hook', 'woothemes-sc' ),
 								'description' => __( 'The name of the hook you want to use (for example, loop_end).', 'woothemes-sc' ),
 								'type' => 'text',
 								'default' => '',

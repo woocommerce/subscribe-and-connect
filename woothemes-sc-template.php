@@ -1,13 +1,155 @@
 <?php
+/**
+ * Variables, for use within the rest of this file (unset at the end).
+ * @since  1.0.0
+ */
 global $woothemes_sc;
 $woothemes_sc->setup_settings();
 $woothemes_sc_settings = $woothemes_sc->get_settings();
+
+/**
+ * Run through the various auto integration options and, maybe, integrate.
+ * @since  1.0.0
+ * @return void
+ */
+function woothemes_sc_maybe_auto_integrate () {
+	global $woothemes_sc;
+	$woothemes_sc->setup_settings();
+	$woothemes_sc_settings = $woothemes_sc->get_settings();
+
+	switch ( $woothemes_sc_settings['integration']['auto_integration'] ) {
+		case 'the_content':
+			if ( is_singular() ) add_filter( 'the_content', 'woothemes_sc_content_filter' );
+		break;
+
+		case 'woo_post_after':
+			add_action( 'woo_post_after-single', 'woothemes_sc_display' );
+		break;
+
+		case 'none':
+		default:
+		break;
+	}
+} // End woothemes_sc_maybe_auto_integrate()
+
+add_action( 'get_header', 'woothemes_sc_maybe_auto_integrate' );
+
+/**
+ * Maybe integrate on a custom hook.
+ * @since  1.0.0
+ * @return void
+ */
+function woothemes_sc_maybe_custom_hook () {
+	global $woothemes_sc;
+	$woothemes_sc->setup_settings();
+	$woothemes_sc_settings = $woothemes_sc->get_settings();
+
+	if ( '' != $woothemes_sc_settings['integration']['custom_hook_name'] ) {
+		add_action( esc_attr( $woothemes_sc_settings['integration']['custom_hook_name'] ), 'woothemes_sc_display' );
+	}
+} // End woothemes_sc_maybe_custom_hook()
+
+add_action( 'get_header', 'woothemes_sc_maybe_custom_hook' );
+
+/**
+ * If enabled, override the Subscribe & Connect functionality in the theme.
+ * @since  1.0.0
+ */
 if ( true == $woothemes_sc_settings['integration']['disable_theme_sc'] && ! function_exists( 'woo_subscribe_connect' ) ) {
 	function woo_subscribe_connect() {} // End woo_subscribe_connect()
 }
 
 /**
+ * Return HTML markup for the "subscribe" and "connect" sections, below the given content.
+ * @since  1.0.0
+ * @return string HTML markup.
+ */
+function woothemes_sc_content_filter ( $content ) {
+	return $content . woothemes_sc_get();
+} // End woothemes_sc_content_filter()
+
+/**
+ * Display HTML markup for the "subscribe" and "connect" sections.
+ * @since  1.0.0
+ * @return void
+ */
+function woothemes_sc_display () {
+	echo woothemes_sc_get();
+} // End woothemes_sc_display()
+
+/**
+ * Return HTML markup for the "subscribe" and "connect" sections.
+ * @since  1.0.0
+ * @return string HTML markup.
+ */
+function woothemes_sc_get () {
+	$html = woothemes_sc_get_subscribe();
+	$html .= woothemes_sc_get_connect();
+	return $html;
+} // End woothemes_sc_get()
+
+/**
+ * Display HTML markup for the "subscribe" section.
+ * @since  1.0.0
+ * @return void
+ */
+function woothemes_sc_subscribe () {
+	echo woothemes_sc_get_subscribe();
+} // End woothemes_sc_subscribe()
+
+/**
+ * Return HTML markup for the "subscribe" section.
+ * @since  1.0.0
+ * @return string HTML markup.
+ */
+function woothemes_sc_get_subscribe () {
+	global $woothemes_sc;
+	$settings = $woothemes_sc->get_settings();
+
+	$html = '';
+
+	// TODO
+
+	return $html;
+} // End woothemes_sc_get_subscribe()
+
+/**
+ * Display HTML markup for the "connect" section.
+ * @since  1.0.0
+ * @return void
+ */
+function woothemes_sc_connect () {
+	echo woothemes_sc_get_connect();
+} // End woothemes_sc_connect()
+
+/**
  * Return HTML markup for the "connect" section.
+ * @since  1.0.0
+ * @return string HTML markup.
+ */
+function woothemes_sc_get_connect () {
+	global $woothemes_sc;
+	$settings = $woothemes_sc->get_settings();
+
+	$html = '';
+	$html .= woothemes_sc_get_networks();
+
+	// TODO
+
+	return $html;
+} // End woothemes_sc_get_connect()
+
+/**
+ * Display HTML markup for the networks.
+ * @since  1.0.0
+ * @return void
+ */
+function woothemes_sc_networks () {
+	echo woothemes_sc_get_networks();
+} // End woothemes_sc_networks()
+
+/**
+ * Return HTML markup for the networks.
  * @since  1.0.0
  * @return string HTML markup.
  */
@@ -57,4 +199,10 @@ function woothemes_sc_get_networks () {
 
 	return $html;
 } // End woothemes_sc_get_networks()
+
+/**
+ * Unset variables declared for use in this file only.
+ * @since  1.0.0
+ */
+unset( $woothemes_sc_settings );
 ?>
