@@ -9,7 +9,18 @@ class Woothemes_SC_Utils {
 	public static function get_supported_networks () {
 		return (array)apply_filters( 'woothemes_sc_supported_networks', array(
 			'facebook' => __( 'Facebook', 'woothemes-sc' ),
-			'twitter' => __( 'Twitter', 'woothemes-sc' )
+			'twitter' => __( 'Twitter', 'woothemes-sc' ),
+			'pinterest' => __( 'Pinterest', 'woothemes-sc' ),
+			'youtube' => __( 'YouTube', 'woothemes-sc' ),
+			'instagram' => __( 'Instagram', 'woothemes-sc' ),
+			'flickr' => __( 'Flickr', 'woothemes-sc' ),
+			'google_plus' => __( 'Google +', 'woothemes-sc' ),
+			'linkedin' => __( 'LinkedIn', 'woothemes-sc' ),
+			'vimeo' => __( 'Vimeo', 'woothemes-sc' ),
+			'tumblr' => __( 'Tumblr', 'woothemes-sc' ),
+			'dribbble' => __( 'Dribbble', 'woothemes-sc' ),
+			'appdotnet' => __( 'App.net', 'woothemes-sc' ),
+			'github' => __( 'Github', 'woothemes-sc' )
 			) );
 	} // End get_supported_networks()
 
@@ -23,5 +34,46 @@ class Woothemes_SC_Utils {
 		global $woothemes_sc;
 		return esc_url( apply_filters( 'woothemes_sc_placeholder_thumbnail', $woothemes_sc->context->__get( 'plugin_url' ) . 'assets/images/placeholder.png' ) );
 	} // End get_placeholder_image()
+
+	/**
+	 * Get an array of networks, in a specified order.
+	 * @access  public
+	 * @since   1.0.0
+	 * @return  array The ordered array of networks.
+	 */
+	public static function get_networks_in_order ( $networks, $order ) {
+		$order_entries = array();
+		if ( '' != $order ) {
+			$order_entries = explode( ',', $order );
+		}
+
+		// Re-order the networks according to the stored order.
+		if ( 0 < count( $order_entries ) ) {
+			$original_networks = $networks; // Make a backup before we overwrite.
+			$networks = array();
+			foreach ( $order_entries as $k => $v ) {
+				$networks[$v] = $original_networks[$v];
+				unset( $original_networks[$v] );
+			}
+			if ( 0 < count( $original_networks ) ) {
+				$networks = array_merge( $networks, $original_networks );
+			}
+		}
+
+		return $networks;
+	} // End get_networks_in_order()
+
+	/**
+	 * Get an array of the supported icon themes.
+	 * @access  public
+	 * @since   1.0.0
+	 * @return  array The icon themes supported by Subscribe & Connect.
+	 */
+	public static function get_icon_themes () {
+		return (array)apply_filters( 'woothemes_sc_icon_themes', array(
+																	'default' => array( 'name' => __( 'Default', 'woothemes-sc' ), 'stylesheet' => '' )
+																	)
+									);
+	} // End get_icon_themes()
 } // End Class
 ?>

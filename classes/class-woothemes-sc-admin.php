@@ -194,6 +194,7 @@ submit_button();
 	public function register_enqueues () {
 		global $woothemes_sc;
 		wp_register_script( $this->_token . '-admin', esc_url( $this->_plugin_url . 'assets/js/admin.js' ), array( 'jquery' ), $woothemes_sc->version );
+		wp_register_script( $this->_token . '-sortables', esc_url( $this->_plugin_url . 'assets/js/sortables.js' ), array( 'jquery', 'jquery-ui-sortable' ), $woothemes_sc->version );
 		wp_register_script( $this->_token . '-uploaders', esc_url( $this->_plugin_url . 'assets/js/uploaders.js' ), array( 'jquery' ), $woothemes_sc->version );
 		wp_register_style( $this->_token . '-settings-api',  esc_url( $this->_plugin_url . 'assets/css/settings.css' ), '', $woothemes_sc->version );
 	} // End register_enqueues()
@@ -208,6 +209,7 @@ submit_button();
 		wp_enqueue_media();
 		wp_enqueue_script( $this->_token . '-admin' );
 		wp_enqueue_script( $this->_token . '-uploaders' );
+		wp_enqueue_script( $this->_token . '-sortables' );
 	} // End enqueue_scripts()
 
 	/**

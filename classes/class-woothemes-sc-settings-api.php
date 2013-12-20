@@ -178,7 +178,7 @@ class Woothemes_SC_Settings_API {
 				$method = $data[$type];
 			}
 
-			if ( $method == '' && method_exists( $this, $data[$type] ) ) {
+			if ( '' == $method && method_exists( $this, $data[$type] ) ) {
 				if ( $type == 'form' ) {
 					$method = array( $this, $data[$type] );
 				} else {
@@ -187,7 +187,7 @@ class Woothemes_SC_Settings_API {
 			}
 		}
 
-		if ( $method == '' && method_exists ( $this, $type . '_field_' . $data['type'] ) ) {
+		if ( '' == $method && method_exists ( $this, $type . '_field_' . $data['type'] ) ) {
 			if ( $type == 'form' ) {
 				$method = array( $this, $type . '_field_' . $data['type'] );
 			} else {
@@ -195,7 +195,7 @@ class Woothemes_SC_Settings_API {
 			}
 		}
 
-		if ( $method == '' ) {
+		if ( '' == $method ) {
 			if ( $type == 'form' ) {
 				$method = array( $this, $type . '_field_text' );
 			} else {
@@ -292,6 +292,20 @@ class Woothemes_SC_Settings_API {
 			echo '<span class="description">' . wp_kses_post( $args['data']['description'] ) . '</span>' . "\n";
 		}
 	} // End form_field_text()
+
+	/**
+	 * A hidden input field.
+	 *
+	 * @access public
+	 * @since 1.0.0
+	 * @param array $args
+	 * @return void
+	 */
+	public function form_field_hidden ( $args ) {
+		$options = $this->get_settings();
+
+		echo '<input id="' . esc_attr( $args['key'] ) . '" name="' . $this->token . '[' . esc_attr( $args['key'] ) . ']" size="40" type="hidden" value="' . esc_attr( $options[$args['key']] ) . '" />' . "\n";
+	} // End form_field_hidden()
 
 	/**
 	 * form_field_checkbox function.
@@ -473,16 +487,19 @@ class Woothemes_SC_Settings_API {
 		$networks = Woothemes_SC_Utils::get_supported_networks();
 		$html = '';
 
-		if ( isset( $options['networks'] ) && is_array( $options['networks'] ) && 0 < count( $options['networks'] ) ) {
-			$i = 0;
-			foreach ( $options['networks'] as $k => $v ) {
-				$this->_single_network_field( array( 'url' => $v['url'], 'network' => $v['network'], 'image' => $v['image'] ), $args, $networks, $i );
-				$i++;
+		$order = '';
+		if ( isset( $options['networks_order'] ) ) {
+			$order = $options['networks_order'];
+		}
+
+		$networks = Woothemes_SC_Utils::get_networks_in_order( $networks, $order );
+
+		if ( 0 < count( $networks ) ) {
+			$html .= '<table class="form-table woothemes-sc-network-fields"><tbody>' . "\n";
+			foreach ( $networks as $k => $v ) {
+				$html .= $this->_single_network_field( $k, $v, $args, $options );
 			}
-			// Add a blank item each time, to cater for new additions without using JavaScript.
-			$this->_single_network_field( array( 'url' => '', 'network' => '', 'image' => '' ), $args, $networks, $i, false );
-		} else {
-			$this->_single_network_field( array( 'url' => '', 'network' => '', 'image' => '' ), $args, $networks, 0, false );
+			$html .= '</tbody></table>' . "\n";
 		}
 
 		// Used to store the placeholder image temporarily, for use with JavaScript.
@@ -506,26 +523,22 @@ class Woothemes_SC_Settings_API {
 	 * @param 	bool  $show_remove 	Whether or not to show the "Remove" link.
 	 * @return  string           	Formatted HTML.
 	 */
-	private function _single_network_field ( $data, $args, $networks, $i, $show_remove = true ) {
+	private function _single_network_field ( $key, $value, $args, $options ) {
 		$html = '';
 
-		$html .= '<div class="woothemes-sc-network-item">' . "\n";
-		$html .= '<div class="fields">' . "\n";
-		$html .= '<input type="text" name="' . esc_attr( $this->token ) . '[' . esc_attr( $args['key'] ) . '][' . intval( $i ) . '][url]" placeholder="' . __( 'Place your profile URL here', 'woothemes-sc' ) . '" value="' . esc_attr( $data['url'] ) . '" />' . "\n";
-		if ( 0 < count( $networks ) ) {
-			$html .= '<select name="' . esc_attr( $this->token ) . '[' . esc_attr( $args['key'] ) . '][' . intval( $i ) . '][network]">' . "\n";
-			$html .= '<option value="custom">' . __( 'Custom', 'woothemes-sc' ) . '</option>' . "\n";
-			foreach ( $networks as $k => $v ) {
-				$html .= '<option value="' . esc_attr( $k ) . '"' . selected( $k, $data['network'], false ) . '>' . esc_html( $v ) . '</option>' . "\n";
-			}
-			$html .= '</select>' . "\n";
-		}
-		$html .= '<span class="image-upload">' . "\n";
-		$html .= '<input type="hidden" name="' . esc_attr( $this->token ) . '[' . esc_attr( $args['key'] ) . '][' . intval( $i ) . '][image]" value="' . esc_attr( $data['image'] ) . '" class="upload-url" />' . "\n";
-		$html .= '</span>' . "\n";
-		$html .= '<a href="#" class="remove-button">' . __( 'Remove', 'woothemes-sc' ) . '</a>' . "\n";
-		$html .= '</div><!--/.fields-->' . "\n";
+		$data = array( 'url' => '', 'image_id' => '' );
+		if ( isset( $options[$args['key']][$key] ) ) $data = $options[$args['key']][$key];
 
+		$html .= '<tr id="' . esc_attr( $key ) . '" class="woothemes-sc-network-item">' . "\n";
+		$html .= '<td class="title">' . "\n";
+		$html .= '<span class="handle hide-if-no-js">' . __( 'Re-order', 'woothemes' ) . '</span>' . "\n";
+		$html .= '<label for="' . esc_attr( $this->token ) . '[' . esc_attr( $args['key'] ) . '][' . esc_attr( $key ) . '][url]">' . esc_html( $value ) . '</label>' . "\n";
+		$html .= '</td><td class="url">' . "\n";
+		$html .= '<input type="text" class="regular-text input-text url" name="' . esc_attr( $this->token ) . '[' . esc_attr( $args['key'] ) . '][' . esc_attr( $key ) . '][url]" placeholder="' . sprintf( __( 'Place your %s URL here', 'woothemes-sc' ), esc_attr( $value ) ) . '" value="' . esc_attr( $data['url'] ) . '" />' . "\n";
+		$html .= '</td><td class="image">' . "\n";
+		$html .= '<span class="image-upload">' . "\n";
+		$html .= '<input type="hidden" name="' . esc_attr( $this->token ) . '[' . esc_attr( $args['key'] ) . '][' . esc_attr( $key ) . '][image_id]" value="' . esc_attr( $data['image_id'] ) . '" class="upload-id" />' . "\n";
+		$html .= '</span>' . "\n";
 		$image_url = Woothemes_SC_Utils::get_placeholder_image();
 		$button_type = 'add';
 		if ( isset( $data['image'] ) && '' != $data['image'] ) {
@@ -540,8 +553,9 @@ class Woothemes_SC_Settings_API {
 			$html .= '</a>' . "\n";
 		$html .= '</span>' . "\n";
 		$html .= '</div>' . "\n";
+		$html .= '</td></tr>' . "\n";
 
-		echo $html;
+		return $html;
 	} // End _single_network_field()
 
 	/**

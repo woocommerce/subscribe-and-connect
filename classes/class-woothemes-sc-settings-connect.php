@@ -82,6 +82,15 @@ class Woothemes_SC_Settings_Connect extends Woothemes_SC_Settings_API {
 								'required' => 0
 								);
 
+    	$fields['networks_order'] = array(
+								'name' => '',
+								'description' => '',
+								'type' => 'hidden',
+								'default' => '',
+								'section' => 'networks',
+								'required' => 0
+								);
+
 		$this->fields = $fields;
 	} // End init_fields()
 } // End Class

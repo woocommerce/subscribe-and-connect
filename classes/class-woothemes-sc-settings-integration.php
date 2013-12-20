@@ -32,6 +32,7 @@ class Woothemes_SC_Settings_Integration extends Woothemes_SC_Settings_API {
 	    parent::__construct(); // Required in extended classes.
 	    $this->token = 'woothemes-sc-integration';
 	    $this->name = __( 'Integration', 'woothemes-sc' );
+	    $this->_themes = Woothemes_SC_Utils::get_icon_themes();
 	} // End __construct()
 
 	/**
@@ -61,6 +62,13 @@ class Woothemes_SC_Settings_Integration extends Woothemes_SC_Settings_API {
 					'name' 			=> __( 'Advanced Integration', 'woothemes-sc' ),
 					'description'	=> __( 'Finely tuned control over where Subscribe & Connect integrates into your website.', 'woothemes-sc' )
 				);
+
+		if ( 1 < count( $this->_themes ) ) {
+			$sections['presentation'] = array(
+					'name' 			=> __( 'Presentation', 'woothemes-sc' ),
+					'description'	=> __( 'Determine the look and feel of the connect icons.', 'woothemes-sc' )
+				);
+		}
 
 		$this->sections = $sections;
 	} // End init_sections()
@@ -112,11 +120,35 @@ class Woothemes_SC_Settings_Integration extends Woothemes_SC_Settings_API {
     	// WooThemes
     	$fields['disable_theme_sc'] = array(
 								'name' => '',
-								'description' => sprintf( __( 'Hide the Subscribe & Connect feature in %s', 'woothemes-sc' ), $theme->__get( 'name' ) ),
+								'description' => sprintf( __( 'Hide the Subscribe & Connect feature in %s.', 'woothemes-sc' ), $theme->__get( 'name' ) ),
 								'type' => 'checkbox',
 								'default' => true,
 								'section' => 'woothemes'
 								);
+
+    	// Presentation
+    	if ( 1 < count( $this->_themes ) ) {
+    		$themes = array();
+    		foreach ( $this->_themes as $k => $v ) {
+    			$themes[$k] = $v['name'];
+    		}
+    		$fields['theme'] = array(
+								'name' => 'Icon Design',
+								'description' => sprintf( __( 'Choose a design for how your social icons will be presented within %s.', 'woothemes-sc' ), $theme->__get( 'name' ) ),
+								'type' => 'select',
+								'default' => 'default',
+								'options' => $themes,
+								'section' => 'presentation'
+								);
+    	} else {
+    		$fields['theme'] = array(
+								'name' => '',
+								'description' => '',
+								'type' => 'hidden',
+								'default' => 'default',
+								'section' => 'manual'
+								);
+    	}
 
 		$this->fields = $fields;
 	} // End init_fields()

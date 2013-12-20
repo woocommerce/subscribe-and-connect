@@ -4,7 +4,7 @@
 
 		$( 'a.preview-link' ).on( 'click', function( e ) {
 			if ( $( this ).hasClass( 'remove' ) ) {
-				var placeholder_image = $( this ).parents( 'td' ).find( '.woothemes-sc-placeholder-image' ).attr( 'src' );
+				var placeholder_image = $( this ).parents( '.form-table' ).parents( '.form-table' ).find( '.woothemes-sc-placeholder-image' ).attr( 'src' );
 				$( this ).find( 'img' ).attr( 'src', placeholder_image );
 				$( this ).addClass( 'add' ).removeClass( 'remove' );
 				return false;
@@ -38,10 +38,13 @@
 				  var attachment = frame.state().get('selection').first().toJSON();
 
 				  // Do something with attachment.id and/or attachment.url here
-				  $( file_path_field ).val( attachment.url );
+				  $( file_path_field ).val( attachment.id );
 
 				  // Small preview of the image
 				  $( file_path_field ).parents( '.woothemes-sc-network-item' ).find( '.image-preview img' ).attr( 'src', attachment.url );
+
+				  // Swap out the CSS classes
+				  $( this ).addClass( 'remove' ).removeClass( 'add' );
 				});
 
 				// Finally, open the modal
