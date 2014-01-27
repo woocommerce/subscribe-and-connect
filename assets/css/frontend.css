@@ -1,4 +1,75 @@
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('../fonts/fontawesome-webfont.eot?v=4.0.3');
+  src: url('../fonts/fontawesome-webfont.eot?#iefix&v=4.0.3') format('embedded-opentype'), url('../fonts/fontawesome-webfont.woff?v=4.0.3') format('woff'), url('../fonts/fontawesome-webfont.ttf?v=4.0.3') format('truetype'), url('../fonts/fontawesome-webfont.svg?v=4.0.3#fontawesomeregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+.woothemes-sc-connect .icons {
+  display: table-row;
+}
+.woothemes-sc-connect .icons li {
+  display: table-cell;
+  list-style: none;
+  vertical-align: middle;
+  padding-right: 0.618em;
+}
 .woothemes-sc-connect .has-image img {
   max-width: 50px;
   height: auto;
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+.woothemes-sc-connect .uses-theme {
+  /* Default Icon */
+}
+.woothemes-sc-connect .uses-theme a {
+  font-family: 'FontAwesome';
+  font-size: 3em;
+  font-size: 3rem;
+  text-decoration: none;
+}
+.woothemes-sc-connect .uses-theme a :before {
+  content: '\f013';
+  min-width: 30px;
+}
+.woothemes-sc-connect .uses-theme.twitter a :before {
+  content: '\f099';
+}
+.woothemes-sc-connect .uses-theme.facebook a :before {
+  content: '\f09a';
+}
+.woothemes-sc-connect .uses-theme.pinterest a :before {
+  content: '\f0d2';
+}
+.woothemes-sc-connect .uses-theme.youtube a :before {
+  content: '\f167';
+}
+.woothemes-sc-connect .uses-theme.instagram a :before {
+  content: '\f16d';
+}
+.woothemes-sc-connect .uses-theme.flickr a :before {
+  content: '\f16e';
+}
+.woothemes-sc-connect .uses-theme.google_plus a :before {
+  content: '\f0d5';
+}
+.woothemes-sc-connect .uses-theme.linkedin a :before {
+  content: '\f0e1';
+}
+.woothemes-sc-connect .uses-theme.vimeo a :before {
+  content: '\f194';
+}
+.woothemes-sc-connect .uses-theme.tumblr a :before {
+  content: '\f173';
+}
+.woothemes-sc-connect .uses-theme.dribbble a :before {
+  content: '\f17d';
+}
+.woothemes-sc-connect .uses-theme.appdotnet a :before {
+  content: '\f170';
+}
+.woothemes-sc-connect .uses-theme.github a :before {
+  content: '\f09b';
 }

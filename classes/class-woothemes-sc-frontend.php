@@ -59,7 +59,7 @@ class Woothemes_SC_Frontend {
 	 */
 	public function register_frontend_styles () {
 		global $woothemes_sc;
-		wp_register_style( 'woothemes-sc', $this->__get( 'plugin_url' ) . '/assets/css/frontend.css', '', $woothemes_sc->version );
+		wp_register_style( 'woothemes-sc', $this->__get( 'plugin_url' ) . 'assets/css/frontend.css', '', $woothemes_sc->version );
 	} // End register_frontend_styles()
 
 	/**
