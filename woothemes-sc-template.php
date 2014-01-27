@@ -83,10 +83,45 @@ function woothemes_sc_display () {
  * @return string HTML markup.
  */
 function woothemes_sc_get () {
-	$html = woothemes_sc_get_subscribe();
+	$html = '<div class="woothemes-sc-connect">' . "\n";
+	$html .= woothemes_sc_get_welcome_text();
+	$html .= woothemes_sc_get_subscribe();
 	$html .= woothemes_sc_get_connect();
+	$html .= '</div><!--/.woothemes-sc-connect-->' . "\n";
 	return $html;
 } // End woothemes_sc_get()
+
+/**
+ * Display HTML markup for the "welcome text" section.
+ * @since  1.0.0
+ * @return void
+ */
+function woothemes_sc_welcome_text () {
+	echo woothemes_sc_get_welcome_text();
+} // End woothemes_sc_welcome_text()
+
+/**
+ * Return HTML markup for the "welcome text" section.
+ * @since  1.0.0
+ * @return string HTML markup.
+ */
+function woothemes_sc_get_welcome_text ( $args = array() ) {
+	global $woothemes_sc;
+	$settings = $woothemes_sc->get_settings();
+
+	$defaults = array( 'before_title' => '<h2>', 'after_title' => '</h2>' );
+	$args = wp_parse_args( $args, $defaults );
+
+	$html = '';
+	if ( '' != $settings['subscribe']['title'] ) {
+		$html .= $args['before_title'] . $settings['subscribe']['title'] . $args['after_title'];
+	}
+	if ( '' != $settings['subscribe']['text'] ) {
+		$html .= '<div class="description">' . wpautop( $settings['subscribe']['text'] ) . '</div><!--/.description-->' . "\n";
+	}
+
+	return $html;
+} // End woothemes_sc_get_welcome_text()
 
 /**
  * Display HTML markup for the "subscribe" section.
@@ -106,9 +141,34 @@ function woothemes_sc_get_subscribe () {
 	global $woothemes_sc;
 	$settings = $woothemes_sc->get_settings();
 
+	// Break out, if we don't want to print a newsletter subscription form.
+	if ( 'none' == $settings['subscribe']['newsletter_service'] ) return false;
+
+	switch ( $settings['subscribe']['newsletter_service'] ) {
+		case 'feedburner':
+			$form_action = 'http://feedburner.google.com/fb/a/mailverify';
+			$email_field_name = 'email';
+			$hidden_fields = array( 'uri' => $settings['subscribe']['newsletter_service_id'], 'title' => get_bloginfo( 'name' ), 'loc' => 'en_US' );
+		break;
+
+		default:
+			$form_action = '';
+			$email_field_name = '';
+			$hidden_fields = array();
+		break;
+	}
+
 	$html = '';
 
-	// TODO
+	$html .= '<form class="newsletter-form" action="' . esc_attr( esc_url( $form_action ) ) . '" method="post">' . "\n";
+	if ( '' != $email_field_name ) $html .= '<input class="email" type="text" name="' . esc_attr( $email_field_name ) . '" placeholder="' . esc_attr__( 'Your E-mail Address', 'woothemes-sc' ) . '" />' . "\n";
+	if ( 0 < count( $hidden_fields ) ) {
+		foreach ( $hidden_fields as $k => $v ) {
+			$html .= '<input type="hidden" value="' . esc_attr( $v ) . '" name="' . esc_attr( $k ) . '"/>' . "\n";
+		}
+	}
+	$html .= '<input class="submit" type="submit" name="submit" value="' . esc_attr__( 'Subscribe', 'woothemes-sc' ) . '" />' . "\n";
+	$html .= '</form>' . "\n";
 
 	return $html;
 } // End woothemes_sc_get_subscribe()
@@ -189,13 +249,11 @@ function woothemes_sc_get_networks () {
 	}
 
 	$html = '';
-	$html .= '<div class="woothemes-sc-connect">' . "\n";
 	if ( '' != $list ) {
 		$html .= '<ul class="icons">' . "\n";
 		$html .= $list;
 		$html .= '</ul><!--/.icons-->' . "\n";
 	}
-	$html .= '</div><!--/.woothemes-sc-connect-->' . "\n";
 
 	return $html;
 } // End woothemes_sc_get_networks()
