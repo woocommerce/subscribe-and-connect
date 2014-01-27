@@ -147,13 +147,22 @@ function woothemes_sc_get_subscribe () {
 	switch ( $settings['subscribe']['newsletter_service'] ) {
 		case 'feedburner':
 			$form_action = 'http://feedburner.google.com/fb/a/mailverify';
-			$email_field_name = 'email';
+			$text_fields = array( 'email' => __( 'Your Email Address', 'woothemes-sc' ) );
+			$hidden_fields = array( 'uri' => $settings['subscribe']['newsletter_service_id'], 'title' => get_bloginfo( 'name' ), 'loc' => 'en_US' );
+		break;
+
+		case 'campaign_monitor':
+			$cm_array = explode( '/', $settings['subscribe']['newsletter_service_form_action'] );
+			array_pop( $cm_array );
+			$cm_id = end( $cm_array );
+			$form_action = $settings['subscribe']['newsletter_service_form_action'];
+			$text_fields = array( 'name' => __( 'Name', 'woothemes-sc' ), 'cm-' . $cm_id . '-' . $cm_id => __( 'Your Email Address', 'woothemes-sc' ) );
 			$hidden_fields = array( 'uri' => $settings['subscribe']['newsletter_service_id'], 'title' => get_bloginfo( 'name' ), 'loc' => 'en_US' );
 		break;
 
 		default:
 			$form_action = '';
-			$email_field_name = '';
+			$text_fields = array( 'email' => __( 'Your Email Address', 'woothemes-sc' ) );
 			$hidden_fields = array();
 		break;
 	}
@@ -161,7 +170,11 @@ function woothemes_sc_get_subscribe () {
 	$html = '';
 
 	$html .= '<form class="newsletter-form" action="' . esc_attr( esc_url( $form_action ) ) . '" method="post">' . "\n";
-	if ( '' != $email_field_name ) $html .= '<input class="email" type="text" name="' . esc_attr( $email_field_name ) . '" placeholder="' . esc_attr__( 'Your E-mail Address', 'woothemes-sc' ) . '" />' . "\n";
+	if ( 0 < count( $text_fields ) ) {
+		foreach ( $text_fields as $k => $v ) {
+			$html .= '<input type="text" placeholder="' . esc_attr( $v ) . '" name="' . esc_attr( $k ) . '"/>' . "\n";
+		}
+	}
 	if ( 0 < count( $hidden_fields ) ) {
 		foreach ( $hidden_fields as $k => $v ) {
 			$html .= '<input type="hidden" value="' . esc_attr( $v ) . '" name="' . esc_attr( $k ) . '"/>' . "\n";
