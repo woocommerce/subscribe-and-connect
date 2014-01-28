@@ -70,8 +70,10 @@ class Woothemes_SC_Utils {
 	 * @return  array The icon themes supported by Subscribe & Connect.
 	 */
 	public static function get_icon_themes () {
+		global $woothemes_sc;
 		return (array)apply_filters( 'woothemes_sc_icon_themes', array(
-																	'default' => array( 'name' => __( 'Default', 'woothemes-sc' ), 'stylesheet' => '' )
+																	'none' => array( 'name' => __( 'None', 'woothemes-sc' ), 'stylesheet' => '' ),
+																	'default' => array( 'name' => __( 'Default', 'woothemes-sc' ), 'stylesheet' => esc_url( $woothemes_sc->context->__get( 'plugin_url' ) . 'assets/css/themes/default.css' ) )
 																	)
 									);
 	} // End get_icon_themes()
