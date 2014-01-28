@@ -180,6 +180,11 @@ function woothemes_sc_get_subscribe () {
 								);
 		break;
 
+		case 'madmimi':
+			$form_action = $settings['subscribe']['newsletter_mad_mimi_subscription_url'];
+			$text_fields = array( 'email' => __( 'Your Email Address', 'woothemes-sc' ) );
+		break;
+
 		default:
 			$form_action = '';
 			$text_fields = array( 'email' => __( 'Your Email Address', 'woothemes-sc' ) );
