@@ -282,6 +282,7 @@ function woothemes_sc_get_networks () {
 
 	$html = '';
 	if ( '' != $list ) {
+		$list = apply_filters( 'woothemes_sc_networks_list', $list, $settings, $theme, $networks );
 		// Parse and apply the icon theme, if applicable.
 		$theme = 'default';
 		if ( $woothemes_sc->context->is_valid_theme( $settings['integration']['theme'] ) ) {
@@ -294,6 +295,20 @@ function woothemes_sc_get_networks () {
 
 	return $html;
 } // End woothemes_sc_get_networks()
+
+/**
+ * Maybe output an RSS icon, appended to the given input.
+ * @since  1.0.0
+ * @return string HTML markup.
+ */
+function woothemes_sc_maybe_output_rss_icon ( $html, $settings ) {
+	if ( isset( $settings['connect']['rss'] ) && true == $settings['connect']['rss'] ) {
+		$html .= '<li class="rss uses-theme"><a href="' . esc_url( get_feed_link() ) . '" title="' . __( 'Subscribe via RSS', 'woothemes-sc' ) . '"><span></span></a></li>' . "\n";
+	}
+	return $html;
+} // End woothemes_sc_maybe_output_rss_icon()
+
+add_filter( 'woothemes_sc_networks_list', 'woothemes_sc_maybe_output_rss_icon', 10, 2 );
 
 /**
  * Unset variables declared for use in this file only.

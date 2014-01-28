@@ -34,6 +34,9 @@
   content: '\f013';
   min-width: 30px;
 }
+.woothemes-sc-connect .uses-theme.rss a :before {
+  content: '\f09e';
+}
 .woothemes-sc-connect .uses-theme.twitter a :before {
   content: '\f099';
 }
