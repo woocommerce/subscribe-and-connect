@@ -163,7 +163,21 @@ function woothemes_sc_get_subscribe () {
 		case 'mailchimp':
 			$form_action = $settings['subscribe']['newsletter_mail_chimp_list_subscription_url'];
 			$text_fields = array( 'EMAIL' => __( 'Your Email Address', 'woothemes-sc' ) );
-			$hidden_fields = array( 'uri' => $settings['subscribe']['newsletter_service_id'], 'title' => get_bloginfo( 'name' ), 'loc' => 'en_US' );
+		break;
+
+		case 'aweber':
+			$form_action = 'http://www.aweber.com/scripts/addlead.pl';
+			$text_fields = array( 'name' => __( 'Name', 'woothemes-sc' ), 'email' => __( 'Your Email Address', 'woothemes-sc' ) );
+			$hidden_fields = array(
+									'meta_web_form_id' => '1687488389',
+									'meta_split_id' => '',
+									'listname' => $settings['subscribe']['newsletter_aweber_list_id'],
+									'redirect' => esc_url( apply_filters( 'woothemes_sc_aweber_redirect', 'http://www.aweber.com/thankyou-coi.htm?m=text' ) ),
+									'meta_adtracking' => '',
+									'meta_message' => '',
+									'meta_required' => 'name,email',
+									'meta_tooltip' => ''
+								);
 		break;
 
 		default:
