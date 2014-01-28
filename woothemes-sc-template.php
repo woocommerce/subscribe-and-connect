@@ -160,6 +160,12 @@ function woothemes_sc_get_subscribe () {
 			$hidden_fields = array( 'uri' => $settings['subscribe']['newsletter_service_id'], 'title' => get_bloginfo( 'name' ), 'loc' => 'en_US' );
 		break;
 
+		case 'mailchimp':
+			$form_action = $settings['subscribe']['newsletter_mail_chimp_list_subscription_url'];
+			$text_fields = array( 'EMAIL' => __( 'Your Email Address', 'woothemes-sc' ) );
+			$hidden_fields = array( 'uri' => $settings['subscribe']['newsletter_service_id'], 'title' => get_bloginfo( 'name' ), 'loc' => 'en_US' );
+		break;
+
 		default:
 			$form_action = '';
 			$text_fields = array( 'email' => __( 'Your Email Address', 'woothemes-sc' ) );
