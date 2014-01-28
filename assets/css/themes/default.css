@@ -1,0 +1,59 @@
+.icon-theme-default .uses-theme a {
+  background-color: #000000;
+  display: block;
+  color: #FFFFFF;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  min-width: 40px;
+  max-height: 40px;
+  text-align: center;
+  font-size: 2.5em;
+  font-size: 2.5rem;
+}
+.icon-theme-default .uses-theme a :before {
+  position: relative;
+  top: 1px;
+}
+.icon-theme-default .rss a {
+  background-color: #FF6600;
+}
+.icon-theme-default .twitter a {
+  background-color: #33CCFF;
+}
+.icon-theme-default .facebook a {
+  background-color: #3B5998;
+}
+.icon-theme-default .pinterest a {
+  background-color: #cb2027;
+}
+.icon-theme-default .youtube a {
+  background-color: #bb0000;
+}
+.icon-theme-default .instagram a {
+  background-color: #3F729B;
+}
+.icon-theme-default .flickr a {
+  background-color: #ff0084;
+}
+.icon-theme-default .google_plus a {
+  background-color: #dd4b39;
+}
+.icon-theme-default .linkedin a {
+  background-color: #007bb6;
+}
+.icon-theme-default .vimeo a {
+  background-color: #1ab7ea;
+}
+.icon-theme-default .tumblr a {
+  background-color: #32506d;
+}
+.icon-theme-default .dribbble a {
+  background-color: #ea4c89;
+}
+.icon-theme-default .appdotnet a {
+  background-color: #CCCCCC;
+}
+.icon-theme-default .github a {
+  background-color: #333333;
+}

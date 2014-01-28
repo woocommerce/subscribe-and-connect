@@ -260,6 +260,7 @@ function woothemes_sc_get_networks () {
 	if ( 0 < count( $networks ) ) {
 		foreach ( $networks as $k => $v ) {
 			if ( ! isset( $v['url'] ) || '' == $v['url'] ) continue;
+
 			$class = $k;
 			if ( '' != $v['image'] ) {
 				$class .= ' has-image';
@@ -268,13 +269,6 @@ function woothemes_sc_get_networks () {
 				$class .= ' uses-theme';
 				$img = '';
 			}
-
-			// Parse and apply the icon theme, if applicable.
-			$theme = 'default';
-			if ( $woothemes_sc->context->is_valid_theme( $settings['integration']['theme'] ) ) {
-				$theme = $woothemes_sc->context->get_sanitized_theme_key( $settings['integration']['theme'] );
-			}
-			$class .= ' icon-theme-' . $theme;
 
 			$list .= '<li class="' . esc_attr( $class ) . '"><a href="' . esc_url( $v['url'] ) . '"><span>' . "\n";
 			if ( '' != $img ) {
@@ -288,7 +282,12 @@ function woothemes_sc_get_networks () {
 
 	$html = '';
 	if ( '' != $list ) {
-		$html .= '<ul class="icons">' . "\n";
+		// Parse and apply the icon theme, if applicable.
+		$theme = 'default';
+		if ( $woothemes_sc->context->is_valid_theme( $settings['integration']['theme'] ) ) {
+			$theme = $woothemes_sc->context->get_sanitized_theme_key( $settings['integration']['theme'] );
+		}
+		$html .= '<ul class="icons ' . esc_attr( 'icon-theme-' . $theme ) . '">' . "\n";
 		$html .= $list;
 		$html .= '</ul><!--/.icons-->' . "\n";
 	}
