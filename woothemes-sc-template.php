@@ -264,9 +264,14 @@ function woothemes_sc_get_networks () {
 			if ( ! isset( $v['url'] ) || '' == $v['url'] ) continue;
 
 			$class = $k;
-			if ( '' != $v['image'] ) {
+			if ( '' != $v['image_id'] ) {
 				$class .= ' has-image';
-				$img = '<img src="' . esc_url( $v['image'] ) . '" />';
+				$image_data = wp_get_attachment_image_src( intval( $v['image_id'] ), apply_filters( 'woothemes_sc_image_size', 'thumbnail' ) );
+				$image_url = Woothemes_SC_Utils::get_placeholder_image();
+				if ( is_array( $image_data ) && isset( $image_data[0] ) ) {
+					$image_url = $image_data[0];
+				}
+				$img = '<img src="' . esc_url( $image_url ) . '" />';
 			} else {
 				$class .= ' uses-theme';
 				$img = '';
