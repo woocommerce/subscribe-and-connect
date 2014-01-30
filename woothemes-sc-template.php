@@ -13,13 +13,15 @@ $woothemes_sc_settings = $woothemes_sc->get_settings();
  * @return void
  */
 function woothemes_sc_maybe_auto_integrate () {
+	// If not on a single view, or the current single view doesn't support this feature, ignore this function.
+	if ( ! is_singular() || ! post_type_supports( get_post_type(), 'subscribe-and-connect' ) ) return;
 	global $woothemes_sc;
 	$woothemes_sc->setup_settings();
 	$woothemes_sc_settings = $woothemes_sc->get_settings();
 
 	switch ( $woothemes_sc_settings['integration']['auto_integration'] ) {
 		case 'the_content':
-			if ( is_singular() ) add_filter( 'the_content', 'woothemes_sc_content_filter' );
+			add_filter( 'the_content', 'woothemes_sc_content_filter' );
 		break;
 
 		case 'woo_post_after':

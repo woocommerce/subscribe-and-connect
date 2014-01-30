@@ -57,7 +57,22 @@ class Woothemes_SC {
 			require_once( 'class-woothemes-sc-frontend.php' );
 			$this->context = new Woothemes_SC_Frontend( $file );
 		}
+
+		// Add support for posts and pages.
+		add_action( 'after_setup_theme', array( $this, 'add_default_post_types_support' ) );
 	} // End __construct()
+
+	/**
+	 * Add support for the default post types.
+	 * @access public
+	 * @since  1.0.0
+	 * @return void
+	 */
+	public function add_default_post_types_support () {
+		add_post_type_support( 'post', 'subscribe-and-connect' );
+		add_post_type_support( 'page', 'subscribe-and-connect' );
+		do_action( 'add_default_post_types_support' );
+	} // End add_default_post_types_support()
 
 	/**
 	 * Setup a settings object for our current tab, if applicable.
