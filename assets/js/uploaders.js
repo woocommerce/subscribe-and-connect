@@ -13,7 +13,7 @@
 
 				event.preventDefault();
 
-				file_path_field = $el.parents( '.woothemes-sc-network-item' ).find( '.upload-url' );
+				file_path_field = $el.parents( '.woothemes-sc-network-item' ).find( '.upload-id' );
 
 				// If the media frame already exists, reopen it.
 				if ( frame ) {
