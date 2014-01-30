@@ -541,8 +541,11 @@ class Woothemes_SC_Settings_API {
 		$html .= '</span>' . "\n";
 		$image_url = Woothemes_SC_Utils::get_placeholder_image();
 		$button_type = 'add';
-		if ( isset( $data['image'] ) && '' != $data['image'] ) {
-			$image_url = $data['image'];
+		if ( isset( $data['image_id'] ) && '' != $data['image_id'] ) {
+			$image_data = wp_get_attachment_image_src( intval( $data['image_id'] ), $size = 'medium' );
+			if ( is_array( $image_data ) && isset( $image_data[0] ) ) {
+				$image_url = esc_url( $image_data[0] );
+			}
 			$button_type = 'remove';
 		}
 
