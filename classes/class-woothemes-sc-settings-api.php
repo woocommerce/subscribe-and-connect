@@ -43,17 +43,13 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  * - form_field_select()
  * - form_field_radio()
  * - form_field_multicheck()
- * - form_field_range()
- * - form_field_images()
  * - form_field_network()
  * - form_field_info()
  * - validate_fields()
  * - validate_field_text()
  * - validate_field_checkbox()
  * - validate_field_multicheck()
- * - validate_field_range()
  * - validate_field_url()
- * - check_field_timestamp()
  * - check_field_text()
  * - add_error()
  * - parse_errors()
@@ -66,9 +62,6 @@ class Woothemes_SC_Settings_API {
 	public $sections;
 	public $fields;
 	private $_errors;
-
-	private $_has_range;
-	private $_has_imageselector;
 
 	/**
 	 * __construct function.
@@ -84,9 +77,6 @@ class Woothemes_SC_Settings_API {
 		$this->fields = array();
 		$this->remaining_fields = array();
 		$this->_errors = array();
-
-		$this->_has_range = false;
-		$this->_has_imageselector = false;
 	} // End __construct()
 
 	/**
@@ -153,9 +143,6 @@ class Woothemes_SC_Settings_API {
 				$name = $v['name'];
 				if ( 'info' == $v['type']/* || 'network' == $v['type']*/ ) { $name = ''; }
 				add_settings_field( $k, $name, $method, $this->token, $v['section'], array( 'key' => $k, 'data' => $v ) );
-
-				// Let the API know that we have a colourpicker field.
-				if ( $v['type'] == 'range' && $this->_has_range == false ) { $this->_has_range = true; }
 			}
 		}
 	} // End create_fields()
@@ -285,12 +272,14 @@ class Woothemes_SC_Settings_API {
 	 * @return void
 	 */
 	public function form_field_text ( $args ) {
+		do_action( 'woothemes_sc_field_text_before' );
 		$options = $this->get_settings();
 
 		echo '<input id="' . esc_attr( $args['key'] ) . '" name="' . $this->token . '[' . esc_attr( $args['key'] ) . ']" size="40" type="text" value="' . esc_attr( $options[$args['key']] ) . '" />' . "\n";
 		if ( isset( $args['data']['description'] ) ) {
 			echo '<span class="description">' . wp_kses_post( $args['data']['description'] ) . '</span>' . "\n";
 		}
+		do_action( 'woothemes_sc_field_text_after' );
 	} // End form_field_text()
 
 	/**
@@ -302,9 +291,11 @@ class Woothemes_SC_Settings_API {
 	 * @return void
 	 */
 	public function form_field_hidden ( $args ) {
+		do_action( 'woothemes_sc_field_hidden_before' );
 		$options = $this->get_settings();
 
 		echo '<input id="' . esc_attr( $args['key'] ) . '" name="' . $this->token . '[' . esc_attr( $args['key'] ) . ']" size="40" type="hidden" value="' . esc_attr( $options[$args['key']] ) . '" />' . "\n";
+		do_action( 'woothemes_sc_field_hidden_after' );
 	} // End form_field_hidden()
 
 	/**
@@ -316,6 +307,7 @@ class Woothemes_SC_Settings_API {
 	 * @return void
 	 */
 	public function form_field_checkbox ( $args ) {
+		do_action( 'woothemes_sc_field_checkbox_before' );
 		$options = $this->get_settings();
 
 		$has_description = false;
@@ -327,6 +319,7 @@ class Woothemes_SC_Settings_API {
 		if ( $has_description ) {
 			echo wp_kses_post( $args['data']['description'] ) . '</label>' . "\n";
 		}
+		do_action( 'woothemes_sc_field_checkbox_after' );
 	} // End form_field_text()
 
 	/**
@@ -338,12 +331,14 @@ class Woothemes_SC_Settings_API {
 	 * @return void
 	 */
 	public function form_field_textarea ( $args ) {
+		do_action( 'woothemes_sc_field_textarea_before' );
 		$options = $this->get_settings();
 
 		echo '<textarea id="' . esc_attr( $args['key'] ) . '" name="' . $this->token . '[' . esc_attr( $args['key'] ) . ']" cols="42" rows="5">' . esc_html( $options[$args['key']] ) . '</textarea>' . "\n";
 		if ( isset( $args['data']['description'] ) ) {
 			echo '<p><span class="description">' . wp_kses_post( $args['data']['description'] ) . '</span></p>' . "\n";
 		}
+		do_action( 'woothemes_sc_field_textarea_after' );
 	} // End form_field_textarea()
 
 	/**
@@ -355,6 +350,7 @@ class Woothemes_SC_Settings_API {
 	 * @return void
 	 */
 	public function form_field_select ( $args ) {
+		do_action( 'woothemes_sc_field_select_before' );
 		$options = $this->get_settings();
 
 		if ( isset( $args['data']['options'] ) && ( count( (array)$args['data']['options'] ) > 0 ) ) {
@@ -370,6 +366,7 @@ class Woothemes_SC_Settings_API {
 				echo '<p><span class="description">' . wp_kses_post( $args['data']['description'] ) . '</span></p>' . "\n";
 			}
 		}
+		do_action( 'woothemes_sc_field_select_after' );
 	} // End form_field_select()
 
 	/**
@@ -381,6 +378,7 @@ class Woothemes_SC_Settings_API {
 	 * @return void
 	 */
 	public function form_field_radio ( $args ) {
+		do_action( 'woothemes_sc_field_radio_before' );
 		$options = $this->get_settings();
 
 		if ( isset( $args['data']['options'] ) && ( count( (array)$args['data']['options'] ) > 0 ) ) {
@@ -394,6 +392,7 @@ class Woothemes_SC_Settings_API {
 				echo '<span class="description">' . wp_kses_post( $args['data']['description'] ) . '</span>' . "\n";
 			}
 		}
+		do_action( 'woothemes_sc_field_radio_after' );
 	} // End form_field_radio()
 
 	/**
@@ -405,6 +404,7 @@ class Woothemes_SC_Settings_API {
 	 * @return void
 	 */
 	public function form_field_multicheck ( $args ) {
+		do_action( 'woothemes_sc_field_multicheck_before' );
 		$options = $this->get_settings();
 
 		if ( isset( $args['data']['options'] ) && ( count( (array)$args['data']['options'] ) > 0 ) ) {
@@ -422,57 +422,8 @@ class Woothemes_SC_Settings_API {
 				echo '<span class="description">' . wp_kses_post( $args['data']['description'] ) . '</span>' . "\n";
 			}
 		}
+		do_action( 'woothemes_sc_field_multicheck_after' );
 	} // End form_field_multicheck()
-
-	/**
-	 * form_field_range function.
-	 *
-	 * @access public
-	 * @since 1.0.0
-	 * @param array $args
-	 * @return void
-	 */
-	public function form_field_range ( $args ) {
-		$options = $this->get_settings();
-
-		if ( isset( $args['data']['options'] ) && ( count( (array)$args['data']['options'] ) > 0 ) ) {
-			$html = '';
-			$html .= '<select id="' . esc_attr( $args['key'] ) . '" name="' . esc_attr( $this->token ) . '[' . esc_attr( $args['key'] ) . ']" class="range-input">' . "\n";
-				foreach ( $args['data']['options'] as $k => $v ) {
-					$html .= '<option value="' . esc_attr( $k ) . '"' . selected( esc_attr( $options[$args['key']] ), $k, false ) . '>' . $v . '</option>' . "\n";
-				}
-			$html .= '</select>' . "\n";
-			echo $html;
-
-			if ( isset( $args['data']['description'] ) ) {
-				echo '<p><span class="description">' . wp_kses_post( $args['data']['description'] ) . '</span></p>' . "\n";
-			}
-		}
-	} // End form_field_range()
-
-	/**
-	 * form_field_images function.
-	 *
-	 * @access public
-	 * @since 1.0.0
-	 * @param array $args
-	 * @return void
-	 */
-	public function form_field_images ( $args ) {
-		$options = $this->get_settings();
-
-		if ( isset( $args['data']['options'] ) && ( count( (array)$args['data']['options'] ) > 0 ) ) {
-			$html = '';
-			foreach ( $args['data']['options'] as $k => $v ) {
-				$html .= '<input type="radio" name="' . esc_attr( $this->token ) . '[' . esc_attr( $args['key'] ) . ']" value="' . esc_attr( $k ) . '"' . checked( esc_attr( $options[$args['key']] ), $k, false ) . ' /> ' . $v . '<br />' . "\n";
-			}
-			echo $html;
-
-			if ( isset( $args['data']['description'] ) ) {
-				echo '<span class="description">' . wp_kses_post( $args['data']['description'] ) . '</span>' . "\n";
-			}
-		}
-	} // End form_field_images()
 
 	/**
 	 * form_field_network function.
@@ -686,20 +637,6 @@ class Woothemes_SC_Settings_API {
 
 		return $input;
 	} // End validate_field_multicheck()
-
-	/**
-	 * validate_field_range function.
-	 *
-	 * @access public
-	 * @since 1.0.0
-	 * @param string $input
-	 * @return string
-	 */
-	public function validate_field_range ( $input ) {
-		$input = number_format( floatval( $input ), 1 );
-
-		return $input;
-	} // End validate_field_range()
 
 	/**
 	 * validate_field_url function.
