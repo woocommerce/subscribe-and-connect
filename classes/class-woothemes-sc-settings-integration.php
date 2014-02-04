@@ -33,6 +33,8 @@ class Woothemes_SC_Settings_Integration extends Woothemes_SC_Settings_API {
 	    $this->token = 'woothemes-sc-integration';
 	    $this->name = __( 'Integration', 'woothemes-sc' );
 	    $this->_themes = Woothemes_SC_Utils::get_icon_themes();
+
+	    if ( is_admin() ) add_action( 'woothemes_sc_field_radio_after', array( $this, 'display_supported_post_types' ) );
 	} // End __construct()
 
 	/**
@@ -101,6 +103,14 @@ class Woothemes_SC_Settings_Integration extends Woothemes_SC_Settings_API {
 								'section' => 'automated',
 								'options' => $auto_options
 								);
+
+    	$fields['auto_integration_guide'] = array(
+								'name' => __( 'Automated integration guide', 'woothemes-sc' ),
+								'description' => $this->display_supported_post_types(),
+								'type' => 'info',
+								'section' => 'automated'
+								);
+
     	// Manual
     	$fields['custom_hook_name'] = array(
 								'name' => __( 'Display on a Custom Hook', 'woothemes-sc' ),
@@ -145,5 +155,34 @@ class Woothemes_SC_Settings_Integration extends Woothemes_SC_Settings_API {
 
 		$this->fields = $fields;
 	} // End init_fields()
+
+	/**
+	 * Display a list of supported post types below the "automated integration" setting.
+	 * @access  public
+	 * @since   1.0.0
+	 * @return  string $html Rendered HTML markup.
+	 */
+	public function display_supported_post_types () {
+		$supported = Woothemes_SC_Utils::get_supported_post_types();
+		$html = '';
+
+		if ( 0 < count( $supported ) ) {
+			$post_type_names = array();
+			$last_one = '';
+			if ( 1 < count( $supported ) ) {
+				$last_item_obj = array_pop( $supported );
+				$last_one = __( 'and', 'woothemes-sc' ) . ' <code>' . $last_item_obj->labels->name . '</code>';
+			}
+			foreach ( $supported as $k => $v ) {
+				$post_type_names[] = '<code>' . $v->labels->name . '</code>';
+			}
+			$post_types = join( $post_type_names ) . $last_one;
+			$html .= sprintf( __( 'If the automated integration is used, Subscribe & Connect will display on posts of the %1$s types.', 'woothemes-sc' ), $post_types ) . '<br /><br />';
+		}
+
+		$html .= wpautop( '<small>' . sprintf( __( 'To integrate a specific post type with Subscribe & Connect, add %1$s to your %2$s in your theme, or to your custom plugin.', 'woothemes-sc' ), '<code><small>add_post_type_support( \'your-post-type\', \'subscribe-and-connect\' );</small></code>', '<code><small>functions.php</small></code>' ) . '</small>' );
+
+		return $html;
+	} // End display_supported_post_types()
 } // End Class
 ?>

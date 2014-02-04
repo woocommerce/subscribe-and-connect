@@ -77,6 +77,8 @@ class Woothemes_SC_Settings_API {
 		$this->fields = array();
 		$this->remaining_fields = array();
 		$this->_errors = array();
+
+		add_action( 'admin_print_styles', array( $this, 'enqueue_styles' ) );
 	} // End __construct()
 
 	/**
@@ -525,7 +527,7 @@ class Woothemes_SC_Settings_API {
 		if ( isset( $args['data']['class'] ) ) {
 			$class = ' ' . esc_attr( $args['data']['class'] );
 		}
-		$html = '<div id="' . $args['key'] . '" class="info-box' . $class . '">' . "\n";
+		$html = '<div id="' . $args['key'] . '" class="woothemes-sc-info-box' . $class . '">' . "\n";
 		if ( isset( $args['data']['name'] ) && ( $args['data']['name'] != '' ) ) {
 			$html .= '<h3 class="title">' . esc_html( $args['data']['name'] ) . '</h3>' . "\n";
 		}
@@ -724,5 +726,18 @@ class Woothemes_SC_Settings_API {
 	protected function get_array_field_types () {
 		return array( 'multicheck', 'network' );
 	} // End get_array_field_types()
+
+	/**
+	 * Load in CSS styles where necessary.
+	 * @access public
+	 * @since  1.0.0
+	 * @return void
+	 */
+	public function enqueue_styles () {
+		global $woothemes_sc;
+		wp_enqueue_style( $this->token . '-admin' );
+
+		wp_enqueue_style( 'woothemes-sc-settings-api', $woothemes_sc->context->__get( 'plugin_url' ) . 'assets/css/settings.css', '', '1.0.0' );
+	} // End enqueue_styles()
 } // End Class
 ?>

@@ -77,5 +77,25 @@ class Woothemes_SC_Utils {
 																	)
 									);
 	} // End get_icon_themes()
+
+	/**
+	 * Get an array of the supported post types.
+	 * @access  public
+	 * @since   1.0.0
+	 * @return  array The post types supported by Subscribe & Connect. Only public post types.
+	 */
+	public static function get_supported_post_types () {
+		$supported = array();
+		$all = get_post_types( array( 'public' => true ), 'objects' );
+		if ( ! is_wp_error( $all ) && 0 < count( $all ) ) {
+			foreach ( $all as $k => $v ) {
+				if ( post_type_supports( $k, 'subscribe-and-connect' ) ) {
+					$supported[$k] = $v;
+				}
+			}
+		}
+
+		return $supported;
+	} // End get_supported_post_types()
 } // End Class
 ?>
