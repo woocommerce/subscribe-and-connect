@@ -6,13 +6,16 @@
   font-style: normal;
 }
 .woothemes-sc-connect .icons {
-  display: table-row;
+  display: block;
+  margin: 0;
+  padding: 0;
 }
 .woothemes-sc-connect .icons li {
-  display: table-cell;
+  display: inline-block;
   list-style: none;
   vertical-align: middle;
   padding-right: 0.618em;
+  padding-bottom: 0.618em;
 }
 .woothemes-sc-connect .has-image img {
   max-width: 50px;
