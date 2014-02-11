@@ -25,7 +25,7 @@ function woothemes_sc_maybe_auto_integrate () {
 		break;
 
 		case 'woo_post_after':
-			add_action( 'woo_post_after-single', 'woothemes_sc_display' );
+			add_action( 'woo_post_after', 'woothemes_sc_display' );
 		break;
 
 		case 'none':

@@ -93,7 +93,7 @@ class Woothemes_SC_Settings_Integration extends Woothemes_SC_Settings_API {
     	// Automated
     	$auto_options = array( 'none' => __( 'No automated integration', 'woothemes-sc' ), 'the_content' => __( 'Display after the post content', 'woothemes-sc' ) );
     	if ( defined( 'THEME_FRAMEWORK' ) && 'woothemes' == constant( 'THEME_FRAMEWORK' ) ) {
-    		$auto_options['woo_post_after'] = sprintf( __( 'Display on the %s hook %s', 'woothemes-sc' ), '<code>woo_post_after-single</code>', '<small>(thanks for using WooThemes!)</small>' );
+    		$auto_options['woo_post_after'] = sprintf( __( 'Display on the %s hook %s', 'woothemes-sc' ), '<code>woo_post_after</code>', '<small>(thanks for using WooThemes!)</small>' );
     	}
     	$fields['auto_integration'] = array(
 								'name' => __( 'Automated integration method', 'woothemes-sc' ),
