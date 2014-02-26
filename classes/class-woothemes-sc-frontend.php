@@ -128,9 +128,9 @@ class Woothemes_SC_Frontend {
 		global $woothemes_sc;
 		$woothemes_sc->setup_settings();
 		$settings = $woothemes_sc->get_settings();
-		$theme_data = $this->get_theme_data( $settings['integration']['theme'] );
+		$theme_data = $this->get_theme_data( $settings['display']['theme'] );
 		if ( isset( $theme_data['stylesheet'] ) && ( '' != $theme_data['stylesheet'] ) ) {
-			wp_enqueue_style( 'woothemes-sc-theme-' . esc_attr( $settings['integration']['theme'] ), esc_url( $theme_data['stylesheet'] ) );
+			wp_enqueue_style( 'woothemes-sc-theme-' . esc_attr( $settings['display']['theme'] ), esc_url( $theme_data['stylesheet'] ) );
 		}
 	} // End maybe_load_theme_stylesheets()
 } // End Class

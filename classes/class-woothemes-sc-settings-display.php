@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  * - init_fields()
  * - get_duration_options()
  */
-class Woothemes_SC_Settings_Integration extends Woothemes_SC_Settings_API {
+class Woothemes_SC_Settings_Display extends Woothemes_SC_Settings_API {
 
 	/**
 	 * __construct function.
@@ -31,7 +31,7 @@ class Woothemes_SC_Settings_Integration extends Woothemes_SC_Settings_API {
 	public function __construct () {
 	    parent::__construct(); // Required in extended classes.
 	    $this->token = 'woothemes-sc-integration';
-	    $this->name = __( 'Integration', 'woothemes-sc' );
+	    $this->name = __( 'Display', 'woothemes-sc' );
 	    $this->_themes = Woothemes_SC_Utils::get_icon_themes();
 
 	    if ( is_admin() ) add_action( 'woothemes_sc_field_radio_after', array( $this, 'display_supported_post_types' ) );

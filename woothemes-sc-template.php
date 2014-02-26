@@ -19,7 +19,7 @@ function woothemes_sc_maybe_auto_integrate () {
 	$woothemes_sc->setup_settings();
 	$woothemes_sc_settings = $woothemes_sc->get_settings();
 
-	switch ( $woothemes_sc_settings['integration']['auto_integration'] ) {
+	switch ( $woothemes_sc_settings['display']['auto_integration'] ) {
 		case 'the_content':
 			add_filter( 'the_content', 'woothemes_sc_content_filter' );
 		break;
@@ -46,8 +46,8 @@ function woothemes_sc_maybe_custom_hook () {
 	$woothemes_sc->setup_settings();
 	$woothemes_sc_settings = $woothemes_sc->get_settings();
 
-	if ( '' != $woothemes_sc_settings['integration']['custom_hook_name'] ) {
-		add_action( esc_attr( $woothemes_sc_settings['integration']['custom_hook_name'] ), 'woothemes_sc_display' );
+	if ( '' != $woothemes_sc_settings['display']['custom_hook_name'] ) {
+		add_action( esc_attr( $woothemes_sc_settings['display']['custom_hook_name'] ), 'woothemes_sc_display' );
 	}
 } // End woothemes_sc_maybe_custom_hook()
 
@@ -57,7 +57,7 @@ add_action( 'get_header', 'woothemes_sc_maybe_custom_hook' );
  * If enabled, override the Subscribe & Connect functionality in the theme.
  * @since  1.0.0
  */
-if ( true == $woothemes_sc_settings['integration']['disable_theme_sc'] && ! function_exists( 'woo_subscribe_connect' ) ) {
+if ( true == $woothemes_sc_settings['display']['disable_theme_sc'] && ! function_exists( 'woo_subscribe_connect' ) ) {
 	function woo_subscribe_connect() {} // End woo_subscribe_connect()
 }
 
@@ -115,11 +115,11 @@ function woothemes_sc_get_welcome_text ( $args = array() ) {
 	$args = wp_parse_args( $args, $defaults );
 
 	$html = '';
-	if ( '' != $settings['subscribe']['title'] ) {
-		$html .= $args['before_title'] . $settings['subscribe']['title'] . $args['after_title'];
+	if ( '' != $settings['general']['title'] ) {
+		$html .= $args['before_title'] . $settings['general']['title'] . $args['after_title'];
 	}
-	if ( '' != $settings['subscribe']['text'] ) {
-		$html .= '<div class="description">' . wpautop( $settings['subscribe']['text'] ) . '</div><!--/.description-->' . "\n";
+	if ( '' != $settings['general']['text'] ) {
+		$html .= '<div class="description">' . wpautop( $settings['general']['text'] ) . '</div><!--/.description-->' . "\n";
 	}
 
 	return $html;
@@ -144,36 +144,36 @@ function woothemes_sc_get_subscribe () {
 	$settings = $woothemes_sc->get_settings();
 
 	// Break out, if we don't want to print a newsletter subscription form.
-	if ( 'none' == $settings['subscribe']['newsletter_service'] ) return false;
+	if ( 'none' == $settings['general']['newsletter_service'] ) return false;
 
-	switch ( $settings['subscribe']['newsletter_service'] ) {
+	switch ( $settings['general']['newsletter_service'] ) {
 		case 'feedburner':
-			$form_action = 'http://feedburner.google.com/fb/a/mailverify';
-			$text_fields = array( 'email' => __( 'Your Email Address', 'woothemes-sc' ) );
-			$hidden_fields = array( 'uri' => $settings['subscribe']['newsletter_service_id'], 'title' => get_bloginfo( 'name' ), 'loc' => 'en_US' );
+			$form_action 	= 'http://feedburner.google.com/fb/a/mailverify';
+			$text_fields 	= array( 'email' => __( 'Your Email Address', 'woothemes-sc' ) );
+			$hidden_fields 	= array( 'uri' => $settings['general']['newsletter_service_id'], 'title' => get_bloginfo( 'name' ), 'loc' => 'en_US' );
 		break;
 
 		case 'campaign_monitor':
-			$cm_array = explode( '/', $settings['subscribe']['newsletter_service_form_action'] );
+			$cm_array = explode( '/', $settings['general']['newsletter_service_form_action'] );
 			array_pop( $cm_array );
-			$cm_id = end( $cm_array );
-			$form_action = $settings['subscribe']['newsletter_service_form_action'];
-			$text_fields = array( 'name' => __( 'Name', 'woothemes-sc' ), 'cm-' . $cm_id . '-' . $cm_id => __( 'Your Email Address', 'woothemes-sc' ) );
-			$hidden_fields = array( 'uri' => $settings['subscribe']['newsletter_service_id'], 'title' => get_bloginfo( 'name' ), 'loc' => 'en_US' );
+			$cm_id 			= end( $cm_array );
+			$form_action 	= $settings['general']['newsletter_service_form_action'];
+			$text_fields 	= array( 'name' => __( 'Name', 'woothemes-sc' ), 'cm-' . $cm_id . '-' . $cm_id => __( 'Your Email Address', 'woothemes-sc' ) );
+			$hidden_fields 	= array( 'uri' => $settings['general']['newsletter_service_id'], 'title' => get_bloginfo( 'name' ), 'loc' => 'en_US' );
 		break;
 
 		case 'mailchimp':
-			$form_action = $settings['subscribe']['newsletter_mail_chimp_list_subscription_url'];
+			$form_action = $settings['general']['newsletter_mail_chimp_list_subscription_url'];
 			$text_fields = array( 'EMAIL' => __( 'Your Email Address', 'woothemes-sc' ) );
 		break;
 
 		case 'aweber':
-			$form_action = 'http://www.aweber.com/scripts/addlead.pl';
-			$text_fields = array( 'name' => __( 'Name', 'woothemes-sc' ), 'email' => __( 'Your Email Address', 'woothemes-sc' ) );
-			$hidden_fields = array(
+			$form_action 	= 'http://www.aweber.com/scripts/addlead.pl';
+			$text_fields 	= array( 'name' => __( 'Name', 'woothemes-sc' ), 'email' => __( 'Your Email Address', 'woothemes-sc' ) );
+			$hidden_fields 	= array(
 									'meta_web_form_id' => '1687488389',
 									'meta_split_id' => '',
-									'listname' => $settings['subscribe']['newsletter_aweber_list_id'],
+									'listname' => $settings['general']['newsletter_aweber_list_id'],
 									'redirect' => esc_url( apply_filters( 'woothemes_sc_aweber_redirect', 'http://www.aweber.com/thankyou-coi.htm?m=text' ) ),
 									'meta_adtracking' => '',
 									'meta_message' => '',
@@ -183,14 +183,14 @@ function woothemes_sc_get_subscribe () {
 		break;
 
 		case 'madmimi':
-			$form_action = $settings['subscribe']['newsletter_mad_mimi_subscription_url'];
+			$form_action = $settings['general']['newsletter_mad_mimi_subscription_url'];
 			$text_fields = array( 'email' => __( 'Your Email Address', 'woothemes-sc' ) );
 		break;
 
 		default:
-			$form_action = '';
-			$text_fields = array( 'email' => __( 'Your Email Address', 'woothemes-sc' ) );
-			$hidden_fields = array();
+			$form_action 	= '';
+			$text_fields 	= array( 'email' => __( 'Your Email Address', 'woothemes-sc' ) );
+			$hidden_fields 	= array();
 		break;
 	}
 
@@ -292,8 +292,8 @@ function woothemes_sc_get_networks () {
 		$list = apply_filters( 'woothemes_sc_networks_list', $list, $settings, $theme, $networks );
 		// Parse and apply the icon theme, if applicable.
 		$theme = 'default';
-		if ( $woothemes_sc->context->is_valid_theme( $settings['integration']['theme'] ) ) {
-			$theme = $woothemes_sc->context->get_sanitized_theme_key( $settings['integration']['theme'] );
+		if ( $woothemes_sc->context->is_valid_theme( $settings['display']['theme'] ) ) {
+			$theme = $woothemes_sc->context->get_sanitized_theme_key( $settings['display']['theme'] );
 		}
 		$html .= '<ul class="icons ' . esc_attr( 'icon-theme-' . $theme ) . '">' . "\n";
 		$html .= $list;
@@ -322,4 +322,3 @@ add_filter( 'woothemes_sc_networks_list', 'woothemes_sc_maybe_output_rss_icon', 
  * @since  1.0.0
  */
 unset( $woothemes_sc_settings );
-?>
