@@ -45,8 +45,8 @@ class Woothemes_SC_Settings_General extends Woothemes_SC_Settings_API {
 		$sections = array();
 
 		$sections['text'] = array(
-					'name' 			=> __( 'Heading and Text', 'woothemes-sc' ),
-					'description'	=> __( 'Default settings for the heading and text of your "Subscribe" section.', 'woothemes-sc' )
+					'name' 			=> __( 'Content', 'woothemes-sc' ),
+					'description'	=> __( 'Subscribe &amp; Connect component title and description.', 'woothemes-sc' )
 				);
 
 		$this->sections = $sections;
@@ -62,25 +62,30 @@ class Woothemes_SC_Settings_General extends Woothemes_SC_Settings_API {
 	public function init_fields () {
 		global $pagenow;
 
-		$newsletter_services = array( 'none' => __( 'None', 'woothemes-sc' ), 'aweber' => __( 'Aweber', 'woothemes-sc' ), 'campaign_monitor' => __( 'Campaign Monitor', 'woothemes-sc' ), 'feedburner' => __( 'Feedburner', 'woothemes-sc' ), 'mad_mimi' => __( 'Mad Mimi', 'woothemes-sc' ), 'mailchimp' => __( 'Mailchimp', 'woothemes-sc' ) );
+		$newsletter_services = array(
+								'none' 				=> __( 'None', 'woothemes-sc' ),
+								'aweber' 			=> __( 'Aweber', 'woothemes-sc' ),
+								'campaign_monitor' 	=> __( 'Campaign Monitor', 'woothemes-sc' ),
+								'feedburner' 		=> __( 'Feedburner', 'woothemes-sc' ),
+								'mad_mimi' 			=> __( 'Mad Mimi', 'woothemes-sc' ),
+								'mailchimp' 		=> __( 'Mailchimp', 'woothemes-sc' )
+								);
 
 	    $fields = array();
 
     	// Text
     	$fields['title'] = array(
-								'name' => __( 'Title', 'woothemes-sc' ),
-								'description' => __( 'The default title text.', 'woothemes-sc' ),
-								'type' => 'text',
-								'default' => sprintf( __( 'Subscribe to %s', 'woothemes-sc' ), get_bloginfo( 'name' ) ),
-								'section' => 'text'
+								'name' 				=> __( 'Title', 'woothemes-sc' ),
+								'type' 				=> 'text',
+								'default' 			=> sprintf( __( 'Subscribe to %s', 'woothemes-sc' ), get_bloginfo( 'name' ) ),
+								'section' 			=> 'text'
 								);
 
     	$fields['text'] = array(
-								'name' => __( 'Text', 'woothemes-sc' ),
-								'description' => __( 'The default call-to-action text.', 'woothemes-sc' ),
-								'type' => 'textarea',
-								'default' => sprintf( __( 'Keep up to date on the latest content, here at %s. Subscribe below.', 'woothemes-sc' ), get_bloginfo( 'name' ) ),
-								'section' => 'text'
+								'name' 				=> __( 'Description', 'woothemes-sc' ),
+								'type' 				=> 'textarea',
+								'default' 			=> sprintf( __( 'Keep up to date on the latest content, here at %s. Subscribe below.', 'woothemes-sc' ), get_bloginfo( 'name' ) ),
+								'section' 			=> 'text'
 								);
 
 		$this->fields = $fields;

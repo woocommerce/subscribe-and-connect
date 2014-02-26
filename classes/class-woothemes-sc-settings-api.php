@@ -279,7 +279,7 @@ class Woothemes_SC_Settings_API {
 
 		echo '<input id="' . esc_attr( $args['key'] ) . '" name="' . $this->token . '[' . esc_attr( $args['key'] ) . ']" size="40" type="text" value="' . esc_attr( $options[$args['key']] ) . '" />' . "\n";
 		if ( isset( $args['data']['description'] ) ) {
-			echo '<span class="description">' . wp_kses_post( $args['data']['description'] ) . '</span>' . "\n";
+			echo '<p class="description">' . wp_kses_post( $args['data']['description'] ) . '</p>' . "\n";
 		}
 		do_action( 'woothemes_sc_field_text_after', $args );
 	} // End form_field_text()
@@ -338,7 +338,7 @@ class Woothemes_SC_Settings_API {
 
 		echo '<textarea id="' . esc_attr( $args['key'] ) . '" name="' . $this->token . '[' . esc_attr( $args['key'] ) . ']" cols="42" rows="5">' . esc_html( $options[$args['key']] ) . '</textarea>' . "\n";
 		if ( isset( $args['data']['description'] ) ) {
-			echo '<p><span class="description">' . wp_kses_post( $args['data']['description'] ) . '</span></p>' . "\n";
+			echo '<p class="description">' . wp_kses_post( $args['data']['description'] ) . '</p>' . "\n";
 		}
 		do_action( 'woothemes_sc_field_textarea_after', $args );
 	} // End form_field_textarea()
@@ -365,7 +365,7 @@ class Woothemes_SC_Settings_API {
 			echo $html;
 
 			if ( isset( $args['data']['description'] ) ) {
-				echo '<p><span class="description">' . wp_kses_post( $args['data']['description'] ) . '</span></p>' . "\n";
+				echo '<p class="description">' . wp_kses_post( $args['data']['description'] ) . '</p>' . "\n";
 			}
 		}
 		do_action( 'woothemes_sc_field_select_after', $args );
@@ -386,12 +386,12 @@ class Woothemes_SC_Settings_API {
 		if ( isset( $args['data']['options'] ) && ( count( (array)$args['data']['options'] ) > 0 ) ) {
 			$html = '';
 			foreach ( $args['data']['options'] as $k => $v ) {
-				$html .= '<input type="radio" name="' . $this->token . '[' . esc_attr( $args['key'] ) . ']" value="' . esc_attr( $k ) . '"' . checked( esc_attr( $options[$args['key']] ), $k, false ) . ' /> ' . $v . '<br />' . "\n";
+				$html .= '<p><label><input type="radio" name="' . $this->token . '[' . esc_attr( $args['key'] ) . ']" value="' . esc_attr( $k ) . '"' . checked( esc_attr( $options[$args['key']] ), $k, false ) . ' /> ' . $v . '<br />' . "\n";
 			}
 			echo $html;
 
 			if ( isset( $args['data']['description'] ) ) {
-				echo '<span class="description">' . wp_kses_post( $args['data']['description'] ) . '</span>' . "\n";
+				echo '<span class="description">' . wp_kses_post( $args['data']['description'] ) . '</span></label></p>' . "\n";
 			}
 		}
 		do_action( 'woothemes_sc_field_radio_after', $args );
@@ -421,7 +421,7 @@ class Woothemes_SC_Settings_API {
 			echo $html;
 
 			if ( isset( $args['data']['description'] ) ) {
-				echo '<span class="description">' . wp_kses_post( $args['data']['description'] ) . '</span>' . "\n";
+				echo '<p class="description">' . wp_kses_post( $args['data']['description'] ) . '</p>' . "\n";
 			}
 		}
 		do_action( 'woothemes_sc_field_multicheck_after', $args );
@@ -461,7 +461,7 @@ class Woothemes_SC_Settings_API {
 		echo $html;
 
 		if ( isset( $args['data']['description'] ) ) {
-			echo '<span class="description">' . wp_kses_post( $args['data']['description'] ) . '</span>' . "\n";
+			echo '<p class="description">' . wp_kses_post( $args['data']['description'] ) . '</p>' . "\n";
 		}
 	} // End form_field_network()
 
