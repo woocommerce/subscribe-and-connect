@@ -448,7 +448,7 @@ class Woothemes_SC_Settings_API {
 		$networks = Woothemes_SC_Utils::get_networks_in_order( $networks, $order );
 
 		if ( 0 < count( $networks ) ) {
-			$html .= '<table class="form-table woothemes-sc-network-fields"><tbody>' . "\n";
+			$html .= '<table class="form-table widefat woothemes-sc-network-fields"><tbody>' . "\n";
 			foreach ( $networks as $k => $v ) {
 				$html .= $this->_single_network_field( $k, $v, $args, $options );
 			}
@@ -483,10 +483,10 @@ class Woothemes_SC_Settings_API {
 		if ( isset( $options[$args['key']][$key] ) ) $data = $options[$args['key']][$key];
 
 		$html .= '<tr id="' . esc_attr( $key ) . '" class="woothemes-sc-network-item">' . "\n";
-		$html .= '<td class="title">' . "\n";
+		$html .= '<th class="title">' . "\n";
 		$html .= '<span class="handle hide-if-no-js">' . __( 'Re-order', 'woothemes' ) . '</span>' . "\n";
 		$html .= '<label for="' . esc_attr( $this->token ) . '[' . esc_attr( $args['key'] ) . '][' . esc_attr( $key ) . '][url]">' . esc_html( $value ) . '</label>' . "\n";
-		$html .= '</td><td class="url">' . "\n";
+		$html .= '</th><td class="url">' . "\n";
 		$html .= '<input type="text" class="regular-text input-text url" name="' . esc_attr( $this->token ) . '[' . esc_attr( $args['key'] ) . '][' . esc_attr( $key ) . '][url]" placeholder="' . sprintf( __( 'Place your %s URL here', 'woothemes-sc' ), esc_attr( $value ) ) . '" value="' . esc_attr( $data['url'] ) . '" />' . "\n";
 		$html .= '</td><td class="image">' . "\n";
 		$html .= '<span class="image-upload">' . "\n";

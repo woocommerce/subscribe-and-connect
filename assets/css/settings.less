@@ -8,10 +8,10 @@
 	margin-bottom: 1em;
 
 	.ui-sortable-placeholder {
-		background: #EBEBEB; border: 1px dashed #DDDDDD; visibility: visible !important; margin: 3px; padding: 1em;
-		td {
-			padding: 1em;
-		}
+		background: #EBEBEB;
+		border: 1px dashed #DDDDDD;
+		visibility: visible !important;
+		margin: 3px;
 	}
 
 	td {
@@ -24,7 +24,6 @@
 		width: 20px;
 		height: 20px;
 		position: absolute;
-		margin-left: -25px;
 		margin-top: 3px;
 		font-size: 0;
 		cursor: move;
@@ -34,23 +33,25 @@
 			content: "\f333";
 			position: relative;
 			cursor: move;
+			padding: 3px;
+			border: 1px solid #ddd;
 		}
 	}
 
+	.title,
+	.url,
+	.image {
+		width: 33%;
+	}
+
 	.title {
-		width: 100px;
-		padding-right: 1.618em;
 	}
 	.url {
-		min-width: 250px;
 		input {
 			width: 100%;
 		}
-		padding-right: 1.618em;
 	}
 	.image {
-		width: 75px;
-		padding-top: 1em;
 	}
 
 	.image-preview {
