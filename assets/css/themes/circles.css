@@ -11,6 +11,9 @@
 .woothemes-sc-connect .icons a {
   font-size: 1.5em;
   padding: .5em;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
 }
 .woothemes-sc-connect .icons a:before {
   color: #fff;
