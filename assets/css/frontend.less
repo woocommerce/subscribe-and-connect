@@ -1,3 +1,6 @@
+@import url(mixins.less);
+
+
 @font-face {
   font-family: 'FontAwesome';
   src: url('../fonts/fontawesome-webfont.eot?v=4.0.3');
@@ -8,134 +11,113 @@
 
 .woothemes-sc-connect {
 	.icons {
-		display: block;
-		margin: 0;
-		padding: 0;
-		li {
-			display: inline-block;
-			list-style: none;
-			vertical-align: middle;
-			padding-right: 0.618em;
-			padding-bottom: 0.618em;
+
+	}
+	/* Default Icon */
+	a {
+		text-decoration: none;
+		.ir;
+
+		&:before {
+			.icon;
 		}
 	}
-	.has-image {
-		img {
-			max-width: 50px;
-			height: auto;
-			padding: 0;
-			margin: 0;
-			border: none;
-		}
-	}
-	.uses-theme {
-		/* Default Icon */
+
+	.rss {
 		a {
-			font-family: 'FontAwesome';
-			font-size: 3em;
-			font-size: 3rem;
-			:before {
-				content: '\f013';
-				min-width: 30px;
-			}
-			text-decoration: none;
-		}
-		&.rss {
-			a {
-				:before {
-					content: '\f09e';
-				}
+			&:before {
+				content: '\f09e';
 			}
 		}
-		&.twitter {
-			a {
-				:before {
-					content: '\f099';
-				}
+	}
+	.twitter {
+		a {
+			&:before {
+				content: '\f099';
 			}
 		}
-		&.facebook {
-			a {
-				:before {
-					content: '\f09a';
-				}
+	}
+	.facebook {
+		a {
+			&:before {
+				content: '\f09a';
 			}
 		}
-		&.pinterest {
-			a {
-				:before {
-					content: '\f0d2';
-				}
+	}
+	.pinterest {
+		a {
+			&:before {
+				content: '\f0d2';
 			}
 		}
-		&.youtube {
-			a {
-				:before {
-					content: '\f167';
-				}
+	}
+	.youtube {
+		a {
+			&:before {
+				content: '\f167';
 			}
 		}
-		&.instagram {
-			a {
-				:before {
-					content: '\f16d';
-				}
+	}
+	.instagram {
+		a {
+			&:before {
+				content: '\f16d';
 			}
 		}
-		&.flickr {
-			a {
-				:before {
-					content: '\f16e';
-				}
+	}
+	.flickr {
+		a {
+			&:before {
+				content: '\f16e';
 			}
 		}
-		&.google_plus {
-			a {
-				:before {
-					content: '\f0d5';
-				}
+	}
+	.google_plus {
+		a {
+			&:before {
+				content: '\f0d5';
 			}
 		}
-		&.linkedin {
-			a {
-				:before {
-					content: '\f0e1';
-				}
+	}
+	.linkedin {
+		a {
+			&:before {
+				content: '\f0e1';
 			}
 		}
-		&.vimeo {
-			a {
-				:before {
-					content: '\f194';
-				}
+	}
+	.vimeo {
+		a {
+			&:before {
+				content: '\f194';
 			}
 		}
-		&.tumblr {
-			a {
-				:before {
-					content: '\f173';
-				}
+	}
+	.tumblr {
+		a {
+			&:before {
+				content: '\f173';
 			}
 		}
-		&.dribbble {
-			a {
-				:before {
-					content: '\f17d';
-				}
+	}
+	.dribbble {
+		a {
+			&:before {
+				content: '\f17d';
 			}
 		}
-		&.appdotnet {
-			a {
-				:before {
-					content: '\f170';
-				}
+	}
+	.appdotnet {
+		a {
+			&:before {
+				content: '\f170';
 			}
 		}
-		&.github {
-			a {
-				:before {
-					content: '\f09b';
-				}
+	}
+	.github {
+		a {
+			&:before {
+				content: '\f09b';
 			}
 		}
 	}

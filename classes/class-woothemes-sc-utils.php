@@ -76,13 +76,17 @@ class Woothemes_SC_Utils {
 															'name' 			=> __( 'No style', 'woothemes-sc' ),
 															'stylesheet' 	=> ''
 															),
-										'default' 	=> array(
+										'icons' 	=> array(
 															'name' 			=> __( 'Icons Only', 'woothemes-sc' ),
-															'stylesheet' 	=> esc_url( $woothemes_sc->context->__get( 'plugin_url' ) . 'assets/css/themes/default.css' )
+															'stylesheet' 	=> esc_url( $woothemes_sc->context->__get( 'plugin_url' ) . 'assets/css/themes/icons.css' )
 															),
 										'boxed' 	=> array(
 															'name' 			=> __( 'Boxed', 'woothemes-sc' ),
 															'stylesheet' 	=> esc_url( $woothemes_sc->context->__get( 'plugin_url' ) . 'assets/css/themes/boxed.css' )
+															),
+										'rounded' 	=> array(
+															'name' 			=> __( 'Rounded', 'woothemes-sc' ),
+															'stylesheet' 	=> esc_url( $woothemes_sc->context->__get( 'plugin_url' ) . 'assets/css/themes/rounded.css' )
 															),
 										'circles' 	=> array(
 															'name' 			=> __( 'Circles', 'woothemes-sc' ),

@@ -264,25 +264,9 @@ function woothemes_sc_get_networks () {
 			if ( ! isset( $v['url'] ) || '' == $v['url'] ) continue;
 
 			$class = $k;
-			if ( '' != $v['image_id'] ) {
-				$class .= ' has-image';
-				$image_data = wp_get_attachment_image_src( intval( $v['image_id'] ), apply_filters( 'woothemes_sc_image_size', 'thumbnail' ) );
-				$image_url = Woothemes_SC_Utils::get_placeholder_image();
-				if ( is_array( $image_data ) && isset( $image_data[0] ) ) {
-					$image_url = $image_data[0];
-				}
-				$img = '<img src="' . esc_url( $image_url ) . '" />';
-			} else {
-				$class .= ' uses-theme';
-				$img = '';
-			}
 
 			$list .= '<li class="' . esc_attr( $class ) . '"><a href="' . esc_url( $v['url'] ) . '"><span>' . "\n";
-			if ( '' != $img ) {
-				$list .= $img;
-			} else {
 
-			}
 			$list .= '</span></a></li>' . "\n";
 		}
 	}
@@ -291,7 +275,7 @@ function woothemes_sc_get_networks () {
 	if ( '' != $list ) {
 		$list = apply_filters( 'woothemes_sc_networks_list', $list, $settings, $theme, $networks );
 		// Parse and apply the icon theme, if applicable.
-		$theme = 'default';
+		$theme = 'icons';
 		if ( $woothemes_sc->context->is_valid_theme( $settings['display']['theme'] ) ) {
 			$theme = $woothemes_sc->context->get_sanitized_theme_key( $settings['display']['theme'] );
 		}
