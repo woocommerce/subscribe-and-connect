@@ -91,4 +91,3 @@ class Woothemes_SC_Settings_General extends Woothemes_SC_Settings_API {
 		$this->fields = $fields;
 	} // End init_fields()
 } // End Class
-?>

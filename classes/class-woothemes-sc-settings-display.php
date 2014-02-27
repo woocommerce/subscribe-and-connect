@@ -67,7 +67,7 @@ class Woothemes_SC_Settings_Display extends Woothemes_SC_Settings_API {
 
 		if ( 1 < count( $this->_themes ) ) {
 			$sections['presentation'] = array(
-					'name' 			=> __( 'Presentation', 'woothemes-sc' ),
+					'name' 			=> __( 'Design', 'woothemes-sc' ),
 					'description'	=> __( 'Determine the look and feel of the connect icons.', 'woothemes-sc' )
 				);
 		}
@@ -134,8 +134,8 @@ class Woothemes_SC_Settings_Display extends Woothemes_SC_Settings_API {
     			$themes[$k] = $v['name'];
     		}
     		$fields['theme'] = array(
-								'name' 			=> 'Icon Design',
-								'description' 	=> sprintf( __( 'Choose a design for how your social icons will be presented within %s.', 'woothemes-sc' ), $theme->__get( 'name' ) ),
+								'name' 			=> 'Icon Style',
+								'description' 	=> sprintf( __( 'Choose a design for how your social icons will be presented within %s. Select "No Style" if you want to apply your own custom design.', 'woothemes-sc' ), $theme->__get( 'name' ) ),
 								'type' 			=> 'select',
 								'default' 		=> 'default',
 								'options' 		=> $themes,
