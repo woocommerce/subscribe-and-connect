@@ -88,9 +88,9 @@ class Woothemes_SC_Utils {
 															'name' 			=> __( 'Rounded', 'woothemes-sc' ),
 															'stylesheet' 	=> esc_url( $woothemes_sc->context->__get( 'plugin_url' ) . 'assets/css/themes/rounded.css' )
 															),
-										'circles' 	=> array(
-															'name' 			=> __( 'Circles', 'woothemes-sc' ),
-															'stylesheet' 	=> esc_url( $woothemes_sc->context->__get( 'plugin_url' ) . 'assets/css/themes/circles.css' )
+										'circular' 	=> array(
+															'name' 			=> __( 'Circular', 'woothemes-sc' ),
+															'stylesheet' 	=> esc_url( $woothemes_sc->context->__get( 'plugin_url' ) . 'assets/css/themes/circular.css' )
 															),
 										)
 									);
