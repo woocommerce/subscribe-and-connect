@@ -71,7 +71,7 @@ class Woothemes_SC_Settings_Connect extends Woothemes_SC_Settings_API {
 
     	$fields['networks'] = array(
 								'name' 			=> __( 'Social Networks', 'woothemes-sc' ),
-								'description' 	=> __( 'The social networks to be linked to in the "Connect" portion of the output.', 'woothemes-sc' ),
+								'description' 	=> __( 'The social networks to be linked to in the "Connect" portion of the output. Drag and drop to reorder.', 'woothemes-sc' ),
 								'type' 			=> 'network',
 								'default' 		=> 'facebook',
 								'section' 		=> 'networks',
