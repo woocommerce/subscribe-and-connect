@@ -147,8 +147,8 @@ class Woothemes_SC_Settings_Connect extends Woothemes_SC_Settings_API {
 								);
 
 		$fields['rss'] = array(
-								'name' 			=> __( 'Enable RSS', 'woothemes-sc' ),
-								'description' 	=> __( 'Display an RSS icon along with your social networks.', 'woothemes-sc' ),
+								'name' 			=> __( 'RSS', 'woothemes-sc' ),
+								'description' 	=> __( 'Display an RSS icon along with your social network links.', 'woothemes-sc' ),
 								'type' 			=> 'checkbox',
 								'default' 		=> true,
 								'section' 		=> 'subscriptions',
