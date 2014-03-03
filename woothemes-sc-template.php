@@ -256,7 +256,7 @@ function woothemes_sc_networks () {
 function woothemes_sc_get_networks () {
 	global $woothemes_sc;
 	$settings = $woothemes_sc->get_settings();
-	$networks = Woothemes_SC_Utils::get_networks_in_order( $settings['connect']['networks'], $settings['connect']['network_order'] );
+	$networks = Woothemes_SC_Utils::get_networks_in_order( $settings['connect']['networks'], $settings['connect']['networks_order'] );
 
 	$list = '';
 	if ( 0 < count( $networks ) ) {
@@ -273,9 +273,9 @@ function woothemes_sc_get_networks () {
 
 	$html = '';
 	if ( '' != $list ) {
+		$theme = 'icons';
 		$list = apply_filters( 'woothemes_sc_networks_list', $list, $settings, $theme, $networks );
 		// Parse and apply the icon theme, if applicable.
-		$theme = 'icons';
 		if ( $woothemes_sc->context->is_valid_theme( $settings['display']['theme'] ) ) {
 			$theme = $woothemes_sc->context->get_sanitized_theme_key( $settings['display']['theme'] );
 		}

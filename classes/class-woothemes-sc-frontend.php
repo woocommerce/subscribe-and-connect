@@ -95,7 +95,8 @@ class Woothemes_SC_Frontend {
 	 * @return  string       The slug of the theme, or 'default'.
 	 */
 	public function get_sanitized_theme_key ( $args ) {
-		$theme = 'icons';
+		$theme 	= 'icons';
+		$key 	= '';
 		if ( in_array( $key, array_keys( Woothemes_SC_Utils::get_icon_themes() ) ) ) {
 			$theme = esc_attr( strtolower( $key ) );
 		}
