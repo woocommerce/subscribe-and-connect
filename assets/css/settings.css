@@ -20,24 +20,16 @@
   border: 1px dashed #DDDDDD;
   visibility: visible !important;
   margin: 3px;
-  padding: 1em;
-}
-.woothemes-sc-network-fields .ui-sortable-placeholder td {
-  padding: 1em;
-}
-.woothemes-sc-network-fields td {
-  padding: 0;
-  cursor: move;
 }
 .woothemes-sc-network-fields .handle {
   display: inline-block;
   width: 20px;
   height: 20px;
   position: absolute;
-  margin-left: -25px;
   margin-top: 3px;
   font-size: 0;
   cursor: move;
+  margin-left: -30px;
 }
 .woothemes-sc-network-fields .handle:before {
   -webkit-font-smoothing: antialiased;
@@ -45,21 +37,23 @@
   content: "\f333";
   position: relative;
   cursor: move;
+  padding: 3px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  border-radius: 2px;
 }
 .woothemes-sc-network-fields .title {
-  width: 100px;
-  padding-right: 1.618em;
+  padding-left: 10px;
+}
+.woothemes-sc-network-fields tbody .title {
+  width: 33%;
+  padding-left: 40px;
 }
 .woothemes-sc-network-fields .url {
-  min-width: 250px;
-  padding-right: 1.618em;
+  width: 66%;
 }
 .woothemes-sc-network-fields .url input {
   width: 100%;
-}
-.woothemes-sc-network-fields .image {
-  width: 75px;
-  padding-top: 1em;
 }
 .woothemes-sc-network-fields .image-preview {
   display: block;

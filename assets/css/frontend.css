@@ -5,77 +5,74 @@
   font-weight: normal;
   font-style: normal;
 }
-.woothemes-sc-connect .icons {
-  display: block;
-  margin: 0;
-  padding: 0;
-}
-.woothemes-sc-connect .icons li {
-  display: inline-block;
-  list-style: none;
-  vertical-align: middle;
-  padding-right: 0.618em;
-  padding-bottom: 0.618em;
-}
-.woothemes-sc-connect .has-image img {
-  max-width: 50px;
-  height: auto;
-  padding: 0;
-  margin: 0;
-  border: none;
-}
-.woothemes-sc-connect .uses-theme {
+.woothemes-sc-connect {
   /* Default Icon */
 }
-.woothemes-sc-connect .uses-theme a {
-  font-family: 'FontAwesome';
-  font-size: 3em;
-  font-size: 3rem;
+.woothemes-sc-connect a {
   text-decoration: none;
+  display: block;
+  text-indent: -999px;
+  position: relative;
+  height: 1em;
+  width: 1em;
 }
-.woothemes-sc-connect .uses-theme a :before {
-  content: '\f013';
-  min-width: 30px;
+.woothemes-sc-connect a:before {
+  font-family: 'FontAwesome';
+  speak: none;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  text-indent: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  content: "\f179";
 }
-.woothemes-sc-connect .uses-theme.rss a :before {
+.woothemes-sc-connect .rss a:before {
   content: '\f09e';
 }
-.woothemes-sc-connect .uses-theme.twitter a :before {
+.woothemes-sc-connect .twitter a:before {
   content: '\f099';
 }
-.woothemes-sc-connect .uses-theme.facebook a :before {
+.woothemes-sc-connect .facebook a:before {
   content: '\f09a';
 }
-.woothemes-sc-connect .uses-theme.pinterest a :before {
+.woothemes-sc-connect .pinterest a:before {
   content: '\f0d2';
 }
-.woothemes-sc-connect .uses-theme.youtube a :before {
+.woothemes-sc-connect .youtube a:before {
   content: '\f167';
 }
-.woothemes-sc-connect .uses-theme.instagram a :before {
+.woothemes-sc-connect .instagram a:before {
   content: '\f16d';
 }
-.woothemes-sc-connect .uses-theme.flickr a :before {
+.woothemes-sc-connect .flickr a:before {
   content: '\f16e';
 }
-.woothemes-sc-connect .uses-theme.google_plus a :before {
+.woothemes-sc-connect .google_plus a:before {
   content: '\f0d5';
 }
-.woothemes-sc-connect .uses-theme.linkedin a :before {
+.woothemes-sc-connect .linkedin a:before {
   content: '\f0e1';
 }
-.woothemes-sc-connect .uses-theme.vimeo a :before {
+.woothemes-sc-connect .vimeo a:before {
   content: '\f194';
 }
-.woothemes-sc-connect .uses-theme.tumblr a :before {
+.woothemes-sc-connect .tumblr a:before {
   content: '\f173';
 }
-.woothemes-sc-connect .uses-theme.dribbble a :before {
+.woothemes-sc-connect .dribbble a:before {
   content: '\f17d';
 }
-.woothemes-sc-connect .uses-theme.appdotnet a :before {
+.woothemes-sc-connect .appdotnet a:before {
   content: '\f170';
 }
-.woothemes-sc-connect .uses-theme.github a :before {
+.woothemes-sc-connect .github a:before {
   content: '\f09b';
 }

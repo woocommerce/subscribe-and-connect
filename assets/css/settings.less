@@ -8,15 +8,10 @@
 	margin-bottom: 1em;
 
 	.ui-sortable-placeholder {
-		background: #EBEBEB; border: 1px dashed #DDDDDD; visibility: visible !important; margin: 3px; padding: 1em;
-		td {
-			padding: 1em;
-		}
-	}
-
-	td {
-		padding: 0;
-		cursor: move;
+		background: #EBEBEB;
+		border: 1px dashed #DDDDDD;
+		visibility: visible !important;
+		margin: 3px;
 	}
 
 	.handle {
@@ -24,33 +19,40 @@
 		width: 20px;
 		height: 20px;
 		position: absolute;
-		margin-left: -25px;
 		margin-top: 3px;
 		font-size: 0;
 		cursor: move;
+		margin-left: -30px;
 		&:before {
 			-webkit-font-smoothing: antialiased;
 			font: normal 14px/1 'dashicons';
 			content: "\f333";
 			position: relative;
 			cursor: move;
+			padding: 3px;
+			border: 1px solid #ddd;
+			background-color: #fff;
+			border-radius: 2px;
 		}
 	}
 
 	.title {
-		width: 100px;
-		padding-right: 1.618em;
+		padding-left: 10px;
 	}
+
+	tbody {
+		.title {
+			width: 33%;
+			padding-left: 40px;
+		}
+	}
+
 	.url {
-		min-width: 250px;
+		width: 66%;
+
 		input {
 			width: 100%;
 		}
-		padding-right: 1.618em;
-	}
-	.image {
-		width: 75px;
-		padding-top: 1em;
 	}
 
 	.image-preview {

@@ -47,10 +47,10 @@ class Woothemes_SC_Admin {
 	 * @return  void
 	 */
 	public function __construct ( $file ) {
-		$this->_token = 'woothemes-sc';
-		$this->_plugin_url = plugin_dir_url( $file );
-		$this->_plugin_path = plugin_dir_path( $file );
-		$this->settings_objs = array();
+		$this->_token 			= 'woothemes-sc';
+		$this->_plugin_url 		= plugin_dir_url( $file );
+		$this->_plugin_path 	= plugin_dir_path( $file );
+		$this->settings_objs 	= array();
 
 		add_action( 'admin_menu', array( $this, 'register_settings_screen' ) );
 
@@ -135,9 +135,9 @@ submit_button();
 	 */
 	private function _get_settings_tabs () {
 		$tabs = array(
-				'subscribe' => __( 'Subscribe', 'woothemes-sc' ),
-				'connect' => __( 'Connect', 'woothemes-sc' ),
-				'integration' => __( 'Integration', 'woothemes-sc' )
+				'general' 		=> __( 'General', 'woothemes-sc' ),
+				'connect' 		=> __( 'Connections', 'woothemes-sc' ),
+				'display'	 	=> __( 'Display', 'woothemes-sc' )
 				);
 		return (array)apply_filters( 'woothemes_sc_get_settings_tabs', $tabs );
 	} // End _get_settings_tabs()
@@ -180,7 +180,7 @@ submit_button();
 		if ( isset( $_GET['tab'] ) && in_array( $_GET['tab'], array_keys( $tabs ) ) )
 			$current_tab = esc_attr( $_GET['tab'] );
 		else
-			$current_tab = 'subscribe';
+			$current_tab = 'general';
 
 		return $current_tab;
 	} // End _get_current_tab()

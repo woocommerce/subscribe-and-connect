@@ -1,0 +1,58 @@
+.woothemes-sc-connect .icons {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.woothemes-sc-connect .icons li {
+  display: inline-block;
+  padding: 0;
+  margin: 0 .5em .5em 0;
+}
+.woothemes-sc-connect .icons a {
+  font-size: 1.5em;
+}
+.woothemes-sc-connect .icons a:hover {
+  opacity: 0.8;
+}
+.woothemes-sc-connect .icons .rss a {
+  color: #ff6600;
+}
+.woothemes-sc-connect .icons .twitter a {
+  color: #33ccff;
+}
+.woothemes-sc-connect .icons .facebook a {
+  color: #3b5998;
+}
+.woothemes-sc-connect .icons .pinterest a {
+  color: #cb2027;
+}
+.woothemes-sc-connect .icons .youtube a {
+  color: #bb0000;
+}
+.woothemes-sc-connect .icons .instagram a {
+  color: #3f729b;
+}
+.woothemes-sc-connect .icons .flickr a {
+  color: #ff0084;
+}
+.woothemes-sc-connect .icons .google_plus a {
+  color: #dd4b39;
+}
+.woothemes-sc-connect .icons .linkedin a {
+  color: #007bb6;
+}
+.woothemes-sc-connect .icons .vimeo a {
+  color: #1ab7ea;
+}
+.woothemes-sc-connect .icons .tumblr a {
+  color: #32506d;
+}
+.woothemes-sc-connect .icons .dribbble a {
+  color: #ea4c89;
+}
+.woothemes-sc-connect .icons .appdotnet a {
+  color: #cccccc;
+}
+.woothemes-sc-connect .icons .github a {
+  color: #333333;
+}

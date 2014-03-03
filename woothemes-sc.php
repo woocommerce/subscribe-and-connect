@@ -27,6 +27,7 @@
     if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 	require_once( 'classes/class-woothemes-sc.php' );
+    require_once( 'classes/class-woothemes-widget-sc.php' );
 
 	global $woothemes_sc;
 	$woothemes_sc = new Woothemes_SC( __FILE__ );

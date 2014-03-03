@@ -95,7 +95,8 @@ class Woothemes_SC_Frontend {
 	 * @return  string       The slug of the theme, or 'default'.
 	 */
 	public function get_sanitized_theme_key ( $args ) {
-		$theme = 'default';
+		$theme 	= 'icons';
+		$key 	= '';
 		if ( in_array( $key, array_keys( Woothemes_SC_Utils::get_icon_themes() ) ) ) {
 			$theme = esc_attr( strtolower( $key ) );
 		}
@@ -110,7 +111,7 @@ class Woothemes_SC_Frontend {
 	 * @return  string       The slug of the theme, or 'default'.
 	 */
 	public function get_theme_data ( $key ) {
-		$theme = array( 'name' => 'default', 'stylesheet' => '' );
+		$theme = array( 'name' => 'icons', 'stylesheet' => '' );
 		$available_themes = Woothemes_SC_Utils::get_icon_themes();
 		if ( in_array( $key, array_keys( $available_themes ) ) ) {
 			$theme = $available_themes[esc_attr( $key )];
@@ -128,9 +129,9 @@ class Woothemes_SC_Frontend {
 		global $woothemes_sc;
 		$woothemes_sc->setup_settings();
 		$settings = $woothemes_sc->get_settings();
-		$theme_data = $this->get_theme_data( $settings['integration']['theme'] );
+		$theme_data = $this->get_theme_data( $settings['display']['theme'] );
 		if ( isset( $theme_data['stylesheet'] ) && ( '' != $theme_data['stylesheet'] ) ) {
-			wp_enqueue_style( 'woothemes-sc-theme-' . esc_attr( $settings['integration']['theme'] ), esc_url( $theme_data['stylesheet'] ) );
+			wp_enqueue_style( 'woothemes-sc-theme-' . esc_attr( $settings['display']['theme'] ), esc_url( $theme_data['stylesheet'] ) );
 		}
 	} // End maybe_load_theme_stylesheets()
 } // End Class

@@ -279,7 +279,7 @@ class Woothemes_SC_Settings_API {
 
 		echo '<input id="' . esc_attr( $args['key'] ) . '" name="' . $this->token . '[' . esc_attr( $args['key'] ) . ']" size="40" type="text" value="' . esc_attr( $options[$args['key']] ) . '" />' . "\n";
 		if ( isset( $args['data']['description'] ) ) {
-			echo '<span class="description">' . wp_kses_post( $args['data']['description'] ) . '</span>' . "\n";
+			echo '<p class="description">' . wp_kses_post( $args['data']['description'] ) . '</p>' . "\n";
 		}
 		do_action( 'woothemes_sc_field_text_after', $args );
 	} // End form_field_text()
@@ -338,7 +338,7 @@ class Woothemes_SC_Settings_API {
 
 		echo '<textarea id="' . esc_attr( $args['key'] ) . '" name="' . $this->token . '[' . esc_attr( $args['key'] ) . ']" cols="42" rows="5">' . esc_html( $options[$args['key']] ) . '</textarea>' . "\n";
 		if ( isset( $args['data']['description'] ) ) {
-			echo '<p><span class="description">' . wp_kses_post( $args['data']['description'] ) . '</span></p>' . "\n";
+			echo '<p class="description">' . wp_kses_post( $args['data']['description'] ) . '</p>' . "\n";
 		}
 		do_action( 'woothemes_sc_field_textarea_after', $args );
 	} // End form_field_textarea()
@@ -365,7 +365,7 @@ class Woothemes_SC_Settings_API {
 			echo $html;
 
 			if ( isset( $args['data']['description'] ) ) {
-				echo '<p><span class="description">' . wp_kses_post( $args['data']['description'] ) . '</span></p>' . "\n";
+				echo '<p class="description">' . wp_kses_post( $args['data']['description'] ) . '</p>' . "\n";
 			}
 		}
 		do_action( 'woothemes_sc_field_select_after', $args );
@@ -386,12 +386,12 @@ class Woothemes_SC_Settings_API {
 		if ( isset( $args['data']['options'] ) && ( count( (array)$args['data']['options'] ) > 0 ) ) {
 			$html = '';
 			foreach ( $args['data']['options'] as $k => $v ) {
-				$html .= '<input type="radio" name="' . $this->token . '[' . esc_attr( $args['key'] ) . ']" value="' . esc_attr( $k ) . '"' . checked( esc_attr( $options[$args['key']] ), $k, false ) . ' /> ' . $v . '<br />' . "\n";
+				$html .= '<p><label><input type="radio" name="' . $this->token . '[' . esc_attr( $args['key'] ) . ']" value="' . esc_attr( $k ) . '"' . checked( esc_attr( $options[$args['key']] ), $k, false ) . ' /> ' . $v . '<br />' . "\n";
 			}
 			echo $html;
 
 			if ( isset( $args['data']['description'] ) ) {
-				echo '<span class="description">' . wp_kses_post( $args['data']['description'] ) . '</span>' . "\n";
+				echo '<span class="description">' . wp_kses_post( $args['data']['description'] ) . '</span></label></p>' . "\n";
 			}
 		}
 		do_action( 'woothemes_sc_field_radio_after', $args );
@@ -421,7 +421,7 @@ class Woothemes_SC_Settings_API {
 			echo $html;
 
 			if ( isset( $args['data']['description'] ) ) {
-				echo '<span class="description">' . wp_kses_post( $args['data']['description'] ) . '</span>' . "\n";
+				echo '<p class="description">' . wp_kses_post( $args['data']['description'] ) . '</p>' . "\n";
 			}
 		}
 		do_action( 'woothemes_sc_field_multicheck_after', $args );
@@ -448,7 +448,7 @@ class Woothemes_SC_Settings_API {
 		$networks = Woothemes_SC_Utils::get_networks_in_order( $networks, $order );
 
 		if ( 0 < count( $networks ) ) {
-			$html .= '<table class="form-table woothemes-sc-network-fields"><tbody>' . "\n";
+			$html .= '<table class="form-table widefat woothemes-sc-network-fields"><thead><tr><th class="title">' . __( 'Social Network', 'woothemes-wc' ) . '</th><th class="title">' . __( 'Your URL', 'woothemes-wc' ) . '</th></tr></thead><tbody>' . "\n";
 			foreach ( $networks as $k => $v ) {
 				$html .= $this->_single_network_field( $k, $v, $args, $options );
 			}
@@ -461,7 +461,7 @@ class Woothemes_SC_Settings_API {
 		echo $html;
 
 		if ( isset( $args['data']['description'] ) ) {
-			echo '<span class="description">' . wp_kses_post( $args['data']['description'] ) . '</span>' . "\n";
+			echo '<p class="description">' . wp_kses_post( $args['data']['description'] ) . '</p>' . "\n";
 		}
 	} // End form_field_network()
 
@@ -483,32 +483,11 @@ class Woothemes_SC_Settings_API {
 		if ( isset( $options[$args['key']][$key] ) ) $data = $options[$args['key']][$key];
 
 		$html .= '<tr id="' . esc_attr( $key ) . '" class="woothemes-sc-network-item">' . "\n";
-		$html .= '<td class="title">' . "\n";
+		$html .= '<th class="title">' . "\n";
 		$html .= '<span class="handle hide-if-no-js">' . __( 'Re-order', 'woothemes' ) . '</span>' . "\n";
 		$html .= '<label for="' . esc_attr( $this->token ) . '[' . esc_attr( $args['key'] ) . '][' . esc_attr( $key ) . '][url]">' . esc_html( $value ) . '</label>' . "\n";
-		$html .= '</td><td class="url">' . "\n";
+		$html .= '</th><td class="url">' . "\n";
 		$html .= '<input type="text" class="regular-text input-text url" name="' . esc_attr( $this->token ) . '[' . esc_attr( $args['key'] ) . '][' . esc_attr( $key ) . '][url]" placeholder="' . sprintf( __( 'Place your %s URL here', 'woothemes-sc' ), esc_attr( $value ) ) . '" value="' . esc_attr( $data['url'] ) . '" />' . "\n";
-		$html .= '</td><td class="image">' . "\n";
-		$html .= '<span class="image-upload">' . "\n";
-		$html .= '<input type="hidden" name="' . esc_attr( $this->token ) . '[' . esc_attr( $args['key'] ) . '][' . esc_attr( $key ) . '][image_id]" value="' . esc_attr( $data['image_id'] ) . '" class="upload-id" />' . "\n";
-		$html .= '</span>' . "\n";
-		$image_url = Woothemes_SC_Utils::get_placeholder_image();
-		$button_type = 'add';
-		if ( isset( $data['image_id'] ) && '' != $data['image_id'] ) {
-			$image_data = wp_get_attachment_image_src( intval( $data['image_id'] ), $size = 'medium' );
-			if ( is_array( $image_data ) && isset( $image_data[0] ) ) {
-				$image_url = esc_url( $image_data[0] );
-			}
-			$button_type = 'remove';
-		}
-
-		$html .= '<span class="image-preview">' . "\n";
-			$html .= '<a href="#" title="' . esc_attr__( 'Preview', 'woothemes-sc' ) . '" target="_blank" class="preview-link ' . esc_attr( $button_type ) . '" data-uploader-title="' . esc_attr__( 'Select Icon', 'woothemes-sc' ) . '" data-uploader-button-text="' . esc_attr__( 'Select Icon', 'woothemes-sc' ) . '">' . "\n";
-				$html .= '<img src="' . esc_url( $image_url ) . '" />' . "\n";
-				$html .= '<span class="overlay"></span>' . "\n";
-			$html .= '</a>' . "\n";
-		$html .= '</span>' . "\n";
-		$html .= '</div>' . "\n";
 		$html .= '</td></tr>' . "\n";
 
 		return $html;

@@ -84,23 +84,23 @@ class Woothemes_SC {
 		require_once( 'class-woothemes-sc-settings-api.php' );
 
 		// Load in the different settings sections.
-		require_once( 'class-woothemes-sc-settings-subscribe.php' );
+		require_once( 'class-woothemes-sc-settings-general.php' );
 		require_once( 'class-woothemes-sc-settings-connect.php' );
-		require_once( 'class-woothemes-sc-settings-integration.php' );
+		require_once( 'class-woothemes-sc-settings-display.php' );
 
 		$this->settings_objs = array();
 
 		// Setup "Subscribe" settings.
-		$this->settings_objs['subscribe'] = new Woothemes_SC_Settings_Subscribe();
-		$this->settings_objs['subscribe']->setup_settings();
+		$this->settings_objs['general'] = new Woothemes_SC_Settings_General();
+		$this->settings_objs['general']->setup_settings();
 
 		// Setup "Connect" settings.
 		$this->settings_objs['connect'] = new Woothemes_SC_Settings_Connect();
 		$this->settings_objs['connect']->setup_settings();
 
 		// Setup "Integration" settings.
-		$this->settings_objs['integration'] = new Woothemes_SC_Settings_Integration();
-		$this->settings_objs['integration']->setup_settings();
+		$this->settings_objs['display'] = new Woothemes_SC_Settings_Display();
+		$this->settings_objs['display']->setup_settings();
 
 		$this->settings_objs = (array)apply_filters( 'woothemes_sc_setup_settings', $this->settings_objs );
 	} // End setup_settings()
@@ -134,7 +134,7 @@ class Woothemes_SC {
 	public function maybe_override_woo_options ( $options ) {
 		$settings = $this->get_settings();
 
-		if ( isset( $settings['integration']['disable_theme_sc'] ) && true == $settings['integration']['disable_theme_sc'] ) {
+		if ( isset( $settings['display']['disable_theme_sc'] ) && true == $settings['display']['disable_theme_sc'] ) {
 			$detected_sc = false;
 			foreach ( $options as $k => $v ) {
 				// Remove the section heading. This will kick start the removal of fields.
@@ -165,7 +165,7 @@ class Woothemes_SC {
 	public function maybe_unregister_widget () {
 		$settings = $this->get_settings();
 
-		if ( isset( $settings['integration']['disable_theme_sc'] ) && true == $settings['integration']['disable_theme_sc'] ) {
+		if ( isset( $settings['display']['disable_theme_sc'] ) && true == $settings['display']['disable_theme_sc'] ) {
 			unregister_widget( 'Woo_Subscribe' );
 		}
 	} // End maybe_unregister_widget()

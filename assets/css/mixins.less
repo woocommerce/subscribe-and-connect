@@ -1,0 +1,41 @@
+@rss:           #FF6600;
+@twitter:       #33CCFF;
+@facebook:      #3B5998;
+@pinterest:     #cb2027;
+@youtube:       #bb0000;
+@instagram:     #3F729B;
+@flickr:        #ff0084;
+@google_plus:   #dd4b39;
+@linkedin:      #007bb6;
+@vimeo:         #1ab7ea;
+@tumblr:        #32506d;
+@dribbble:      #ea4c89;
+@appdotnet:     #CCCCCC;
+@github:        #333333;
+
+.ir() {
+    display: block;
+    text-indent: -999px;
+    position: relative;
+    height: 1em;
+    width: 1em;
+}
+
+.icon(@glyph: "\f179") {
+    font-family: 'FontAwesome';
+    speak: none;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    text-indent: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    content: @glyph;
+}
