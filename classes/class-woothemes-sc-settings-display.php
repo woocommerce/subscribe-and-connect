@@ -60,17 +60,17 @@ class Woothemes_SC_Settings_Display extends Woothemes_SC_Settings_API {
 					);
 		}
 
-		$sections['manual'] = array(
-					'name' 			=> __( 'Advanced Integration', 'woothemes-sc' ),
-					'description'	=> __( 'Finely tuned control over where Subscribe & Connect integrates into your website.', 'woothemes-sc' )
-				);
-
 		if ( 1 < count( $this->_themes ) ) {
 			$sections['presentation'] = array(
 					'name' 			=> __( 'Design', 'woothemes-sc' ),
 					'description'	=> __( 'Determine the look and feel of the connect icons.', 'woothemes-sc' )
 				);
 		}
+
+		$sections['manual'] = array(
+					'name' 			=> __( 'Advanced Integration', 'woothemes-sc' ),
+					'description'	=> __( 'Finely tuned control over where Subscribe & Connect integrates into your website.', 'woothemes-sc' )
+				);
 
 		$this->sections = $sections;
 	} // End init_sections()
@@ -92,8 +92,8 @@ class Woothemes_SC_Settings_Display extends Woothemes_SC_Settings_API {
 
     	// Automated
     	$auto_options = array(
-    		'none' 			=> __( 'Disable simple integration', 'woothemes-sc' ),
-    		'the_content' 	=> __( 'Enable simple integration', 'woothemes-sc' )
+    		'none' 			=> __( 'Don\'t display automatically', 'woothemes-sc' ),
+    		'the_content' 	=> __( 'Display beneath posts', 'woothemes-sc' )
     		);
 
     	if ( defined( 'THEME_FRAMEWORK' ) && 'woothemes' == constant( 'THEME_FRAMEWORK' ) ) {
@@ -109,15 +109,6 @@ class Woothemes_SC_Settings_Display extends Woothemes_SC_Settings_API {
 								'options' 		=> $auto_options
 								);
 
-    	// Manual
-    	$fields['custom_hook_name'] = array(
-								'name' 			=> __( 'Display on a custom hook', 'woothemes-sc' ),
-								'description' 	=> __( 'The name of the hook you want to use (for example, loop_end).', 'woothemes-sc' ),
-								'type' 			=> 'text',
-								'default' 		=> '',
-								'section' 		=> 'manual'
-								);
-
     	// WooThemes
     	$fields['disable_theme_sc'] = array(
 								'name' 			=> '',
@@ -125,6 +116,15 @@ class Woothemes_SC_Settings_Display extends Woothemes_SC_Settings_API {
 								'type' 			=> 'checkbox',
 								'default' 		=> true,
 								'section' 		=> 'woothemes'
+								);
+
+    	// Manual
+    	$fields['custom_hook_name'] = array(
+								'name' 			=> __( 'Display on a custom hook', 'woothemes-sc' ),
+								'description' 	=> __( 'The name of the hook you want to use (for example, loop_end).', 'woothemes-sc' ),
+								'type' 			=> 'text',
+								'default' 		=> '',
+								'section' 		=> 'manual'
 								);
 
     	// Presentation
