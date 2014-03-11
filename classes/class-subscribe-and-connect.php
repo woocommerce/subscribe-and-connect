@@ -1,5 +1,5 @@
 <?php
-class Woothemes_SC {
+class Subscribe_And_Connect {
 	/**
 	 * Property to contain the version number.
 	 * @access  public
@@ -9,7 +9,7 @@ class Woothemes_SC {
 	public $version;
 
 	/**
-	 * Property to contain the Woothemes_SC_Admin or Woothemes_SC_Frontend object.
+	 * Property to contain the Subscribe_And_Connect_Admin or Subscribe_And_Connect_Frontend object.
 	 * @access  public
 	 * @since   1.0.0
 	 * @var     object
@@ -47,15 +47,15 @@ class Woothemes_SC {
 		add_action( 'widgets_init', array( $this, 'maybe_unregister_widget' ) );
 
 		// Load in the utility functions.
-		require_once( 'class-woothemes-sc-utils.php' );
+		require_once( 'class-subscribe-and-connect-utils.php' );
 		if ( is_admin() ) {
 			// Load in the admin functionality.
-			require_once( 'class-woothemes-sc-admin.php' );
-			$this->context = new Woothemes_SC_Admin( $file );
+			require_once( 'class-subscribe-and-connect-admin.php' );
+			$this->context = new Subscribe_And_Connect_Admin( $file );
 		} else {
 			// Load in the frontend functionality.
-			require_once( 'class-woothemes-sc-frontend.php' );
-			$this->context = new Woothemes_SC_Frontend( $file );
+			require_once( 'class-subscribe-and-connect-frontend.php' );
+			$this->context = new Subscribe_And_Connect_Frontend( $file );
 		}
 
 		// Add support for posts and pages.
@@ -81,28 +81,28 @@ class Woothemes_SC {
 	 * @return void
 	 */
 	public function setup_settings () {
-		require_once( 'class-woothemes-sc-settings-api.php' );
+		require_once( 'class-subscribe-and-connect-settings-api.php' );
 
 		// Load in the different settings sections.
-		require_once( 'class-woothemes-sc-settings-general.php' );
-		require_once( 'class-woothemes-sc-settings-connect.php' );
-		require_once( 'class-woothemes-sc-settings-display.php' );
+		require_once( 'class-subscribe-and-connect-settings-general.php' );
+		require_once( 'class-subscribe-and-connect-settings-connect.php' );
+		require_once( 'class-subscribe-and-connect-settings-display.php' );
 
 		$this->settings_objs = array();
 
 		// Setup "Subscribe" settings.
-		$this->settings_objs['general'] = new Woothemes_SC_Settings_General();
+		$this->settings_objs['general'] = new Subscribe_And_Connect_Settings_General();
 		$this->settings_objs['general']->setup_settings();
 
 		// Setup "Connect" settings.
-		$this->settings_objs['connect'] = new Woothemes_SC_Settings_Connect();
+		$this->settings_objs['connect'] = new Subscribe_And_Connect_Settings_Connect();
 		$this->settings_objs['connect']->setup_settings();
 
 		// Setup "Integration" settings.
-		$this->settings_objs['display'] = new Woothemes_SC_Settings_Display();
+		$this->settings_objs['display'] = new Subscribe_And_Connect_Settings_Display();
 		$this->settings_objs['display']->setup_settings();
 
-		$this->settings_objs = (array)apply_filters( 'woothemes_sc_setup_settings', $this->settings_objs );
+		$this->settings_objs = (array)apply_filters( 'subscribe_and_connect_setup_settings', $this->settings_objs );
 	} // End setup_settings()
 
 	/**

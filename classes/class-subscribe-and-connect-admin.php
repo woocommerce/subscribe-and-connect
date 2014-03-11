@@ -1,5 +1,5 @@
 <?php
-class Woothemes_SC_Admin {
+class Subscribe_And_Connect_Admin {
 	/**
 	 * The hook token for the settings screen.
 	 * @access  private
@@ -47,7 +47,7 @@ class Woothemes_SC_Admin {
 	 * @return  void
 	 */
 	public function __construct ( $file ) {
-		$this->_token 			= 'woothemes-sc';
+		$this->_token 			= 'subscribe-and-connect';
 		$this->_plugin_url 		= plugin_dir_url( $file );
 		$this->_plugin_path 	= plugin_dir_path( $file );
 		$this->settings_objs 	= array();
@@ -85,7 +85,7 @@ class Woothemes_SC_Admin {
 	 * @return  void
 	 */
 	public function register_settings_screen () {
-		$this->_hook = add_options_page( __( 'Subscribe & Connect', 'woothemes-sc' ), __( 'Subscribe & Connect', 'woothemes-sc' ), 'manage_options', $this->_token, array( $this, 'settings_screen' ) );
+		$this->_hook = add_options_page( __( 'Subscribe & Connect', 'subscribe-and-connect' ), __( 'Subscribe & Connect', 'subscribe-and-connect' ), 'manage_options', $this->_token, array( $this, 'settings_screen' ) );
 
 		// Enqueue our registered scripts and styles on our own admin screen by default.
 		add_action( 'admin_print_scripts-' . $this->_hook, array( $this, 'enqueue_scripts' ) );
@@ -99,7 +99,7 @@ class Woothemes_SC_Admin {
 	 * @return  void
 	 */
 	public function settings_screen () {
-		global $woothemes_sc;
+		global $subscribe_and_connect;
 		$tabs = $this->_get_settings_tabs();
 		$current_tab = $this->_get_current_tab();
 ?>
@@ -108,17 +108,17 @@ class Woothemes_SC_Admin {
 <h2 class="nav-tab-wrapper">
 <?php
 echo $this->get_settings_tabs_html( $tabs, $current_tab );
-do_action( 'woothemes_sc_settings_tabs' );
+do_action( 'subscribe_and_connect_settings_tabs' );
 ?>
 </h2>
 <form action="options.php" method="post">
 <?php
-if ( is_object( $woothemes_sc->settings_objs[$current_tab] ) ) {
-	// $woothemes_sc->settings_objs[$current_tab]->settings_errors();
-	$woothemes_sc->settings_objs[$current_tab]->settings_screen();
+if ( is_object( $subscribe_and_connect->settings_objs[$current_tab] ) ) {
+	// $subscribe_and_connect->settings_objs[$current_tab]->settings_errors();
+	$subscribe_and_connect->settings_objs[$current_tab]->settings_screen();
 }
 
-do_action( 'woothemes_sc_settings_tabs_' . $current_tab );
+do_action( 'subscribe_and_connect_settings_tabs_' . $current_tab );
 
 submit_button();
 ?>
@@ -135,11 +135,11 @@ submit_button();
 	 */
 	private function _get_settings_tabs () {
 		$tabs = array(
-				'general' 		=> __( 'General', 'woothemes-sc' ),
-				'connect' 		=> __( 'Connections', 'woothemes-sc' ),
-				'display'	 	=> __( 'Display', 'woothemes-sc' )
+				'general' 		=> __( 'General', 'subscribe-and-connect' ),
+				'connect' 		=> __( 'Connections', 'subscribe-and-connect' ),
+				'display'	 	=> __( 'Display', 'subscribe-and-connect' )
 				);
-		return (array)apply_filters( 'woothemes_sc_get_settings_tabs', $tabs );
+		return (array)apply_filters( 'subscribe_and_connect_get_settings_tabs', $tabs );
 	} // End _get_settings_tabs()
 
 	/**
@@ -192,11 +192,11 @@ submit_button();
 	 * @return  void
 	 */
 	public function register_enqueues () {
-		global $woothemes_sc;
-		wp_register_script( $this->_token . '-admin', esc_url( $this->_plugin_url . 'assets/js/admin.js' ), array( 'jquery' ), $woothemes_sc->version );
-		wp_register_script( $this->_token . '-sortables', esc_url( $this->_plugin_url . 'assets/js/sortables.js' ), array( 'jquery', 'jquery-ui-sortable' ), $woothemes_sc->version );
-		wp_register_script( $this->_token . '-uploaders', esc_url( $this->_plugin_url . 'assets/js/uploaders.js' ), array( 'jquery' ), $woothemes_sc->version );
-		wp_register_style( $this->_token . '-settings-api',  esc_url( $this->_plugin_url . 'assets/css/settings.css' ), '', $woothemes_sc->version );
+		global $subscribe_and_connect;
+		wp_register_script( $this->_token . '-admin', esc_url( $this->_plugin_url . 'assets/js/admin.js' ), array( 'jquery' ), $subscribe_and_connect->version );
+		wp_register_script( $this->_token . '-sortables', esc_url( $this->_plugin_url . 'assets/js/sortables.js' ), array( 'jquery', 'jquery-ui-sortable' ), $subscribe_and_connect->version );
+		wp_register_script( $this->_token . '-uploaders', esc_url( $this->_plugin_url . 'assets/js/uploaders.js' ), array( 'jquery' ), $subscribe_and_connect->version );
+		wp_register_style( $this->_token . '-settings-api',  esc_url( $this->_plugin_url . 'assets/css/settings.css' ), '', $subscribe_and_connect->version );
 	} // End register_enqueues()
 
 	/**

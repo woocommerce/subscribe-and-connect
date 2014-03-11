@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  * All functionality pertaining to the subscribe settings screen.
  *
  * @package WordPress
- * @subpackage Woothemes_SC
+ * @subpackage Subscribe_And_Connect
  * @category Admin
  * @author WooThemes
  * @since 1.0.0
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  * - init_fields()
  * - get_duration_options()
  */
-class Woothemes_SC_Settings_General extends Woothemes_SC_Settings_API {
+class Subscribe_And_Connect_Settings_General extends Subscribe_And_Connect_Settings_API {
 
 	/**
 	 * __construct function.
@@ -30,8 +30,8 @@ class Woothemes_SC_Settings_General extends Woothemes_SC_Settings_API {
 	 */
 	public function __construct () {
 	    parent::__construct(); // Required in extended classes.
-	    $this->token = 'woothemes-sc-subscribe';
-	    $this->name = __( 'General', 'woothemes-sc' );
+	    $this->token = 'subscribe-and-connect-subscribe';
+	    $this->name = __( 'General', 'subscribe-and-connect' );
 	} // End __construct()
 
 	/**
@@ -45,8 +45,8 @@ class Woothemes_SC_Settings_General extends Woothemes_SC_Settings_API {
 		$sections = array();
 
 		$sections['text'] = array(
-					'name' 			=> __( 'Content', 'woothemes-sc' ),
-					'description'	=> __( 'Subscribe &amp; Connect component title and description.', 'woothemes-sc' )
+					'name' 			=> __( 'Content', 'subscribe-and-connect' ),
+					'description'	=> __( 'Subscribe &amp; Connect component title and description.', 'subscribe-and-connect' )
 				);
 
 		$this->sections = $sections;
@@ -63,28 +63,28 @@ class Woothemes_SC_Settings_General extends Woothemes_SC_Settings_API {
 		global $pagenow;
 
 		$newsletter_services = array(
-								'none' 				=> __( 'None', 'woothemes-sc' ),
-								'aweber' 			=> __( 'Aweber', 'woothemes-sc' ),
-								'campaign_monitor' 	=> __( 'Campaign Monitor', 'woothemes-sc' ),
-								'feedburner' 		=> __( 'Feedburner', 'woothemes-sc' ),
-								'mad_mimi' 			=> __( 'Mad Mimi', 'woothemes-sc' ),
-								'mailchimp' 		=> __( 'Mailchimp', 'woothemes-sc' )
+								'none' 				=> __( 'None', 'subscribe-and-connect' ),
+								'aweber' 			=> __( 'Aweber', 'subscribe-and-connect' ),
+								'campaign_monitor' 	=> __( 'Campaign Monitor', 'subscribe-and-connect' ),
+								'feedburner' 		=> __( 'Feedburner', 'subscribe-and-connect' ),
+								'mad_mimi' 			=> __( 'Mad Mimi', 'subscribe-and-connect' ),
+								'mailchimp' 		=> __( 'Mailchimp', 'subscribe-and-connect' )
 								);
 
 	    $fields = array();
 
     	// Text
     	$fields['title'] = array(
-								'name' 				=> __( 'Title', 'woothemes-sc' ),
+								'name' 				=> __( 'Title', 'subscribe-and-connect' ),
 								'type' 				=> 'text',
-								'default' 			=> sprintf( __( 'Subscribe to %s', 'woothemes-sc' ), get_bloginfo( 'name' ) ),
+								'default' 			=> sprintf( __( 'Subscribe to %s', 'subscribe-and-connect' ), get_bloginfo( 'name' ) ),
 								'section' 			=> 'text'
 								);
 
     	$fields['text'] = array(
-								'name' 				=> __( 'Description', 'woothemes-sc' ),
+								'name' 				=> __( 'Description', 'subscribe-and-connect' ),
 								'type' 				=> 'textarea',
-								'default' 			=> sprintf( __( 'Keep up to date on the latest content, here at %s. Subscribe below.', 'woothemes-sc' ), get_bloginfo( 'name' ) ),
+								'default' 			=> sprintf( __( 'Keep up to date on the latest content, here at %s. Subscribe below.', 'subscribe-and-connect' ), get_bloginfo( 'name' ) ),
 								'section' 			=> 'text'
 								);
 

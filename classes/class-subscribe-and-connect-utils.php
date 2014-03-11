@@ -1,5 +1,5 @@
 <?php
-class Woothemes_SC_Utils {
+class Subscribe_And_Connect_Utils {
 	/**
 	 * Get an array of supported networks.
 	 * @access  public
@@ -7,20 +7,20 @@ class Woothemes_SC_Utils {
 	 * @return  array key => value pairs of supported networks.
 	 */
 	public static function get_supported_networks () {
-		return (array)apply_filters( 'woothemes_sc_supported_networks', array(
-			'facebook' 		=> __( 'Facebook', 'woothemes-sc' ),
-			'twitter' 		=> __( 'Twitter', 'woothemes-sc' ),
-			'pinterest' 	=> __( 'Pinterest', 'woothemes-sc' ),
-			'youtube' 		=> __( 'YouTube', 'woothemes-sc' ),
-			'instagram' 	=> __( 'Instagram', 'woothemes-sc' ),
-			'flickr' 		=> __( 'Flickr', 'woothemes-sc' ),
-			'google_plus' 	=> __( 'Google +', 'woothemes-sc' ),
-			'linkedin' 		=> __( 'LinkedIn', 'woothemes-sc' ),
-			'vimeo' 		=> __( 'Vimeo', 'woothemes-sc' ),
-			'tumblr' 		=> __( 'Tumblr', 'woothemes-sc' ),
-			'dribbble' 		=> __( 'Dribbble', 'woothemes-sc' ),
-			'appdotnet' 	=> __( 'App.net', 'woothemes-sc' ),
-			'github' 		=> __( 'Github', 'woothemes-sc' )
+		return (array)apply_filters( 'subscribe_and_connect_supported_networks', array(
+			'facebook' 		=> __( 'Facebook', 'subscribe-and-connect' ),
+			'twitter' 		=> __( 'Twitter', 'subscribe-and-connect' ),
+			'pinterest' 	=> __( 'Pinterest', 'subscribe-and-connect' ),
+			'youtube' 		=> __( 'YouTube', 'subscribe-and-connect' ),
+			'instagram' 	=> __( 'Instagram', 'subscribe-and-connect' ),
+			'flickr' 		=> __( 'Flickr', 'subscribe-and-connect' ),
+			'google_plus' 	=> __( 'Google +', 'subscribe-and-connect' ),
+			'linkedin' 		=> __( 'LinkedIn', 'subscribe-and-connect' ),
+			'vimeo' 		=> __( 'Vimeo', 'subscribe-and-connect' ),
+			'tumblr' 		=> __( 'Tumblr', 'subscribe-and-connect' ),
+			'dribbble' 		=> __( 'Dribbble', 'subscribe-and-connect' ),
+			'appdotnet' 	=> __( 'App.net', 'subscribe-and-connect' ),
+			'github' 		=> __( 'Github', 'subscribe-and-connect' )
 			) );
 	} // End get_supported_networks()
 
@@ -31,8 +31,8 @@ class Woothemes_SC_Utils {
 	 * @return  string The URL to the placeholder thumbnail image.
 	 */
 	public static function get_placeholder_image () {
-		global $woothemes_sc;
-		return esc_url( apply_filters( 'woothemes_sc_placeholder_thumbnail', $woothemes_sc->context->__get( 'plugin_url' ) . 'assets/images/placeholder.png' ) );
+		global $subscribe_and_connect;
+		return esc_url( apply_filters( 'subscribe_and_connect_placeholder_thumbnail', $subscribe_and_connect->context->__get( 'plugin_url' ) . 'assets/images/placeholder.png' ) );
 	} // End get_placeholder_image()
 
 	/**
@@ -70,27 +70,27 @@ class Woothemes_SC_Utils {
 	 * @return  array The icon themes supported by Subscribe & Connect.
 	 */
 	public static function get_icon_themes () {
-		global $woothemes_sc;
-		return (array)apply_filters( 'woothemes_sc_icon_themes', array(
+		global $subscribe_and_connect;
+		return (array)apply_filters( 'subscribe_and_connect_icon_themes', array(
 										'none' 		=> array(
-															'name' 			=> __( 'No style', 'woothemes-sc' ),
+															'name' 			=> __( 'No style', 'subscribe-and-connect' ),
 															'stylesheet' 	=> ''
 															),
 										'icons' 	=> array(
-															'name' 			=> __( 'Icons Only', 'woothemes-sc' ),
-															'stylesheet' 	=> esc_url( $woothemes_sc->context->__get( 'plugin_url' ) . 'assets/css/themes/icons.css' )
+															'name' 			=> __( 'Icons Only', 'subscribe-and-connect' ),
+															'stylesheet' 	=> esc_url( $subscribe_and_connect->context->__get( 'plugin_url' ) . 'assets/css/themes/icons.css' )
 															),
 										'boxed' 	=> array(
-															'name' 			=> __( 'Boxed', 'woothemes-sc' ),
-															'stylesheet' 	=> esc_url( $woothemes_sc->context->__get( 'plugin_url' ) . 'assets/css/themes/boxed.css' )
+															'name' 			=> __( 'Boxed', 'subscribe-and-connect' ),
+															'stylesheet' 	=> esc_url( $subscribe_and_connect->context->__get( 'plugin_url' ) . 'assets/css/themes/boxed.css' )
 															),
 										'rounded' 	=> array(
-															'name' 			=> __( 'Rounded', 'woothemes-sc' ),
-															'stylesheet' 	=> esc_url( $woothemes_sc->context->__get( 'plugin_url' ) . 'assets/css/themes/rounded.css' )
+															'name' 			=> __( 'Rounded', 'subscribe-and-connect' ),
+															'stylesheet' 	=> esc_url( $subscribe_and_connect->context->__get( 'plugin_url' ) . 'assets/css/themes/rounded.css' )
 															),
 										'circular' 	=> array(
-															'name' 			=> __( 'Circular', 'woothemes-sc' ),
-															'stylesheet' 	=> esc_url( $woothemes_sc->context->__get( 'plugin_url' ) . 'assets/css/themes/circular.css' )
+															'name' 			=> __( 'Circular', 'subscribe-and-connect' ),
+															'stylesheet' 	=> esc_url( $subscribe_and_connect->context->__get( 'plugin_url' ) . 'assets/css/themes/circular.css' )
 															),
 										)
 									);

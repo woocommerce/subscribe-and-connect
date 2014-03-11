@@ -26,12 +26,12 @@
 
     if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-	require_once( 'classes/class-woothemes-sc.php' );
-    require_once( 'classes/class-woothemes-widget-sc.php' );
+	require_once( 'classes/class-subscribe-and-connect.php' );
+    require_once( 'classes/class-subscribe-and-connect-widget.php' );
 
-	global $woothemes_sc;
-	$woothemes_sc = new Woothemes_SC( __FILE__ );
-	$woothemes_sc->version = '1.0.0';
+	global $subscribe_and_connect;
+	$subscribe_and_connect = new Subscribe_And_Connect( __FILE__ );
+	$subscribe_and_connect->version = '1.0.0';
 
-    if ( ! is_admin() ) require_once( 'woothemes-sc-template.php' );
+    if ( ! is_admin() ) require_once( 'subscribe-and-connect-template.php' );
 ?>

@@ -13,20 +13,20 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly.
  *
  * TABLE OF CONTENTS
  *
- * protected $woothemes_sc_widget_cssclass
- * protected $woothemes_sc_widget_description
- * protected $woothemes_sc_widget_idbase
- * protected $woothemes_sc_widget_title
+ * protected $subscribe_and_connect_widget_cssclass
+ * protected $subscribe_and_connect_widget_description
+ * protected $subscribe_and_connect_widget_idbase
+ * protected $subscribe_and_connect_widget_title
  *
  * - __construct()
  * - widget()
  * - form()
  */
-class Woothemes_Widget_Subscribe_Connect extends WP_Widget {
-	protected $woothemes_sc_widget_cssclass;
-	protected $woothemes_sc_widget_description;
-	protected $woothemes_sc_widget_idbase;
-	protected $woothemes_sc_widget_title;
+class Subscribe_And_Connect_Widget extends WP_Widget {
+	protected $subscribe_and_connect_widget_cssclass;
+	protected $subscribe_and_connect_widget_description;
+	protected $subscribe_and_connect_widget_idbase;
+	protected $subscribe_and_connect_widget_title;
 
 	/**
 	 * Constructor function.
@@ -35,10 +35,10 @@ class Woothemes_Widget_Subscribe_Connect extends WP_Widget {
 	 */
 	public function __construct() {
 		/* Widget variable settings. */
-		$this->woothemes_sc_widget_cssclass 	= 'widget_woothemes_sc_items';
-		$this->woothemes_sc_widget_description = __( 'Subcribe & Connect.', 'woothemes-sc' );
-		$this->woothemes_sc_widget_idbase 		= 'woothemes-sc';
-		$this->woothemes_sc_widget_title 		= __( 'Subscribe & Connect', 'woothemes-sc' );
+		$this->subscribe_and_connect_widget_cssclass 	= 'widget_subscribe_and_connect_items';
+		$this->subscribe_and_connect_widget_description = __( 'Subcribe & Connect.', 'subscribe-and-connect' );
+		$this->subscribe_and_connect_widget_idbase 		= 'subscribe-and-connect';
+		$this->subscribe_and_connect_widget_title 		= __( 'Subscribe & Connect', 'subscribe-and-connect' );
 
 		// Cache
 		add_action( 'save_post', array( $this, 'flush_widget_cache' ) );
@@ -47,17 +47,17 @@ class Woothemes_Widget_Subscribe_Connect extends WP_Widget {
 
 		/* Widget settings. */
 		$widget_ops = array(
-			'classname' 	=> $this->woothemes_sc_widget_cssclass,
-			'description' 	=> $this->woothemes_sc_widget_description
+			'classname' 	=> $this->subscribe_and_connect_widget_cssclass,
+			'description' 	=> $this->subscribe_and_connect_widget_description
 			);
 
 		/* Widget control settings. */
 		$control_ops = array(
-			'id_base' 	=> $this->woothemes_sc_widget_idbase
+			'id_base' 	=> $this->subscribe_and_connect_widget_idbase
 			);
 
 		/* Create the widget. */
-		$this->WP_Widget( $this->woothemes_sc_widget_idbase, $this->woothemes_sc_widget_title, $widget_ops, $control_ops );
+		$this->WP_Widget( $this->subscribe_and_connect_widget_idbase, $this->subscribe_and_connect_widget_title, $widget_ops, $control_ops );
 	} // End __construct()
 
 	/**
@@ -69,7 +69,7 @@ class Woothemes_Widget_Subscribe_Connect extends WP_Widget {
 	 */
 	public function widget( $args, $instance ) {
 
-		$cache = wp_cache_get( 'widget_woothemes_sc_items', 'widget' );
+		$cache = wp_cache_get( 'widget_subscribe_and_connect_items', 'widget' );
 
 		if ( !is_array($cache) )
 			$cache = array();
@@ -103,7 +103,7 @@ class Woothemes_Widget_Subscribe_Connect extends WP_Widget {
 
 		/* Widget content. */
 		// Add actions for plugins/themes to hook onto.
-		do_action( $this->woothemes_sc_widget_cssclass . '_top' );
+		do_action( $this->subscribe_and_connect_widget_cssclass . '_top' );
 
 		// Display S&C.
 		echo $before_widget;
@@ -111,20 +111,20 @@ class Woothemes_Widget_Subscribe_Connect extends WP_Widget {
 		if ( $title )
 				echo $before_title . $title . $after_title;
 
-		echo '<div class="woothemes-sc-connect">';
+		echo '<div class="subscribe-and-connect-connect">';
 		echo $description;
-		woothemes_sc_subscribe();
-		woothemes_sc_connect();
-		echo '</div><!--/.woothemes-sc-connect-->';
+		subscribe_and_connect_subscribe();
+		subscribe_and_connect_connect();
+		echo '</div><!--/.subscribe-and-connect-connect-->';
 
 		echo $after_widget;
 
 		// Add actions for plugins/themes to hook onto.
-		do_action( $this->woothemes_sc_widget_cssclass . '_bottom' );
+		do_action( $this->subscribe_and_connect_widget_cssclass . '_bottom' );
 
 		$cache[ $widget_id ] = ob_get_flush();
 
-		wp_cache_set( 'widget_woothemes_sc_items', $cache, 'widget' );
+		wp_cache_set( 'widget_subscribe_and_connect_items', $cache, 'widget' );
 
 	} // End widget()
 
@@ -159,13 +159,13 @@ class Woothemes_Widget_Subscribe_Connect extends WP_Widget {
 	 * @return void
 	 */
     public function form( $instance ) {
-    	global $woothemes_sc;
-		$settings = $woothemes_sc->get_settings();
+    	global $subscribe_and_connect;
+		$settings = $subscribe_and_connect->get_settings();
 
 		/* Set up some default widget settings. */
 		/* Make sure all keys are added here, even with empty string values. */
 		$defaults = array(
-			'title' 		=> __( 'Subscribe & Connect', 'woothemes-sc' ),
+			'title' 		=> __( 'Subscribe & Connect', 'subscribe-and-connect' ),
 			'description'	=> $settings['general']['text']
 		);
 
@@ -173,12 +173,12 @@ class Woothemes_Widget_Subscribe_Connect extends WP_Widget {
 ?>
 		<!-- Widget Title: Text Input -->
 		<p>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title (optional):', 'woothemes-sc' ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title (optional):', 'subscribe-and-connect' ); ?></label>
 			<input type="text" name="<?php echo $this->get_field_name( 'title' ); ?>"  value="<?php echo $instance['title']; ?>" class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" />
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'description' ); ?>"><?php _e( 'Description (optional):', 'woothemes-sc' ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'description' ); ?>"><?php _e( 'Description (optional):', 'subscribe-and-connect' ); ?></label>
 			<textarea type="text" name="<?php echo $this->get_field_name( 'description' ); ?>"  rows="4" class="widefat" id="<?php echo $this->get_field_id( 'description' ); ?>"><?php echo $instance['description']; ?></textarea>
 		</p>
 <?php
@@ -190,10 +190,10 @@ class Woothemes_Widget_Subscribe_Connect extends WP_Widget {
 	 * @return void
 	 */
 	public function flush_widget_cache() {
-		wp_cache_delete( 'widget_woothemes_sc_items', 'widget' );
+		wp_cache_delete( 'widget_subscribe_and_connect_items', 'widget' );
 	}
 
 } // End Class
 
 /* Register the widget. */
-add_action( 'widgets_init', create_function( '', 'return register_widget( "Woothemes_Widget_Subscribe_Connect" );' ), 1 );
+add_action( 'widgets_init', create_function( '', 'return register_widget( "Subscribe_And_Connect_Widget" );' ), 1 );

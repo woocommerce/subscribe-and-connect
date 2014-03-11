@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  * A settings API (wrapping the WordPress Settings API).
  *
  * @package WordPress
- * @subpackage Woothemes_SC
+ * @subpackage Subscribe_And_Connect
  * @category Settings
  * @author WooThemes
  * @since 1.0.0
@@ -55,7 +55,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  * - parse_errors()
  * - get_array_field_types()
  */
-class Woothemes_SC_Settings_API {
+class Subscribe_And_Connect_Settings_API {
 	public $token;
 	public $name;
 	private $_settings;
@@ -70,8 +70,8 @@ class Woothemes_SC_Settings_API {
 	 * @return void
 	 */
 	public function __construct () {
-		$this->token = 'woothemes-sc';
-		$this->name = __( 'Subscribe & Connect', 'woothemes-sc' );
+		$this->token = 'subscribe-and-connect';
+		$this->name = __( 'Subscribe & Connect', 'subscribe-and-connect' );
 
 		$this->sections = array();
 		$this->fields = array();
@@ -102,7 +102,7 @@ class Woothemes_SC_Settings_API {
 	 */
 	public function init_sections () {
 		// Override this function in your class and assign the array of sections to $this->sections.
-		_e( 'Override init_sections() in your class.', 'woothemes-sc' );
+		_e( 'Override init_sections() in your class.', 'subscribe-and-connect' );
 	} // End init_sections()
 
 	/**
@@ -113,7 +113,7 @@ class Woothemes_SC_Settings_API {
 	 */
 	public function init_fields () {
 		// Override this function in your class and assign the array of sections to $this->fields.
-		_e( 'Override init_fields() in your class.', 'woothemes-sc' );
+		_e( 'Override init_fields() in your class.', 'subscribe-and-connect' );
 	} // End init_fields()
 
 	/**
@@ -274,14 +274,14 @@ class Woothemes_SC_Settings_API {
 	 * @return void
 	 */
 	public function form_field_text ( $args ) {
-		do_action( 'woothemes_sc_field_text_before', $args );
+		do_action( 'subscribe_and_connect_field_text_before', $args );
 		$options = $this->get_settings();
 
 		echo '<input id="' . esc_attr( $args['key'] ) . '" name="' . $this->token . '[' . esc_attr( $args['key'] ) . ']" size="40" type="text" value="' . esc_attr( $options[$args['key']] ) . '" />' . "\n";
 		if ( isset( $args['data']['description'] ) ) {
 			echo '<p class="description">' . wp_kses_post( $args['data']['description'] ) . '</p>' . "\n";
 		}
-		do_action( 'woothemes_sc_field_text_after', $args );
+		do_action( 'subscribe_and_connect_field_text_after', $args );
 	} // End form_field_text()
 
 	/**
@@ -293,11 +293,11 @@ class Woothemes_SC_Settings_API {
 	 * @return void
 	 */
 	public function form_field_hidden ( $args ) {
-		do_action( 'woothemes_sc_field_hidden_before', $args );
+		do_action( 'subscribe_and_connect_field_hidden_before', $args );
 		$options = $this->get_settings();
 
 		echo '<input id="' . esc_attr( $args['key'] ) . '" name="' . $this->token . '[' . esc_attr( $args['key'] ) . ']" size="40" type="hidden" value="' . esc_attr( $options[$args['key']] ) . '" />' . "\n";
-		do_action( 'woothemes_sc_field_hidden_after', $args );
+		do_action( 'subscribe_and_connect_field_hidden_after', $args );
 	} // End form_field_hidden()
 
 	/**
@@ -309,7 +309,7 @@ class Woothemes_SC_Settings_API {
 	 * @return void
 	 */
 	public function form_field_checkbox ( $args ) {
-		do_action( 'woothemes_sc_field_checkbox_before', $args );
+		do_action( 'subscribe_and_connect_field_checkbox_before', $args );
 		$options = $this->get_settings();
 
 		$has_description = false;
@@ -321,7 +321,7 @@ class Woothemes_SC_Settings_API {
 		if ( $has_description ) {
 			echo wp_kses_post( $args['data']['description'] ) . '</label>' . "\n";
 		}
-		do_action( 'woothemes_sc_field_checkbox_after', $args );
+		do_action( 'subscribe_and_connect_field_checkbox_after', $args );
 	} // End form_field_text()
 
 	/**
@@ -333,14 +333,14 @@ class Woothemes_SC_Settings_API {
 	 * @return void
 	 */
 	public function form_field_textarea ( $args ) {
-		do_action( 'woothemes_sc_field_textarea_before', $args );
+		do_action( 'subscribe_and_connect_field_textarea_before', $args );
 		$options = $this->get_settings();
 
 		echo '<textarea id="' . esc_attr( $args['key'] ) . '" name="' . $this->token . '[' . esc_attr( $args['key'] ) . ']" cols="42" rows="5">' . esc_html( $options[$args['key']] ) . '</textarea>' . "\n";
 		if ( isset( $args['data']['description'] ) ) {
 			echo '<p class="description">' . wp_kses_post( $args['data']['description'] ) . '</p>' . "\n";
 		}
-		do_action( 'woothemes_sc_field_textarea_after', $args );
+		do_action( 'subscribe_and_connect_field_textarea_after', $args );
 	} // End form_field_textarea()
 
 	/**
@@ -352,7 +352,7 @@ class Woothemes_SC_Settings_API {
 	 * @return void
 	 */
 	public function form_field_select ( $args ) {
-		do_action( 'woothemes_sc_field_select_before', $args );
+		do_action( 'subscribe_and_connect_field_select_before', $args );
 		$options = $this->get_settings();
 
 		if ( isset( $args['data']['options'] ) && ( count( (array)$args['data']['options'] ) > 0 ) ) {
@@ -368,7 +368,7 @@ class Woothemes_SC_Settings_API {
 				echo '<p class="description">' . wp_kses_post( $args['data']['description'] ) . '</p>' . "\n";
 			}
 		}
-		do_action( 'woothemes_sc_field_select_after', $args );
+		do_action( 'subscribe_and_connect_field_select_after', $args );
 	} // End form_field_select()
 
 	/**
@@ -380,7 +380,7 @@ class Woothemes_SC_Settings_API {
 	 * @return void
 	 */
 	public function form_field_radio ( $args ) {
-		do_action( 'woothemes_sc_field_radio_before', $args );
+		do_action( 'subscribe_and_connect_field_radio_before', $args );
 		$options = $this->get_settings();
 
 		if ( isset( $args['data']['options'] ) && ( count( (array)$args['data']['options'] ) > 0 ) ) {
@@ -394,7 +394,7 @@ class Woothemes_SC_Settings_API {
 				echo '<span class="description">' . wp_kses_post( $args['data']['description'] ) . '</span></label></p>' . "\n";
 			}
 		}
-		do_action( 'woothemes_sc_field_radio_after', $args );
+		do_action( 'subscribe_and_connect_field_radio_after', $args );
 	} // End form_field_radio()
 
 	/**
@@ -406,7 +406,7 @@ class Woothemes_SC_Settings_API {
 	 * @return void
 	 */
 	public function form_field_multicheck ( $args ) {
-		do_action( 'woothemes_sc_field_multicheck_before', $args );
+		do_action( 'subscribe_and_connect_field_multicheck_before', $args );
 		$options = $this->get_settings();
 
 		if ( isset( $args['data']['options'] ) && ( count( (array)$args['data']['options'] ) > 0 ) ) {
@@ -424,7 +424,7 @@ class Woothemes_SC_Settings_API {
 				echo '<p class="description">' . wp_kses_post( $args['data']['description'] ) . '</p>' . "\n";
 			}
 		}
-		do_action( 'woothemes_sc_field_multicheck_after', $args );
+		do_action( 'subscribe_and_connect_field_multicheck_after', $args );
 	} // End form_field_multicheck()
 
 	/**
@@ -437,7 +437,7 @@ class Woothemes_SC_Settings_API {
 	 */
 	public function form_field_network ( $args ) {
 		$options = $this->get_settings();
-		$networks = Woothemes_SC_Utils::get_supported_networks();
+		$networks = Subscribe_And_Connect_Utils::get_supported_networks();
 		$html = '';
 
 		$order = '';
@@ -445,10 +445,10 @@ class Woothemes_SC_Settings_API {
 			$order = $options['networks_order'];
 		}
 
-		$networks = Woothemes_SC_Utils::get_networks_in_order( $networks, $order );
+		$networks = Subscribe_And_Connect_Utils::get_networks_in_order( $networks, $order );
 
 		if ( 0 < count( $networks ) ) {
-			$html .= '<table class="form-table widefat woothemes-sc-network-fields"><thead><tr><th class="title">' . __( 'Social Network', 'woothemes-wc' ) . '</th><th class="title">' . __( 'Your URL', 'woothemes-wc' ) . '</th></tr></thead><tbody>' . "\n";
+			$html .= '<table class="form-table widefat subscribe-and-connect-network-fields"><thead><tr><th class="title">' . __( 'Social Network', 'woothemes-wc' ) . '</th><th class="title">' . __( 'Your URL', 'woothemes-wc' ) . '</th></tr></thead><tbody>' . "\n";
 			foreach ( $networks as $k => $v ) {
 				$html .= $this->_single_network_field( $k, $v, $args, $options );
 			}
@@ -456,7 +456,7 @@ class Woothemes_SC_Settings_API {
 		}
 
 		// Used to store the placeholder image temporarily, for use with JavaScript.
-		$html .= '<img src="' . esc_url( Woothemes_SC_Utils::get_placeholder_image() ) . '" class="woothemes-sc-placeholder-image" style="display: none;" width="0" height="0" />' . "\n";
+		$html .= '<img src="' . esc_url( Subscribe_And_Connect_Utils::get_placeholder_image() ) . '" class="subscribe-and-connect-placeholder-image" style="display: none;" width="0" height="0" />' . "\n";
 
 		echo $html;
 
@@ -482,12 +482,12 @@ class Woothemes_SC_Settings_API {
 		$data = array( 'url' => '', 'image_id' => '' );
 		if ( isset( $options[$args['key']][$key] ) ) $data = $options[$args['key']][$key];
 
-		$html .= '<tr id="' . esc_attr( $key ) . '" class="woothemes-sc-network-item">' . "\n";
+		$html .= '<tr id="' . esc_attr( $key ) . '" class="subscribe-and-connect-network-item">' . "\n";
 		$html .= '<th class="title">' . "\n";
 		$html .= '<span class="handle hide-if-no-js">' . __( 'Re-order', 'woothemes' ) . '</span>' . "\n";
 		$html .= '<label for="' . esc_attr( $this->token ) . '[' . esc_attr( $args['key'] ) . '][' . esc_attr( $key ) . '][url]">' . esc_html( $value ) . '</label>' . "\n";
 		$html .= '</th><td class="url">' . "\n";
-		$html .= '<input type="text" class="regular-text input-text url" name="' . esc_attr( $this->token ) . '[' . esc_attr( $args['key'] ) . '][' . esc_attr( $key ) . '][url]" placeholder="' . sprintf( __( 'Place your %s URL here', 'woothemes-sc' ), esc_attr( $value ) ) . '" value="' . esc_attr( $data['url'] ) . '" />' . "\n";
+		$html .= '<input type="text" class="regular-text input-text url" name="' . esc_attr( $this->token ) . '[' . esc_attr( $args['key'] ) . '][' . esc_attr( $key ) . '][url]" placeholder="' . sprintf( __( 'Place your %s URL here', 'subscribe-and-connect' ), esc_attr( $value ) ) . '" value="' . esc_attr( $data['url'] ) . '" />' . "\n";
 		$html .= '</td></tr>' . "\n";
 
 		return $html;
@@ -506,7 +506,7 @@ class Woothemes_SC_Settings_API {
 		if ( isset( $args['data']['class'] ) ) {
 			$class = ' ' . esc_attr( $args['data']['class'] );
 		}
-		$html = '<div id="' . $args['key'] . '" class="woothemes-sc-info-box' . $class . '">' . "\n";
+		$html = '<div id="' . $args['key'] . '" class="subscribe-and-connect-info-box' . $class . '">' . "\n";
 		if ( isset( $args['data']['name'] ) && ( $args['data']['name'] != '' ) ) {
 			$html .= '<h3 class="title">' . esc_html( $args['data']['name'] ) . '</h3>' . "\n";
 		}
@@ -672,7 +672,7 @@ class Woothemes_SC_Settings_API {
 		if ( isset( $data['error_message'] ) ) {
 			$message = $data['error_message'];
 		} else {
-			$message = sprintf( __( '%s is a required field', 'woothemes-sc' ), $data['name'] );
+			$message = sprintf( __( '%s is a required field', 'subscribe-and-connect' ), $data['name'] );
 		}
 		$this->_errors[$key] = $message;
 	} // End add_error()
@@ -689,7 +689,7 @@ class Woothemes_SC_Settings_API {
 				add_settings_error( $this->token . '-errors', $k, $v, 'error' );
 			}
 		} else {
-			$message = sprintf( __( '%s settings updated', 'woothemes-sc' ), $this->name );
+			$message = sprintf( __( '%s settings updated', 'subscribe-and-connect' ), $this->name );
 			add_settings_error( $this->token . '-errors', $this->token, $message, 'updated' );
 		}
 	} // End parse_errors()
@@ -713,10 +713,10 @@ class Woothemes_SC_Settings_API {
 	 * @return void
 	 */
 	public function enqueue_styles () {
-		global $woothemes_sc;
+		global $subscribe_and_connect;
 		wp_enqueue_style( $this->token . '-admin' );
 
-		wp_enqueue_style( 'woothemes-sc-settings-api', $woothemes_sc->context->__get( 'plugin_url' ) . 'assets/css/settings.css', '', '1.0.0' );
+		wp_enqueue_style( 'subscribe-and-connect-settings-api', $subscribe_and_connect->context->__get( 'plugin_url' ) . 'assets/css/settings.css', '', '1.0.0' );
 	} // End enqueue_styles()
 } // End Class
 ?>

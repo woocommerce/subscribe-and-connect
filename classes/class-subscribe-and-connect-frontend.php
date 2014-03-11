@@ -1,5 +1,5 @@
 <?php
-class Woothemes_SC_Frontend {
+class Subscribe_And_Connect_Frontend {
 	/**
 	 * The URL to the plugin's folder.
 	 * @access  private
@@ -58,8 +58,8 @@ class Woothemes_SC_Frontend {
 	 * @return  void
 	 */
 	public function register_frontend_styles () {
-		global $woothemes_sc;
-		wp_register_style( 'woothemes-sc', $this->__get( 'plugin_url' ) . 'assets/css/frontend.css', '', $woothemes_sc->version );
+		global $subscribe_and_connect;
+		wp_register_style( 'subscribe-and-connect', $this->__get( 'plugin_url' ) . 'assets/css/frontend.css', '', $subscribe_and_connect->version );
 	} // End register_frontend_styles()
 
 	/**
@@ -69,7 +69,7 @@ class Woothemes_SC_Frontend {
 	 * @return  void
 	 */
 	public function enqueue_frontend_styles () {
-		wp_enqueue_style( 'woothemes-sc' );
+		wp_enqueue_style( 'subscribe-and-connect' );
 	} // End enqueue_frontend_styles()
 
 	/**
@@ -81,7 +81,7 @@ class Woothemes_SC_Frontend {
 	 */
 	public function is_valid_theme ( $key ) {
 		$response = false;
-		if ( in_array( $key, array_keys( Woothemes_SC_Utils::get_icon_themes() ) ) ) {
+		if ( in_array( $key, array_keys( Subscribe_And_Connect_Utils::get_icon_themes() ) ) ) {
 			$response = true;
 		}
 		return $response;
@@ -97,7 +97,7 @@ class Woothemes_SC_Frontend {
 	public function get_sanitized_theme_key ( $args ) {
 		$theme 	= 'icons';
 		$key 	= '';
-		if ( in_array( $key, array_keys( Woothemes_SC_Utils::get_icon_themes() ) ) ) {
+		if ( in_array( $key, array_keys( Subscribe_And_Connect_Utils::get_icon_themes() ) ) ) {
 			$theme = esc_attr( strtolower( $key ) );
 		}
 		return $theme;
@@ -112,7 +112,7 @@ class Woothemes_SC_Frontend {
 	 */
 	public function get_theme_data ( $key ) {
 		$theme = array( 'name' => 'icons', 'stylesheet' => '' );
-		$available_themes = Woothemes_SC_Utils::get_icon_themes();
+		$available_themes = Subscribe_And_Connect_Utils::get_icon_themes();
 		if ( in_array( $key, array_keys( $available_themes ) ) ) {
 			$theme = $available_themes[esc_attr( $key )];
 		}
@@ -126,12 +126,12 @@ class Woothemes_SC_Frontend {
 	 * @return  void
 	 */
 	public function maybe_load_theme_stylesheets () {
-		global $woothemes_sc;
-		$woothemes_sc->setup_settings();
-		$settings = $woothemes_sc->get_settings();
+		global $subscribe_and_connect;
+		$subscribe_and_connect->setup_settings();
+		$settings = $subscribe_and_connect->get_settings();
 		$theme_data = $this->get_theme_data( $settings['display']['theme'] );
 		if ( isset( $theme_data['stylesheet'] ) && ( '' != $theme_data['stylesheet'] ) ) {
-			wp_enqueue_style( 'woothemes-sc-theme-' . esc_attr( $settings['display']['theme'] ), esc_url( $theme_data['stylesheet'] ) );
+			wp_enqueue_style( 'subscribe-and-connect-theme-' . esc_attr( $settings['display']['theme'] ), esc_url( $theme_data['stylesheet'] ) );
 		}
 	} // End maybe_load_theme_stylesheets()
 } // End Class

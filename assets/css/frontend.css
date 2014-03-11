@@ -5,10 +5,10 @@
   font-weight: normal;
   font-style: normal;
 }
-.woothemes-sc-connect {
+.subscribe-and-connect-connect {
   /* Default Icon */
 }
-.woothemes-sc-connect a {
+.subscribe-and-connect-connect a {
   text-decoration: none;
   display: block;
   text-indent: -999px;
@@ -16,7 +16,7 @@
   height: 1em;
   width: 1em;
 }
-.woothemes-sc-connect a:before {
+.subscribe-and-connect-connect a:before {
   font-family: 'FontAwesome';
   speak: none;
   font-weight: normal;
@@ -34,45 +34,45 @@
   text-align: center;
   content: "\f179";
 }
-.woothemes-sc-connect .rss a:before {
+.subscribe-and-connect-connect .rss a:before {
   content: '\f09e';
 }
-.woothemes-sc-connect .twitter a:before {
+.subscribe-and-connect-connect .twitter a:before {
   content: '\f099';
 }
-.woothemes-sc-connect .facebook a:before {
+.subscribe-and-connect-connect .facebook a:before {
   content: '\f09a';
 }
-.woothemes-sc-connect .pinterest a:before {
+.subscribe-and-connect-connect .pinterest a:before {
   content: '\f0d2';
 }
-.woothemes-sc-connect .youtube a:before {
+.subscribe-and-connect-connect .youtube a:before {
   content: '\f167';
 }
-.woothemes-sc-connect .instagram a:before {
+.subscribe-and-connect-connect .instagram a:before {
   content: '\f16d';
 }
-.woothemes-sc-connect .flickr a:before {
+.subscribe-and-connect-connect .flickr a:before {
   content: '\f16e';
 }
-.woothemes-sc-connect .google_plus a:before {
+.subscribe-and-connect-connect .google_plus a:before {
   content: '\f0d5';
 }
-.woothemes-sc-connect .linkedin a:before {
+.subscribe-and-connect-connect .linkedin a:before {
   content: '\f0e1';
 }
-.woothemes-sc-connect .vimeo a:before {
+.subscribe-and-connect-connect .vimeo a:before {
   content: '\f194';
 }
-.woothemes-sc-connect .tumblr a:before {
+.subscribe-and-connect-connect .tumblr a:before {
   content: '\f173';
 }
-.woothemes-sc-connect .dribbble a:before {
+.subscribe-and-connect-connect .dribbble a:before {
   content: '\f17d';
 }
-.woothemes-sc-connect .appdotnet a:before {
+.subscribe-and-connect-connect .appdotnet a:before {
   content: '\f170';
 }
-.woothemes-sc-connect .github a:before {
+.subscribe-and-connect-connect .github a:before {
   content: '\f09b';
 }

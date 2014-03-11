@@ -1,4 +1,4 @@
-.woothemes-sc-info-box {
+.subscribe-and-connect-info-box {
   border: 1px solid #CCCCCC;
   background: #EBEBEB;
   max-width: 650px;
@@ -8,20 +8,20 @@
   border-radius: 3px;
   margin-left: -220px;
 }
-.woothemes-sc-info-box .title {
+.subscribe-and-connect-info-box .title {
   margin-top: 0;
 }
-.woothemes-sc-network-fields {
+.subscribe-and-connect-network-fields {
   max-width: 500px;
   margin-bottom: 1em;
 }
-.woothemes-sc-network-fields .ui-sortable-placeholder {
+.subscribe-and-connect-network-fields .ui-sortable-placeholder {
   background: #EBEBEB;
   border: 1px dashed #DDDDDD;
   visibility: visible !important;
   margin: 3px;
 }
-.woothemes-sc-network-fields .handle {
+.subscribe-and-connect-network-fields .handle {
   display: inline-block;
   width: 20px;
   height: 20px;
@@ -31,7 +31,7 @@
   cursor: move;
   margin-left: -30px;
 }
-.woothemes-sc-network-fields .handle:before {
+.subscribe-and-connect-network-fields .handle:before {
   -webkit-font-smoothing: antialiased;
   font: normal 14px/1 'dashicons';
   content: "\f333";
@@ -42,20 +42,20 @@
   background-color: #fff;
   border-radius: 2px;
 }
-.woothemes-sc-network-fields .title {
+.subscribe-and-connect-network-fields .title {
   padding-left: 10px;
 }
-.woothemes-sc-network-fields tbody .title {
+.subscribe-and-connect-network-fields tbody .title {
   width: 33%;
   padding-left: 40px;
 }
-.woothemes-sc-network-fields .url {
+.subscribe-and-connect-network-fields .url {
   width: 66%;
 }
-.woothemes-sc-network-fields .url input {
+.subscribe-and-connect-network-fields .url input {
   width: 100%;
 }
-.woothemes-sc-network-fields .image-preview {
+.subscribe-and-connect-network-fields .image-preview {
   display: block;
   position: relative;
   height: 50px;
@@ -63,15 +63,15 @@
   margin-bottom: 1em;
   overflow: hidden;
 }
-.woothemes-sc-network-fields .image-preview a.preview-link {
+.subscribe-and-connect-network-fields .image-preview a.preview-link {
   display: block;
   max-width: 50px;
   height: 50px;
 }
-.woothemes-sc-network-fields .image-preview a.preview-link img {
+.subscribe-and-connect-network-fields .image-preview a.preview-link img {
   max-width: 100%;
 }
-.woothemes-sc-network-fields .image-preview a.preview-link .overlay {
+.subscribe-and-connect-network-fields .image-preview a.preview-link .overlay {
   display: none;
   width: 50px;
   height: 50px;
@@ -83,10 +83,10 @@
   opacity: 0.5;
   background: #eeeeee url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAXklEQVQYGW2OUQrAMAhDFy8+dnKnwiuh2I+aJulDZebDkfSie1b28Q7EXWrfvSm60RQnkQUC8ja7owpmL6d4GdDZ0cNNHyIhZEj4QYCxze6orsluAh8AnR0xKPR07weXJi8JGd3qqwAAAABJRU5ErkJggg==) no-repeat center center;
 }
-.woothemes-sc-network-fields .image-preview a.preview-link:hover .overlay {
+.subscribe-and-connect-network-fields .image-preview a.preview-link:hover .overlay {
   display: block;
 }
-.woothemes-sc-network-fields .image-preview a.preview-link.remove .overlay {
+.subscribe-and-connect-network-fields .image-preview a.preview-link.remove .overlay {
   background: #eeeeee url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAWElEQVQYGY2OUQ6AMAxCZdm9jSev65K3YKNm+6EFBlVEHDxJJ3Pi0C72xlBNyTs3jU7wEUTTIB51GCp2CL8HLpHEdaOLb/N2dfuq9NT0zOo/M9q6EaImsd/uViMLVuD4KAAAAABJRU5ErkJggg==) no-repeat center center;
 }
 .description {

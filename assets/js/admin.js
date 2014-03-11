@@ -28,5 +28,5 @@ jQuery( document ).ready( function( $ ) {
 	$( '#newsletter_service' ).trigger( 'change' );
 
 	// Add alternate class to table tr's
-	$( '.woothemes-sc-network-fields tbody tr:nth-child(odd)' ).addClass( 'alternate' );
+	$( '.subscribe-and-connect-network-fields tbody tr:nth-child(odd)' ).addClass( 'alternate' );
 });

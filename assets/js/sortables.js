@@ -1,8 +1,8 @@
 jQuery( document ).ready( function ( e ) {
-	jQuery( '.woothemes-sc-network-fields tbody' ).sortable();
-	jQuery( '.woothemes-sc-network-fields tbody' ).disableSelection();
+	jQuery( '.subscribe-and-connect-network-fields tbody' ).sortable();
+	jQuery( '.subscribe-and-connect-network-fields tbody' ).disableSelection();
 
-	jQuery( '.woothemes-sc-network-fields tbody' ).bind( 'sortstop', function ( e, ui ) {
+	jQuery( '.subscribe-and-connect-network-fields tbody' ).bind( 'sortstop', function ( e, ui ) {
 		var orderString = '';
 
 		jQuery( e.target ).find( 'tr' ).each( function ( i, e ) {

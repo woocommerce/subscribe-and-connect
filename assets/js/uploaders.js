@@ -4,7 +4,7 @@
 
 		$( 'a.preview-link' ).on( 'click', function( e ) {
 			if ( $( this ).hasClass( 'remove' ) ) {
-				var placeholder_image = $( this ).parents( '.form-table' ).parents( '.form-table' ).find( '.woothemes-sc-placeholder-image' ).attr( 'src' );
+				var placeholder_image = $( this ).parents( '.form-table' ).parents( '.form-table' ).find( '.subscribe-and-connect-placeholder-image' ).attr( 'src' );
 				$( this ).find( 'img' ).attr( 'src', placeholder_image );
 				$( this ).addClass( 'add' ).removeClass( 'remove' );
 				return false;
@@ -13,7 +13,7 @@
 
 				event.preventDefault();
 
-				file_path_field = $el.parents( '.woothemes-sc-network-item' ).find( '.upload-id' );
+				file_path_field = $el.parents( '.subscribe-and-connect-network-item' ).find( '.upload-id' );
 
 				// If the media frame already exists, reopen it.
 				if ( frame ) {
@@ -41,7 +41,7 @@
 				  $( file_path_field ).val( attachment.id );
 
 				  // Small preview of the image
-				  $( file_path_field ).parents( '.woothemes-sc-network-item' ).find( '.image-preview img' ).attr( 'src', attachment.url );
+				  $( file_path_field ).parents( '.subscribe-and-connect-network-item' ).find( '.image-preview img' ).attr( 'src', attachment.url );
 
 				  // Swap out the CSS classes
 				  $( this ).addClass( 'remove' ).removeClass( 'add' );
