@@ -1,6 +1,14 @@
 <?php
 class Subscribe_And_Connect {
 	/**
+	 * Property to contain the main plugin's file path.
+	 * @access  public
+	 * @since   1.0.0
+	 * @var     object
+	 */
+	public $file;
+
+	/**
 	 * Property to contain the version number.
 	 * @access  public
 	 * @since   1.0.0
@@ -39,6 +47,8 @@ class Subscribe_And_Connect {
 	 * @return  void
 	 */
 	public function __construct ( $file ) {
+		$this->file = $file;
+
 		// Setup the settings objects.
 		add_action( 'admin_init', array( $this, 'setup_settings' ) );
 
@@ -60,7 +70,20 @@ class Subscribe_And_Connect {
 
 		// Add support for posts and pages.
 		add_action( 'after_setup_theme', array( $this, 'add_default_post_types_support' ) );
+
+		// Load the localisation files for this plugin.
+		add_action( 'plugins_loaded', array( $this, 'load_localisation' ) );
 	} // End __construct()
+
+	/**
+	 * Load this plugin's localisation files.
+	 * @access public
+	 * @since  1.0.0
+	 * @return void
+	 */
+	public function load_localisation () {
+		load_plugin_textdomain( 'subscribe-and-connect', false, plugin_dir_path( $this->file ) . 'languages' );
+	} // End load_localisation()
 
 	/**
 	 * Add support for the default post types.

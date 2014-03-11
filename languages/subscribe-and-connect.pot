@@ -1,0 +1,402 @@
+# Copyright (C) 2014 Subscribe & Connect
+# This file is distributed under the same license as the Subscribe & Connect package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Subscribe & Connect 1.0.0\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/subscribe-and-connect\n"
+"POT-Creation-Date: 2014-03-11 07:06:14+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2014-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: classes/class-subscribe-and-connect-admin.php:88
+#: classes/class-subscribe-and-connect-settings-api.php:74
+#: classes/class-subscribe-and-connect-widget.php:41
+#: classes/class-subscribe-and-connect-widget.php:168
+msgid "Subscribe & Connect"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-admin.php:138
+#: classes/class-subscribe-and-connect-settings-general.php:34
+msgid "General"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-admin.php:139
+msgid "Connections"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-admin.php:140
+#: classes/class-subscribe-and-connect-settings-display.php:34
+msgid "Display"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-api.php:105
+msgid "Override init_sections() in your class."
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-api.php:116
+msgid "Override init_fields() in your class."
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-api.php:451
+msgid "Social Network"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-api.php:451
+msgid "Your URL"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-api.php:487
+msgid "Re-order"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-api.php:490
+msgid "Place your %s URL here"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-api.php:675
+msgid "%s is a required field"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-api.php:692
+msgid "%s settings updated"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-connect.php:34
+msgid "Connect"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-connect.php:48
+#: classes/class-subscribe-and-connect-settings-connect.php:73
+msgid "Social Networks"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-connect.php:49
+msgid "Add links and icons to the social networks you'd like to link to."
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-connect.php:53
+msgid "Subscription Options"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-connect.php:54
+msgid "Setup the various ways in which your visitors can subscribe to your content."
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-connect.php:74
+msgid "The social networks to be linked to in the \"Connect\" portion of the output. Drag and drop to reorder."
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-connect.php:92
+#: classes/class-subscribe-and-connect-settings-general.php:66
+msgid "None"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-connect.php:93
+#: classes/class-subscribe-and-connect-settings-general.php:67
+msgid "Aweber"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-connect.php:94
+#: classes/class-subscribe-and-connect-settings-general.php:68
+msgid "Campaign Monitor"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-connect.php:95
+#: classes/class-subscribe-and-connect-settings-general.php:69
+msgid "Feedburner"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-connect.php:96
+#: classes/class-subscribe-and-connect-settings-general.php:70
+msgid "Mad Mimi"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-connect.php:97
+#: classes/class-subscribe-and-connect-settings-general.php:71
+msgid "Mailchimp"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-connect.php:101
+msgid "Newsletter Service"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-connect.php:102
+msgid "Select the newsletter service you are using"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-connect.php:110
+msgid "Feedburner Feed ID"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-connect.php:111
+msgid "Enter the your Feedburner Feed ID %s(?)%s."
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-connect.php:118
+msgid "Newsletter Service Form Action"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-connect.php:119
+msgid "Enter the the form action if required."
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-connect.php:126
+msgid "MailChimp List Subscription URL"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-connect.php:127
+msgid "If you have a MailChimp account you can enter the %sMailChimp List Subscribe URL%s to allow your users to subscribe to a MailChimp List."
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-connect.php:134
+msgid "Mad Mimi Webform URL"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-connect.php:135
+msgid "Your Mad Mini Webform URL, eg. https://madmimi.com/signups/subscribe/84680"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-connect.php:142
+msgid "Aweber List Name"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-connect.php:143
+msgid "The name of the list to subscribe users to."
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-connect.php:150
+msgid "RSS"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-connect.php:151
+msgid "Display an RSS icon along with your social network links."
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-display.php:51
+msgid "Display Options"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-display.php:52
+msgid "Attempt to automatically display Subscribe & Connect into your website."
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-display.php:58
+msgid "WooThemes Overrides"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-display.php:59
+msgid "We noticed your current active theme, %s, uses the WooFramework and includes our original Subscribe & Connect feature. Override it here."
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-display.php:65
+msgid "Design"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-display.php:66
+msgid "Determine the look and feel of the connect icons."
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-display.php:71
+msgid "Advanced Integration"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-display.php:72
+msgid "Finely tuned control over where Subscribe & Connect integrates into your website."
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-display.php:95
+msgid "Don't display automatically"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-display.php:96
+msgid "Display beneath posts"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-display.php:100
+msgid "Use the %s hook provided by your WooTheme (recommended)"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-display.php:104
+msgid "Display method"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-display.php:115
+msgid "Hide the Subscribe & Connect feature in %s."
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-display.php:123
+msgid "Display on a custom hook"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-display.php:124
+msgid "The name of the hook you want to use (for example, loop_end)."
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-display.php:138
+msgid "Choose a design for how your social icons will be presented within %s. Select \"No Style\" if you want to apply your own custom design."
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-display.php:172
+msgid "and"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-display.php:178
+msgid "If the automated integration is used, Subscribe & Connect will display on posts of the %1$s types."
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-display.php:181
+msgid "To integrate a specific post type with Subscribe & Connect, add %1$s to your %2$s in your theme, or to your custom plugin."
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-general.php:48
+msgid "Content"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-general.php:49
+msgid "Subscribe &amp; Connect component title and description."
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-general.php:78
+msgid "Title"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-general.php:80
+msgid "Subscribe to %s"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-general.php:85
+msgid "Description"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-general.php:87
+msgid "Keep up to date on the latest content, here at %s. Subscribe below."
+msgstr ""
+
+#: classes/class-subscribe-and-connect-utils.php:11
+msgid "Facebook"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-utils.php:12
+msgid "Twitter"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-utils.php:13
+msgid "Pinterest"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-utils.php:14
+msgid "YouTube"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-utils.php:15
+msgid "Instagram"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-utils.php:16
+msgid "Flickr"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-utils.php:17
+msgid "Google +"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-utils.php:18
+msgid "LinkedIn"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-utils.php:19
+msgid "Vimeo"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-utils.php:20
+msgid "Tumblr"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-utils.php:21
+msgid "Dribbble"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-utils.php:22
+msgid "App.net"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-utils.php:23
+msgid "Github"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-utils.php:76
+msgid "No style"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-utils.php:80
+msgid "Icons Only"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-utils.php:84
+msgid "Boxed"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-utils.php:88
+msgid "Rounded"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-utils.php:92
+msgid "Circular"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-widget.php:39
+msgid "Subcribe & Connect."
+msgstr ""
+
+#: classes/class-subscribe-and-connect-widget.php:176
+msgid "Title (optional):"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-widget.php:181
+msgid "Description (optional):"
+msgstr ""
+
+#: subscribe-and-connect-template.php:152
+#: subscribe-and-connect-template.php:161
+#: subscribe-and-connect-template.php:167
+#: subscribe-and-connect-template.php:172
+#: subscribe-and-connect-template.php:187
+#: subscribe-and-connect-template.php:192
+msgid "Your Email Address"
+msgstr ""
+
+#: subscribe-and-connect-template.php:161
+#: subscribe-and-connect-template.php:172
+msgid "Name"
+msgstr ""
+
+#: subscribe-and-connect-template.php:210
+msgid "Subscribe"
+msgstr ""
+
+#: subscribe-and-connect-template.php:297
+msgid "Subscribe via RSS"
+msgstr ""
+#. Plugin Name of the plugin/theme
+msgid "Subscribe & Connect"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://woothemes.com/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Hi, I'm here to help your visitors subscribe to your content, as well as share it across various social networks."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "WooThemes"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://woothemes.com/"
+msgstr ""
