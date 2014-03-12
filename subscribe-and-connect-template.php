@@ -8,6 +8,14 @@ $subscribe_and_connect->setup_settings();
 $subscribe_and_connect_settings = $subscribe_and_connect->get_settings();
 
 /**
+ * If enabled, override the Subscribe & Connect functionality in the theme.
+ * @since  1.0.0
+ */
+if ( true == $subscribe_and_connect_settings['display']['disable_theme_sc'] && ! function_exists( 'woo_subscribe_connect' ) ) {
+	function woo_subscribe_connect() {} // End woo_subscribe_connect()
+}
+
+/**
  * Run through the various auto integration options and, maybe, integrate.
  * @since  1.0.0
  * @return void
@@ -52,14 +60,6 @@ function subscribe_and_connect_maybe_custom_hook () {
 } // End subscribe_and_connect_maybe_custom_hook()
 
 add_action( 'get_header', 'subscribe_and_connect_maybe_custom_hook' );
-
-/**
- * If enabled, override the Subscribe & Connect functionality in the theme.
- * @since  1.0.0
- */
-if ( true == $subscribe_and_connect_settings['display']['disable_theme_sc'] && ! function_exists( 'woo_subscribe_connect' ) ) {
-	function woo_subscribe_connect() {} // End woo_subscribe_connect()
-}
 
 /**
  * Return HTML markup for the "subscribe" and "connect" sections, below the given content.
@@ -144,7 +144,7 @@ function subscribe_and_connect_get_subscribe () {
 	$settings = $subscribe_and_connect->get_settings();
 
 	// Break out, if we don't want to print a newsletter subscription form.
-	if ( 'none' == $settings['connect']['newsletter_service'] ) return false;
+	if ( 'none' == $settings['connect']['newsletter_service'] ) return '';
 
 	switch ( $settings['connect']['newsletter_service'] ) {
 		case 'feedburner':

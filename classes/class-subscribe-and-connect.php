@@ -171,7 +171,7 @@ class Subscribe_And_Connect {
 				}
 
 				// Remove the "Enable Subscribe & Connect" option from the theme options.
-				if ( 'woo_contact_subscribe_and_connect' == $v['id'] ) unset( $options[$k] );
+				if ( isset( $v['id'] ) && 'woo_contact_subscribe_and_connect' == $v['id'] ) unset( $options[$k] );
 			}
 		}
 
