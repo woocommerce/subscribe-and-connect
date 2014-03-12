@@ -60,7 +60,7 @@ class Subscribe_And_Connect_Utils {
 			}
 		}
 
-		return $networks;
+		return (array)$networks;
 	} // End get_networks_in_order()
 
 	/**

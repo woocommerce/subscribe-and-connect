@@ -144,26 +144,26 @@ function subscribe_and_connect_get_subscribe () {
 	$settings = $subscribe_and_connect->get_settings();
 
 	// Break out, if we don't want to print a newsletter subscription form.
-	if ( 'none' == $settings['general']['newsletter_service'] ) return false;
+	if ( 'none' == $settings['connect']['newsletter_service'] ) return false;
 
-	switch ( $settings['general']['newsletter_service'] ) {
+	switch ( $settings['connect']['newsletter_service'] ) {
 		case 'feedburner':
 			$form_action 	= 'http://feedburner.google.com/fb/a/mailverify';
 			$text_fields 	= array( 'email' => __( 'Your Email Address', 'subscribe-and-connect' ) );
-			$hidden_fields 	= array( 'uri' => $settings['general']['newsletter_service_id'], 'title' => get_bloginfo( 'name' ), 'loc' => 'en_US' );
+			$hidden_fields 	= array( 'uri' => $settings['connect']['newsletter_service_id'], 'title' => get_bloginfo( 'name' ), 'loc' => 'en_US' );
 		break;
 
 		case 'campaign_monitor':
-			$cm_array = explode( '/', $settings['general']['newsletter_service_form_action'] );
+			$cm_array = explode( '/', $settings['connect']['newsletter_service_form_action'] );
 			array_pop( $cm_array );
 			$cm_id 			= end( $cm_array );
-			$form_action 	= $settings['general']['newsletter_service_form_action'];
+			$form_action 	= $settings['connect']['newsletter_service_form_action'];
 			$text_fields 	= array( 'name' => __( 'Name', 'subscribe-and-connect' ), 'cm-' . $cm_id . '-' . $cm_id => __( 'Your Email Address', 'subscribe-and-connect' ) );
-			$hidden_fields 	= array( 'uri' => $settings['general']['newsletter_service_id'], 'title' => get_bloginfo( 'name' ), 'loc' => 'en_US' );
+			$hidden_fields 	= array( 'uri' => $settings['connect']['newsletter_service_id'], 'title' => get_bloginfo( 'name' ), 'loc' => 'en_US' );
 		break;
 
 		case 'mailchimp':
-			$form_action = $settings['general']['newsletter_mail_chimp_list_subscription_url'];
+			$form_action = $settings['connect']['newsletter_mail_chimp_list_subscription_url'];
 			$text_fields = array( 'EMAIL' => __( 'Your Email Address', 'subscribe-and-connect' ) );
 		break;
 
@@ -173,7 +173,7 @@ function subscribe_and_connect_get_subscribe () {
 			$hidden_fields 	= array(
 									'meta_web_form_id' => '1687488389',
 									'meta_split_id' => '',
-									'listname' => $settings['general']['newsletter_aweber_list_id'],
+									'listname' => $settings['connect']['newsletter_aweber_list_id'],
 									'redirect' => esc_url( apply_filters( 'subscribe_and_connect_aweber_redirect', 'http://www.aweber.com/thankyou-coi.htm?m=text' ) ),
 									'meta_adtracking' => '',
 									'meta_message' => '',
