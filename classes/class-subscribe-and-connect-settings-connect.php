@@ -69,6 +69,15 @@ class Subscribe_And_Connect_Settings_Connect extends Subscribe_And_Connect_Setti
 
 	    $fields = array();
 
+	    $fields['rss'] = array(
+								'name' 			=> __( 'RSS', 'subscribe-and-connect' ),
+								'description' 	=> __( 'Display an RSS icon along with your social network links.', 'subscribe-and-connect' ),
+								'type' 			=> 'checkbox',
+								'default' 		=> true,
+								'section' 		=> 'networks',
+								'required' 		=> 0
+								);
+
     	$fields['networks'] = array(
 								'name' 			=> __( 'Social Networks', 'subscribe-and-connect' ),
 								'description' 	=> __( 'The social networks to be linked to in the "Connect" portion of the output. Drag and drop to reorder.', 'subscribe-and-connect' ),
@@ -144,15 +153,6 @@ class Subscribe_And_Connect_Settings_Connect extends Subscribe_And_Connect_Setti
 								'type' 			=> 'text',
 								'default' 		=> '' ,
 								'section' 		=> 'subscriptions'
-								);
-
-		$fields['rss'] = array(
-								'name' 			=> __( 'RSS', 'subscribe-and-connect' ),
-								'description' 	=> __( 'Display an RSS icon along with your social network links.', 'subscribe-and-connect' ),
-								'type' 			=> 'checkbox',
-								'default' 		=> true,
-								'section' 		=> 'subscriptions',
-								'required' 		=> 0
 								);
 
 		$this->fields = $fields;
