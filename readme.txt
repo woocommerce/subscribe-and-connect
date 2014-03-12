@@ -48,7 +48,8 @@ We encourage everyone to contribute their ideas, thoughts and code snippets. Thi
 == Screenshots ==
 
 1. The Subscribe & Connect administration screen.
-2. The Subscribe & Connect output, using the "Circles" icon design, and the Twenty Thirteen WordPress theme.
+2. The Subscribe & Connect output, using the "Circular" icon design and the Twenty Thirteen WordPress theme.
+3. The Subscribe & Connect widget, using the "Rounded" icon design and the Twenty Thirteen WordPress theme.
 
 
 == Upgrade Notice ==

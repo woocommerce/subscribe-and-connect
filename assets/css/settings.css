@@ -21,33 +21,14 @@
   visibility: visible !important;
   margin: 3px;
 }
-.subscribe-and-connect-network-fields .handle {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  position: absolute;
-  margin-top: 3px;
-  font-size: 0;
-  cursor: move;
-  margin-left: -30px;
-}
-.subscribe-and-connect-network-fields .handle:before {
-  -webkit-font-smoothing: antialiased;
-  font: normal 14px/1 'dashicons';
-  content: "\f333";
-  position: relative;
-  cursor: move;
-  padding: 3px;
-  border: 1px solid #ddd;
-  background-color: #fff;
-  border-radius: 2px;
-}
 .subscribe-and-connect-network-fields .title {
   padding-left: 10px;
 }
 .subscribe-and-connect-network-fields tbody .title {
   width: 33%;
-  padding-left: 40px;
+}
+.subscribe-and-connect-network-fields tbody tr {
+  cursor: move;
 }
 .subscribe-and-connect-network-fields .url {
   width: 66%;

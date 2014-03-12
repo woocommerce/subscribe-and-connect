@@ -93,7 +93,6 @@ class Subscribe_And_Connect {
 	 */
 	public function add_default_post_types_support () {
 		add_post_type_support( 'post', 'subscribe-and-connect' );
-		add_post_type_support( 'page', 'subscribe-and-connect' );
 		do_action( 'add_default_post_types_support' );
 	} // End add_default_post_types_support()
 
