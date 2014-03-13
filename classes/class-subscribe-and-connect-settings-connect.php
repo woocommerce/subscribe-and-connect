@@ -108,7 +108,7 @@ class Subscribe_And_Connect_Settings_Connect extends Subscribe_And_Connect_Setti
 
     	$fields['newsletter_service'] = array(
 								'name' 			=> __( 'Newsletter Service', 'subscribe-and-connect' ),
-								'description' 	=> __( 'Select the newsletter service you are using', 'subscribe-and-connect' ),
+								'description' 	=> __( 'Select the newsletter service you are using.', 'subscribe-and-connect' ) . '<br /><small>' . sprintf( __( '(Need a hand setting up your newsletter subscriptions? %1$sSee our documentation%2$s for a helping hand.)', 'subscribe-and-connect' ), '<a href="' . esc_url( 'http://docs.woothemes.com/document/subscribe-and-connect/#section-2' ) . '">', '</a>' ) . '</small>',
 								'type' 			=> 'select',
 								'default' 		=> 'none',
 								'options' 		=> $newsletter_services,
@@ -124,7 +124,7 @@ class Subscribe_And_Connect_Settings_Connect extends Subscribe_And_Connect_Setti
 								);
 
 		$fields['newsletter_service_form_action'] = array(
-								'name' 			=> __( 'Newsletter Service Form Action', 'subscribe-and-connect' ),
+								'name' 			=> __( 'Newsletter Form Action', 'subscribe-and-connect' ),
 								'description' 	=> __( 'Enter the the form action if required.', 'subscribe-and-connect' ),
 								'type' 			=> 'text',
 								'default' 		=> '' ,
