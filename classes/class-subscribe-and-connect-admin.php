@@ -113,7 +113,7 @@ do_action( 'subscribe_and_connect_settings_tabs' );
 </h2>
 <form action="options.php" method="post">
 <?php
-if ( is_object( $subscribe_and_connect->settings_objs[$current_tab] ) ) {
+if ( isset( $subscribe_and_connect->settings_objs[$current_tab] ) && is_object( $subscribe_and_connect->settings_objs[$current_tab] ) ) {
 	// $subscribe_and_connect->settings_objs[$current_tab]->settings_errors();
 	$subscribe_and_connect->settings_objs[$current_tab]->settings_screen();
 }
