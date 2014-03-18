@@ -16,6 +16,8 @@ Use your website as a hub for connecting with your audience. Build a following o
 
 The Subscribe & Connect plugin makes it easy for your visitors to find you on your various social media profiles, as well as increasing your newsletter sign-up rate, by displaying your newsletter sign-up form below your post and page content.
 
+Looking for a helping hand? [View plugin documentation](http://docs.woothemes.com/document/subscribe-and-connect/).
+
 == Usage ==
 
 To easily integrate Subscribe & Connect within your website, visit the "Settings > Subscribe & Connect > Display" section and select how you wish the plugin to integrate with your website.
