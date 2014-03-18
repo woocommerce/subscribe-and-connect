@@ -104,7 +104,28 @@ class Subscribe_And_Connect_Admin {
 
 		add_action( 'load-' . $this->_importer_screen_hook, array( $this, 'maybe_process_imports' ) );
 		add_action( 'admin_notices', array( $this, 'importer_admin_notices' ) );
+		add_action( 'admin_notices', array( $this, 'maybe_display_importer_notice' ) );
+
+		// Process the 'Dismiss' link, if valid.
+		add_action( 'admin_init', array( $this, 'maybe_process_dismiss_link' ) );
 	} // End register_settings_screen()
+
+	/**
+	 * If the nonce is valid and the action is "icons-for-features-dismiss", process the dismissal.
+	 * @access  public
+	 * @since   1.2.1
+	 * @return  void
+	 */
+	public function maybe_process_dismiss_link () {
+		if ( isset( $_GET['action'] ) && ( 'subscribe-and-connect-dismiss' == $_GET['action'] ) && isset( $_GET['nonce'] ) && check_admin_referer( 'subscribe-and-connect-dismiss', 'nonce' ) ) {
+			update_site_option( 'subscribe_and_connect_dismiss_activation_notice', true );
+
+			$redirect_url = remove_query_arg( 'action', remove_query_arg( 'nonce', $_SERVER['REQUEST_URI'] ) );
+
+			wp_safe_redirect( $redirect_url );
+			exit;
+		}
+	} // End maybe_process_dismiss_link()
 
 	/**
 	 * Process the form on the importer screen.
@@ -181,6 +202,32 @@ class Subscribe_And_Connect_Admin {
 	} // End maybe_process_imports()
 
 	/**
+	 * If there are existing keys, add a notice directing the administrator to run the importer.
+	 * @access  public
+	 * @since   1.0.0
+	 * @return  void
+	 */
+	public function maybe_display_importer_notice () {
+		if ( isset( $_GET['page'] ) && 'subscribe-and-connect-wf-importer' == $_GET['page'] ) return;
+		if ( true == get_site_option( 'subscribe_and_connect_dismiss_activation_notice', false ) ) return; // Don't show the message if the user dismissed it.
+
+		$keys_to_check = array_keys( Subscribe_And_Connect_Utils::get_wf_key_labels() );
+		$keys_to_check = Subscribe_And_Connect_Utils::filter_existing_keys( $keys_to_check );
+
+		$class = '';
+		$message = '';
+
+		if ( 0 < count( $keys_to_check ) ) {
+			$class = 'updated';
+			$message = __( '%sSubscribe & Connect%s has detected existing information, from a WooThemes theme you have used. %sClick here%s to transfer this information.', 'subscribe-and-connect' );
+			$message = sprintf( $message, '<strong>', '</strong>', '<a href="' . esc_attr( admin_url( 'tools.php?page=subscribe-and-connect-wf-importer' ) ) . '">', '</a>' );
+		}
+
+		$dismiss_url = add_query_arg( 'action', 'subscribe-and-connect-dismiss', add_query_arg( 'nonce', wp_create_nonce( 'subscribe-and-connect-dismiss' ) ) );
+		if ( '' != $message ) echo '<div class="' . esc_attr( $class ) . ' fade"><p class="alignleft">' . $message . '</p><p class="alignright"><a href="' . esc_url( $dismiss_url ) . '">' . __( 'Dismiss', 'subscribe-and-connect' ) . '</a></p><div class="clear"></div></div>' . "\n";
+	} // End maybe_display_importer_notice()
+
+	/**
 	 * The importer screen admin notices.
 	 * @access  public
 	 * @since   1.0.0
@@ -201,7 +248,7 @@ class Subscribe_And_Connect_Admin {
 
 			case 'false':
 				$class = 'error';
-				$message = __( 'There was an error running the importer, or no fields needed to be updated.', 'subscribe-and-connect' );
+				$message = __( 'There was an error running the importer. Please try again.', 'subscribe-and-connect' );
 			break;
 
 			default:
