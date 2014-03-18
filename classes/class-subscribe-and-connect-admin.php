@@ -103,6 +103,7 @@ class Subscribe_And_Connect_Admin {
 		remove_submenu_page( 'tools.php', 'subscribe-and-connect-wf-importer' );
 
 		add_action( 'load-' . $this->_importer_screen_hook, array( $this, 'maybe_process_imports' ) );
+		add_action( 'admin_notices', array( $this, 'importer_admin_notices' ) );
 	} // End register_settings_screen()
 
 	/**
@@ -178,6 +179,37 @@ class Subscribe_And_Connect_Admin {
 		wp_safe_redirect( add_query_arg( 'updated', urlencode( $status ), add_query_arg( 'page', 'subscribe-and-connect-wf-importer', admin_url( 'tools.php' ) ) ) );
 		exit;
 	} // End maybe_process_imports()
+
+	/**
+	 * The importer screen admin notices.
+	 * @access  public
+	 * @since   1.0.0
+	 * @return  void
+	 */
+	public function importer_admin_notices () {
+		if ( ! isset( $_GET['page'] ) || 'subscribe-and-connect-wf-importer' != $_GET['page'] ) return;
+		if ( ! isset( $_GET['updated'] ) ) return;
+
+		$class = '';
+		$message = '';
+
+		switch ( $_GET['updated'] ) {
+			case 'true':
+				$class = 'updated';
+				$message = __( 'The importer has run successfully. You\'re good to go!', 'subscribe-and-connect' );
+			break;
+
+			case 'false':
+				$class = 'error';
+				$message = __( 'There was an error running the importer, or no fields needed to be updated.', 'subscribe-and-connect' );
+			break;
+
+			default:
+			break;
+		}
+
+		if ( '' != $message ) echo '<div class="' . esc_attr( $class ) . ' fade"><p>' . esc_html( $message ) . '</p></div>' . "\n";
+	} // End importer_admin_notices()
 
 	/**
 	 * The importer screen markup.
