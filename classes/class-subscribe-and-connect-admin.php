@@ -317,7 +317,7 @@ if ( 0 >= count( $keys ) ) {
 		if ( isset( $key_labels[$k] ) && '' != $key_labels[$k] ) $label = $key_labels[$k];
 ?>
 	<tr valign="top" class="<?php echo esc_attr( $class ); ?>">
-		<td><input type="checkbox" value="<?php echo esc_attr( $k ); ?>" name="sc_fields_to_import[]" /></td>
+		<th scope="row" class="check-column"><input type="checkbox" value="<?php echo esc_attr( $k ); ?>" name="sc_fields_to_import[]" /></td>
 		<td><?php echo esc_html( $label ) . '<br /><code><small>(' . esc_attr( $k ) . ')</small></code>'; ?></td>
 		<td><?php echo esc_html( $v ); ?></td>
 	</tr>
@@ -327,7 +327,7 @@ if ( 0 >= count( $keys ) ) {
 </tbody>
 <thead>
 	<tr>
-		<th style="width: 25px;">&nbsp;</th>
+		<th scope="col" id="cb" class="manage-column column-cb check-column" style=""><label class="screen-reader-text" for="cb-select-all-1">Select All</label><input id="cb-select-all-1" type="checkbox"></th>
 		<th><?php _e( 'Title', 'subscribe-and-connect' ); ?></th>
 		<th><?php _e( 'Stored Value', 'subscribe-and-connect' ); ?></th>
 	</tr>
