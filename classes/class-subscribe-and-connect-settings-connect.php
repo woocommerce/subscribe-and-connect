@@ -82,7 +82,7 @@ class Subscribe_And_Connect_Settings_Connect extends Subscribe_And_Connect_Setti
 								'name' 			=> __( 'Social Networks', 'subscribe-and-connect' ),
 								'description' 	=> __( 'The social networks to be linked to in the "Connect" portion of the output. Drag and drop to reorder.', 'subscribe-and-connect' ),
 								'type' 			=> 'network',
-								'default' 		=> 'facebook',
+								'default' 		=> array( 'facebook' ),
 								'section' 		=> 'networks',
 								'required' 		=> 0
 								);
