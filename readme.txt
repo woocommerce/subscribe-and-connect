@@ -57,11 +57,11 @@ We encourage everyone to contribute their ideas, thoughts and code snippets. Thi
 == Upgrade Notice ==
 
 = 1.0.0 =
-* 2014-03-06
+* 2014-03-18
 * Initial release. Woo!
 
 == Changelog ==
 
 = 1.0.0 =
-* 2014-03-06
+* 2014-03-18
 * Initial release. Woo!

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Subscribe & Connect 1.0.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/subscribe-and-connect\n"
-"POT-Creation-Date: 2014-03-11 07:06:14+00:00\n"
+"POT-Creation-Date: 2014-03-18 11:12:19+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -12,23 +12,69 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: classes/class-subscribe-and-connect-admin.php:88
+#: classes/class-subscribe-and-connect-admin.php:96
 #: classes/class-subscribe-and-connect-settings-api.php:74
 #: classes/class-subscribe-and-connect-widget.php:41
 #: classes/class-subscribe-and-connect-widget.php:168
 msgid "Subscribe & Connect"
 msgstr ""
 
-#: classes/class-subscribe-and-connect-admin.php:138
+#: classes/class-subscribe-and-connect-admin.php:102
+#: classes/class-subscribe-and-connect-admin.php:301
+msgid "Subscribe & Connect WooFramework Importer"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-admin.php:102
+msgid "Subscribe & Connect Importer"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-admin.php:139
+msgid "Cheatin&#8217; uh?"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-admin.php:226
+msgid "%sSubscribe & Connect%s has detected existing information, from a WooThemes theme you have used. %sClick here%s to transfer this information."
+msgstr ""
+
+#: classes/class-subscribe-and-connect-admin.php:231
+msgid "Dismiss"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-admin.php:250
+msgid "The importer has run successfully. You're good to go!"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-admin.php:255
+msgid "There was an error running the importer. Please try again."
+msgstr ""
+
+#: classes/class-subscribe-and-connect-admin.php:308
+msgid "No existing Subscribe & Connect data, from your WooThemes theme, was found. You're good to go!"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-admin.php:335
+#: classes/class-subscribe-and-connect-settings-general.php:78
+msgid "Title"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-admin.php:336
+msgid "Stored Value"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-admin.php:341
+msgid "Import Settings"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-admin.php:395
 #: classes/class-subscribe-and-connect-settings-general.php:34
 msgid "General"
 msgstr ""
 
-#: classes/class-subscribe-and-connect-admin.php:139
+#: classes/class-subscribe-and-connect-admin.php:396
 msgid "Connections"
 msgstr ""
 
-#: classes/class-subscribe-and-connect-admin.php:140
+#: classes/class-subscribe-and-connect-admin.php:397
 #: classes/class-subscribe-and-connect-settings-display.php:34
 msgid "Display"
 msgstr ""
@@ -49,19 +95,15 @@ msgstr ""
 msgid "Your URL"
 msgstr ""
 
-#: classes/class-subscribe-and-connect-settings-api.php:487
-msgid "Re-order"
-msgstr ""
-
-#: classes/class-subscribe-and-connect-settings-api.php:490
+#: classes/class-subscribe-and-connect-settings-api.php:489
 msgid "Place your %s URL here"
 msgstr ""
 
-#: classes/class-subscribe-and-connect-settings-api.php:675
+#: classes/class-subscribe-and-connect-settings-api.php:674
 msgid "%s is a required field"
 msgstr ""
 
-#: classes/class-subscribe-and-connect-settings-api.php:692
+#: classes/class-subscribe-and-connect-settings-api.php:691
 msgid "%s settings updated"
 msgstr ""
 
@@ -70,7 +112,7 @@ msgid "Connect"
 msgstr ""
 
 #: classes/class-subscribe-and-connect-settings-connect.php:48
-#: classes/class-subscribe-and-connect-settings-connect.php:73
+#: classes/class-subscribe-and-connect-settings-connect.php:82
 msgid "Social Networks"
 msgstr ""
 
@@ -86,94 +128,98 @@ msgstr ""
 msgid "Setup the various ways in which your visitors can subscribe to your content."
 msgstr ""
 
+#: classes/class-subscribe-and-connect-settings-connect.php:73
+msgid "RSS"
+msgstr ""
+
 #: classes/class-subscribe-and-connect-settings-connect.php:74
+msgid "Display an RSS icon along with your social network links."
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-connect.php:83
 msgid "The social networks to be linked to in the \"Connect\" portion of the output. Drag and drop to reorder."
 msgstr ""
 
-#: classes/class-subscribe-and-connect-settings-connect.php:92
+#: classes/class-subscribe-and-connect-settings-connect.php:101
 #: classes/class-subscribe-and-connect-settings-general.php:66
 msgid "None"
 msgstr ""
 
-#: classes/class-subscribe-and-connect-settings-connect.php:93
+#: classes/class-subscribe-and-connect-settings-connect.php:102
 #: classes/class-subscribe-and-connect-settings-general.php:67
 msgid "Aweber"
 msgstr ""
 
-#: classes/class-subscribe-and-connect-settings-connect.php:94
+#: classes/class-subscribe-and-connect-settings-connect.php:103
 #: classes/class-subscribe-and-connect-settings-general.php:68
 msgid "Campaign Monitor"
 msgstr ""
 
-#: classes/class-subscribe-and-connect-settings-connect.php:95
+#: classes/class-subscribe-and-connect-settings-connect.php:104
 #: classes/class-subscribe-and-connect-settings-general.php:69
 msgid "Feedburner"
 msgstr ""
 
-#: classes/class-subscribe-and-connect-settings-connect.php:96
+#: classes/class-subscribe-and-connect-settings-connect.php:105
 #: classes/class-subscribe-and-connect-settings-general.php:70
 msgid "Mad Mimi"
 msgstr ""
 
-#: classes/class-subscribe-and-connect-settings-connect.php:97
+#: classes/class-subscribe-and-connect-settings-connect.php:106
 #: classes/class-subscribe-and-connect-settings-general.php:71
 msgid "Mailchimp"
 msgstr ""
 
-#: classes/class-subscribe-and-connect-settings-connect.php:101
+#: classes/class-subscribe-and-connect-settings-connect.php:110
 msgid "Newsletter Service"
 msgstr ""
 
-#: classes/class-subscribe-and-connect-settings-connect.php:102
-msgid "Select the newsletter service you are using"
-msgstr ""
-
-#: classes/class-subscribe-and-connect-settings-connect.php:110
-msgid "Feedburner Feed ID"
+#: classes/class-subscribe-and-connect-settings-connect.php:111
+msgid "Select the newsletter service you are using."
 msgstr ""
 
 #: classes/class-subscribe-and-connect-settings-connect.php:111
-msgid "Enter the your Feedburner Feed ID %s(?)%s."
-msgstr ""
-
-#: classes/class-subscribe-and-connect-settings-connect.php:118
-msgid "Newsletter Service Form Action"
+msgid "(Need a hand setting up your newsletter subscriptions? %1$sSee our documentation%2$s for a helping hand.)"
 msgstr ""
 
 #: classes/class-subscribe-and-connect-settings-connect.php:119
-msgid "Enter the the form action if required."
+msgid "Feedburner Feed ID"
 msgstr ""
 
-#: classes/class-subscribe-and-connect-settings-connect.php:126
-msgid "MailChimp List Subscription URL"
+#: classes/class-subscribe-and-connect-settings-connect.php:120
+msgid "Enter the your Feedburner Feed ID %s(?)%s."
 msgstr ""
 
 #: classes/class-subscribe-and-connect-settings-connect.php:127
-msgid "If you have a MailChimp account you can enter the %sMailChimp List Subscribe URL%s to allow your users to subscribe to a MailChimp List."
+msgid "Newsletter Form Action"
 msgstr ""
 
-#: classes/class-subscribe-and-connect-settings-connect.php:134
-msgid "Mad Mimi Webform URL"
+#: classes/class-subscribe-and-connect-settings-connect.php:128
+msgid "Enter the the form action if required."
 msgstr ""
 
 #: classes/class-subscribe-and-connect-settings-connect.php:135
-msgid "Your Mad Mini Webform URL, eg. https://madmimi.com/signups/subscribe/84680"
+msgid "MailChimp List Subscription URL"
 msgstr ""
 
-#: classes/class-subscribe-and-connect-settings-connect.php:142
-msgid "Aweber List Name"
+#: classes/class-subscribe-and-connect-settings-connect.php:136
+msgid "If you have a MailChimp account you can enter the %sMailChimp List Subscribe URL%s to allow your users to subscribe to a MailChimp List."
 msgstr ""
 
 #: classes/class-subscribe-and-connect-settings-connect.php:143
-msgid "The name of the list to subscribe users to."
+msgid "Mad Mimi Webform URL"
 msgstr ""
 
-#: classes/class-subscribe-and-connect-settings-connect.php:150
-msgid "RSS"
+#: classes/class-subscribe-and-connect-settings-connect.php:144
+msgid "Your Mad Mini Webform URL, eg. https://madmimi.com/signups/subscribe/84680"
 msgstr ""
 
 #: classes/class-subscribe-and-connect-settings-connect.php:151
-msgid "Display an RSS icon along with your social network links."
+msgid "Aweber List Name"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-settings-connect.php:152
+msgid "The name of the list to subscribe users to."
 msgstr ""
 
 #: classes/class-subscribe-and-connect-settings-display.php:51
@@ -260,10 +306,6 @@ msgstr ""
 msgid "Subscribe &amp; Connect component title and description."
 msgstr ""
 
-#: classes/class-subscribe-and-connect-settings-general.php:78
-msgid "Title"
-msgstr ""
-
 #: classes/class-subscribe-and-connect-settings-general.php:80
 msgid "Subscribe to %s"
 msgstr ""
@@ -276,75 +318,108 @@ msgstr ""
 msgid "Keep up to date on the latest content, here at %s. Subscribe below."
 msgstr ""
 
-#: classes/class-subscribe-and-connect-utils.php:11
-msgid "Facebook"
+#: classes/class-subscribe-and-connect-utils.php:32
+msgid "The Title"
 msgstr ""
 
-#: classes/class-subscribe-and-connect-utils.php:12
+#: classes/class-subscribe-and-connect-utils.php:33
+msgid "The Content"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-utils.php:34
+msgid "Display an RSS icon"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-utils.php:35
+msgid "Feedburner ID"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-utils.php:36
+msgid "Mailchimp List Subscription URL"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-utils.php:37
+#: classes/class-subscribe-and-connect-utils.php:79
 msgid "Twitter"
 msgstr ""
 
-#: classes/class-subscribe-and-connect-utils.php:13
+#: classes/class-subscribe-and-connect-utils.php:38
+#: classes/class-subscribe-and-connect-utils.php:78
+msgid "Facebook"
+msgstr ""
+
+#: classes/class-subscribe-and-connect-utils.php:39
+#: classes/class-subscribe-and-connect-utils.php:80
 msgid "Pinterest"
 msgstr ""
 
-#: classes/class-subscribe-and-connect-utils.php:14
+#: classes/class-subscribe-and-connect-utils.php:40
+#: classes/class-subscribe-and-connect-utils.php:81
 msgid "YouTube"
 msgstr ""
 
-#: classes/class-subscribe-and-connect-utils.php:15
+#: classes/class-subscribe-and-connect-utils.php:41
+#: classes/class-subscribe-and-connect-utils.php:82
 msgid "Instagram"
 msgstr ""
 
-#: classes/class-subscribe-and-connect-utils.php:16
+#: classes/class-subscribe-and-connect-utils.php:42
+#: classes/class-subscribe-and-connect-utils.php:83
 msgid "Flickr"
 msgstr ""
 
-#: classes/class-subscribe-and-connect-utils.php:17
+#: classes/class-subscribe-and-connect-utils.php:43
+#: classes/class-subscribe-and-connect-utils.php:84
 msgid "Google +"
 msgstr ""
 
-#: classes/class-subscribe-and-connect-utils.php:18
+#: classes/class-subscribe-and-connect-utils.php:44
+#: classes/class-subscribe-and-connect-utils.php:85
 msgid "LinkedIn"
 msgstr ""
 
-#: classes/class-subscribe-and-connect-utils.php:19
+#: classes/class-subscribe-and-connect-utils.php:45
+#: classes/class-subscribe-and-connect-utils.php:86
 msgid "Vimeo"
 msgstr ""
 
-#: classes/class-subscribe-and-connect-utils.php:20
+#: classes/class-subscribe-and-connect-utils.php:46
+#: classes/class-subscribe-and-connect-utils.php:87
 msgid "Tumblr"
 msgstr ""
 
-#: classes/class-subscribe-and-connect-utils.php:21
+#: classes/class-subscribe-and-connect-utils.php:47
+#: classes/class-subscribe-and-connect-utils.php:88
 msgid "Dribbble"
 msgstr ""
 
-#: classes/class-subscribe-and-connect-utils.php:22
+#: classes/class-subscribe-and-connect-utils.php:48
+#: classes/class-subscribe-and-connect-utils.php:89
 msgid "App.net"
 msgstr ""
 
-#: classes/class-subscribe-and-connect-utils.php:23
+#: classes/class-subscribe-and-connect-utils.php:49
+#: classes/class-subscribe-and-connect-utils.php:90
 msgid "Github"
 msgstr ""
 
-#: classes/class-subscribe-and-connect-utils.php:76
+#: classes/class-subscribe-and-connect-utils.php:143
 msgid "No style"
 msgstr ""
 
-#: classes/class-subscribe-and-connect-utils.php:80
+#: classes/class-subscribe-and-connect-utils.php:147
 msgid "Icons Only"
 msgstr ""
 
-#: classes/class-subscribe-and-connect-utils.php:84
+#: classes/class-subscribe-and-connect-utils.php:151
 msgid "Boxed"
 msgstr ""
 
-#: classes/class-subscribe-and-connect-utils.php:88
+#: classes/class-subscribe-and-connect-utils.php:155
 msgid "Rounded"
 msgstr ""
 
-#: classes/class-subscribe-and-connect-utils.php:92
+#: classes/class-subscribe-and-connect-utils.php:159
 msgid "Circular"
 msgstr ""
 
