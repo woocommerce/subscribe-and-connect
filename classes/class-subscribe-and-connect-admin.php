@@ -118,7 +118,7 @@ class Subscribe_And_Connect_Admin {
 	 */
 	public function maybe_process_dismiss_link () {
 		if ( isset( $_GET['action'] ) && ( 'subscribe-and-connect-dismiss' == $_GET['action'] ) && isset( $_GET['nonce'] ) && check_admin_referer( 'subscribe-and-connect-dismiss', 'nonce' ) ) {
-			update_site_option( 'subscribe_and_connect_dismiss_activation_notice', true );
+			update_option( 'subscribe_and_connect_dismiss_activation_notice', true );
 
 			$redirect_url = remove_query_arg( 'action', remove_query_arg( 'nonce', $_SERVER['REQUEST_URI'] ) );
 
@@ -195,7 +195,10 @@ class Subscribe_And_Connect_Admin {
 		$statuses['connect'] = update_option( 'subscribe-and-connect-connect', $connect );
 		$statuses['display'] = update_option( 'subscribe-and-connect-integration', $display );
 
-		if ( ! in_array( false, $statuses ) ) $status = 'true';
+		if ( ! in_array( false, $statuses ) ) {
+			$status = 'true';
+			update_option( 'subscribe_and_connect_importer_has_run', true );
+		}
 
 		wp_safe_redirect( add_query_arg( 'updated', urlencode( $status ), add_query_arg( 'page', 'subscribe-and-connect-wf-importer', admin_url( 'tools.php' ) ) ) );
 		exit;
@@ -209,7 +212,8 @@ class Subscribe_And_Connect_Admin {
 	 */
 	public function maybe_display_importer_notice () {
 		if ( isset( $_GET['page'] ) && 'subscribe-and-connect-wf-importer' == $_GET['page'] ) return;
-		if ( true == get_site_option( 'subscribe_and_connect_dismiss_activation_notice', false ) ) return; // Don't show the message if the user dismissed it.
+		if ( true == get_option( 'subscribe_and_connect_dismiss_activation_notice', false ) ) return; // Don't show the message if the user dismissed it.
+		if ( true == get_option( 'subscribe_and_connect_importer_has_run', false ) ) return;
 
 		$keys_to_check = array_keys( Subscribe_And_Connect_Utils::get_wf_key_labels() );
 		$keys_to_check = Subscribe_And_Connect_Utils::filter_existing_keys( $keys_to_check );
