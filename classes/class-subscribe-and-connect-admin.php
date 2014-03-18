@@ -280,7 +280,7 @@ class Subscribe_And_Connect_Admin {
 		// Add any networks to be checked.
 		if ( isset( $settings['connect']['networks'] ) && 0 < count( $settings['connect']['networks'] ) ) {
 			$prefix = 'woo_connect_';
-			if ( 0 < count( $settings['connect']['networks'] ) ) {
+			if ( isset( $settings['connect']['networks'] ) && 0 < count( $settings['connect']['networks'] ) ) {
 				foreach ( $settings['connect']['networks'] as $k => $v ) {
 					if ( ! in_array( $prefix . $k, $keys ) ) {
 						if ( 'google_plus' == $k ) $k = 'googleplus'; // A small caveat to match how the option looks in the WooFramework.
