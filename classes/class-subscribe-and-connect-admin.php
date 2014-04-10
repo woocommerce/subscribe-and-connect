@@ -450,9 +450,9 @@ submit_button();
 	 */
 	public function register_enqueues () {
 		global $subscribe_and_connect;
-		wp_register_script( $this->_token . '-admin', esc_url( $this->_plugin_url . 'assets/js/admin.js' ), array( 'jquery' ), $subscribe_and_connect->version );
-		wp_register_script( $this->_token . '-sortables', esc_url( $this->_plugin_url . 'assets/js/sortables.js' ), array( 'jquery', 'jquery-ui-sortable' ), $subscribe_and_connect->version );
-		wp_register_script( $this->_token . '-uploaders', esc_url( $this->_plugin_url . 'assets/js/uploaders.js' ), array( 'jquery' ), $subscribe_and_connect->version );
+		wp_register_script( $this->_token . '-admin', esc_url( $this->_plugin_url . 'assets/js/admin.min.js' ), array( 'jquery' ), $subscribe_and_connect->version );
+		wp_register_script( $this->_token . '-sortables', esc_url( $this->_plugin_url . 'assets/js/sortables.min.js' ), array( 'jquery', 'jquery-ui-sortable' ), $subscribe_and_connect->version );
+		wp_register_script( $this->_token . '-uploaders', esc_url( $this->_plugin_url . 'assets/js/uploaders.min.js' ), array( 'jquery' ), $subscribe_and_connect->version );
 		wp_register_style( $this->_token . '-settings-api',  esc_url( $this->_plugin_url . 'assets/css/settings.css' ), '', $subscribe_and_connect->version );
 	} // End register_enqueues()
 
