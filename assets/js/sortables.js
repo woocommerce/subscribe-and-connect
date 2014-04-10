@@ -1,6 +1,5 @@
 jQuery( document ).ready( function ( e ) {
 	jQuery( '.subscribe-and-connect-network-fields tbody' ).sortable();
-	jQuery( '.subscribe-and-connect-network-fields tbody' ).disableSelection();
 
 	jQuery( '.subscribe-and-connect-network-fields tbody' ).bind( 'sortstop', function ( e, ui ) {
 		var orderString = '';
