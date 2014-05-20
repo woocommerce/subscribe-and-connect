@@ -186,7 +186,16 @@ function subscribe_and_connect_get_subscribe () {
 			$form_action = $settings['general']['newsletter_mad_mimi_subscription_url'];
 			$text_fields = array( 'email' => __( 'Your Email Address', 'subscribe-and-connect' ) );
 		break;
-
+		
+		case 'wysija':
+			$form_action = '';
+			$text_fields 	= array( 'subscribe_and_connect_wysija_name' => __( 'Name', 'subscribe-and-connect' ), 'subscribe_and_connect_wysija_email' => __( 'Your Email Address', 'subscribe-and-connect' ) );
+			$hidden_fields 	= array(
+									'list_ids' => $settings['connect']['newsletter_wysija_list_id'],
+									'subscribe_and_connect_wysija_submit' => true
+								);
+		break;
+		
 		default:
 			$form_action 	= '';
 			$text_fields 	= array( 'email' => __( 'Your Email Address', 'subscribe-and-connect' ) );

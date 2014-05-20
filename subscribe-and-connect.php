@@ -28,9 +28,14 @@
 
 	require_once( 'classes/class-subscribe-and-connect.php' );
     require_once( 'classes/class-subscribe-and-connect-widget.php' );
-
+	
 	global $subscribe_and_connect;
 	$subscribe_and_connect = new Subscribe_And_Connect( __FILE__ );
 	$subscribe_and_connect->version = '1.0.1';
 
-    if ( ! is_admin() ) require_once( 'subscribe-and-connect-template.php' );
+    if ( ! is_admin() ) {
+    
+    require_once( 'subscribe-and-connect-functions.php' );
+    require_once( 'subscribe-and-connect-template.php' );
+    
+    }
