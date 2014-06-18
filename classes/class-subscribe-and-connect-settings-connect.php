@@ -107,6 +107,8 @@ class Subscribe_And_Connect_Settings_Connect extends Subscribe_And_Connect_Setti
     							);
     							
     	// Check if MailPoet is installed and add as option
+    	$wysija_lists = array();
+    	
 		if ( class_exists( 'WYSIJA' ) ) {
 			$newsletter_services['wysija'] = __( 'MailPoet Newsletters', 'subscribe-and-connect' );
 			$model_list = WYSIJA::get( 'list','model' );
