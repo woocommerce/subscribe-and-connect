@@ -66,6 +66,7 @@ We encourage everyone to contribute their ideas, thoughts and code snippets. Thi
 * 2014-06-18
 * New - MailPoet integration.
 * Tweak - Only display s&c on single post pages when using 'display after posts' option.
+* Tweak - Made text fields filterable for each provider so you can add your own.
 
 = 1.0.1 =
 * 2014-04-10
