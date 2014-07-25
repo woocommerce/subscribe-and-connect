@@ -2,6 +2,7 @@ jQuery( document ).ready( function( $ ) {
 	// Show Hide newsletter fields based on service
 	$( '#newsletter_service' ).change( function() {
 		$( 'input[id^="newsletter_"]' ).closest( 'tr' ).hide();
+		$( '#newsletter_wysija_list_id' ).closest( 'tr' ).hide();
 
 		switch ( $( this ).val() ) {
 			case 'aweber':
@@ -19,9 +20,12 @@ jQuery( document ).ready( function( $ ) {
 			case 'mailchimp':
 				$( '#newsletter_mail_chimp_list_subscription_url' ).closest( 'tr' ).show();
 			break;
-			case 'none':
-			default:
+			case 'wysija':
+				$( '#newsletter_wysija_list_id' ).closest( 'tr' ).show();
 			break;
+			case 'none':
+			break;
+			default:
 		}
 	});
 	// Trigger initial change event.
