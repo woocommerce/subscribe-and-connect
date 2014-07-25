@@ -65,6 +65,7 @@ We encourage everyone to contribute their ideas, thoughts and code snippets. Thi
 = 1.1.0 =
 * 2014-06-18
 * New - MailPoet integration.
+* New - Display of social icons / form in widget now optional.
 * Tweak - Only display s&c on single post pages when using 'display after posts' option.
 * Tweak - Made text fields filterable for each provider so you can add your own.
 
