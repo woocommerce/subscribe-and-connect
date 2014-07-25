@@ -65,6 +65,7 @@ We encourage everyone to contribute their ideas, thoughts and code snippets. Thi
 = 1.1.0 =
 * 2014-06-18
 * New - MailPoet integration.
+* Tweak - Only display s&c on single post pages when using 'display after posts' option.
 
 = 1.0.1 =
 * 2014-04-10

@@ -67,7 +67,12 @@ add_action( 'get_header', 'subscribe_and_connect_maybe_custom_hook' );
  * @return string HTML markup.
  */
 function subscribe_and_connect_content_filter ( $content ) {
-	return $content . subscribe_and_connect_get();
+	$post_type = get_post_type();
+	if ( 'post' == $post_type && is_single() ) {
+		return $content . subscribe_and_connect_get();
+	} else {
+		return $content;
+	}
 } // End subscribe_and_connect_content_filter()
 
 /**
@@ -186,7 +191,7 @@ function subscribe_and_connect_get_subscribe () {
 			$form_action = $settings['general']['newsletter_mad_mimi_subscription_url'];
 			$text_fields = array( 'email' => __( 'Your Email Address', 'subscribe-and-connect' ) );
 		break;
-		
+
 		case 'wysija':
 			$form_action = '';
 			$text_fields 	= array( 'subscribe_and_connect_wysija_name' => __( 'Name', 'subscribe-and-connect' ), 'subscribe_and_connect_wysija_email' => __( 'Your Email Address', 'subscribe-and-connect' ) );
@@ -195,7 +200,7 @@ function subscribe_and_connect_get_subscribe () {
 									'subscribe_and_connect_wysija_submit' => true
 								);
 		break;
-		
+
 		default:
 			$form_action 	= '';
 			$text_fields 	= array( 'email' => __( 'Your Email Address', 'subscribe-and-connect' ) );
