@@ -105,6 +105,9 @@ class Subscribe_And_Connect_Widget extends WP_Widget {
 		// Add actions for plugins/themes to hook onto.
 		do_action( $this->subscribe_and_connect_widget_cssclass . '_top' );
 
+		if ( isset( $instance['social'] ) ) { $args['social'] = $instance['social']; }
+		if ( isset( $instance['subscribe'] ) ) { $args['subscribe'] = $instance['subscribe']; }
+
 		// Display S&C.
 		echo $before_widget;
 
@@ -113,8 +116,14 @@ class Subscribe_And_Connect_Widget extends WP_Widget {
 
 		echo '<div class="subscribe-and-connect-connect">';
 		echo $description;
-		subscribe_and_connect_subscribe();
-		subscribe_and_connect_connect();
+
+		if ( true == $instance['subscribe'] ) {
+			subscribe_and_connect_subscribe();
+		}
+
+		if ( true == $instance['social'] ) {
+			subscribe_and_connect_connect();
+		}
 		echo '</div><!--/.subscribe-and-connect-connect-->';
 
 		echo $after_widget;
@@ -142,6 +151,10 @@ class Subscribe_And_Connect_Widget extends WP_Widget {
 		$instance['title'] 			= strip_tags( $new_instance['title'] );
 		$instance['description'] 	= wp_kses( $new_instance['description'] );
 
+		/* Escape checkbox values */
+		$instance['social']  		= esc_attr( $new_instance['social'] );
+		$instance['subscribe']  	= esc_attr( $new_instance['subscribe'] );
+
 		/* Flush cache. */
 		$this->flush_widget_cache();
 		$alloptions = wp_cache_get( 'alloptions', 'options' );
@@ -166,7 +179,9 @@ class Subscribe_And_Connect_Widget extends WP_Widget {
 		/* Make sure all keys are added here, even with empty string values. */
 		$defaults = array(
 			'title' 		=> __( 'Subscribe & Connect', 'subscribe-and-connect' ),
-			'description'	=> $settings['general']['text']
+			'description'	=> $settings['general']['text'],
+			'social'		=> 0,
+			'subscribe'		=> 0,
 		);
 
 		$instance = wp_parse_args( (array) $instance, $defaults );
@@ -180,6 +195,18 @@ class Subscribe_And_Connect_Widget extends WP_Widget {
 		<p>
 			<label for="<?php echo $this->get_field_id( 'description' ); ?>"><?php _e( 'Description (optional):', 'subscribe-and-connect' ); ?></label>
 			<textarea type="text" name="<?php echo $this->get_field_name( 'description' ); ?>"  rows="4" class="widefat" id="<?php echo $this->get_field_id( 'description' ); ?>"><?php echo $instance['description']; ?></textarea>
+		</p>
+
+		<!-- Widget Show Subscribe: Checkbox Input -->
+		<p>
+			<input id="<?php echo $this->get_field_id( 'subscribe' ); ?>" name="<?php echo $this->get_field_name( 'subscribe' ); ?>" type="checkbox" value="1" <?php checked( '1', $instance['subscribe'] ); ?> />
+			<label for="<?php echo $this->get_field_id( 'subscribe' ); ?>"><?php _e( 'Display subscribe form', 'subscribe-and-connect' ); ?></label>
+		</p>
+
+		<!-- Widget Show Social: Checkbox Input -->
+		<p>
+			<input id="<?php echo $this->get_field_id( 'social' ); ?>" name="<?php echo $this->get_field_name( 'social' ); ?>" type="checkbox" value="1" <?php checked( '1', $instance['social'] ); ?> />
+			<label for="<?php echo $this->get_field_id( 'social' ); ?>"><?php _e( 'Display social icons', 'subscribe-and-connect' ); ?></label>
 		</p>
 <?php
 	} // End form()

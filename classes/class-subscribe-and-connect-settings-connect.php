@@ -106,6 +106,19 @@ class Subscribe_And_Connect_Settings_Connect extends Subscribe_And_Connect_Setti
     							'mailchimp' 		=> __( 'Mailchimp', 'subscribe-and-connect' )
     							);
 
+    	// Check if MailPoet is installed and add as option
+    	$wysija_lists = array();
+
+		if ( class_exists( 'WYSIJA' ) ) {
+			$newsletter_services['wysija'] = __( 'MailPoet Newsletters', 'subscribe-and-connect' );
+			$model_list = WYSIJA::get( 'list','model' );
+			$wysija_lists_temp = $model_list->get( array( 'name','list_id' ), array( 'is_enabled' => 1 ) );
+
+			foreach( $wysija_lists_temp as $list ) {
+				$wysija_lists[$list['list_id']] = $list['name'];
+			}
+		}
+
     	$fields['newsletter_service'] = array(
 								'name' 			=> __( 'Newsletter Service', 'subscribe-and-connect' ),
 								'description' 	=> __( 'Select the newsletter service you are using.', 'subscribe-and-connect' ) . '<br /><small>' . sprintf( __( '(Need a hand setting up your newsletter subscriptions? %1$sSee our documentation%2$s for a helping hand.)', 'subscribe-and-connect' ), '<a href="' . esc_url( 'http://docs.woothemes.com/document/subscribe-and-connect/#section-2' ) . '">', '</a>' ) . '</small>',
@@ -154,6 +167,17 @@ class Subscribe_And_Connect_Settings_Connect extends Subscribe_And_Connect_Setti
 								'default' 		=> '' ,
 								'section' 		=> 'subscriptions'
 								);
+
+		if ( class_exists( 'WYSIJA' ) ) {
+			$fields['newsletter_wysija_list_id'] = array(
+									'name' 			=> __( 'MailPoet List', 'subscribe-and-connect' ),
+									'description' 	=> __( 'Select the name of the MailPoet list to subscribe users to.', 'subscribe-and-connect' ),
+									'type' 			=> 'select',
+									'default' 		=> '' ,
+									'section' 		=> 'subscriptions',
+									'options' 		=> $wysija_lists
+									);
+		}
 
 		$this->fields = $fields;
 	} // End init_fields()

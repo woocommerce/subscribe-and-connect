@@ -70,6 +70,12 @@ class Subscribe_And_Connect_Settings_General extends Subscribe_And_Connect_Setti
 								'mad_mimi' 			=> __( 'Mad Mimi', 'subscribe-and-connect' ),
 								'mailchimp' 		=> __( 'Mailchimp', 'subscribe-and-connect' )
 								);
+		
+		// Check if MailPoet is installed and add as option
+		if ( class_exists( 'WYSIJA' ) ) {
+			$newsletter_services['wysija'] = __( 'MailPoet Newsletters', 'subscribe-and-connect' );
+		}
+
 
 	    $fields = array();
 

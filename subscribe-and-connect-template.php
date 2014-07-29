@@ -67,7 +67,12 @@ add_action( 'get_header', 'subscribe_and_connect_maybe_custom_hook' );
  * @return string HTML markup.
  */
 function subscribe_and_connect_content_filter ( $content ) {
-	return $content . subscribe_and_connect_get();
+	$post_type = get_post_type();
+	if ( 'post' == $post_type && is_single() ) {
+		return $content . subscribe_and_connect_get();
+	} else {
+		return $content;
+	}
 } // End subscribe_and_connect_content_filter()
 
 /**
@@ -149,7 +154,9 @@ function subscribe_and_connect_get_subscribe () {
 	switch ( $settings['connect']['newsletter_service'] ) {
 		case 'feedburner':
 			$form_action 	= 'http://feedburner.google.com/fb/a/mailverify';
-			$text_fields 	= array( 'email' => __( 'Your Email Address', 'subscribe-and-connect' ) );
+			$text_fields 	= apply_filters( 'subscribe-and-connect-feedburner-text-fields', array(
+									'email' => __( 'Your Email Address', 'subscribe-and-connect' )
+									) );
 			$hidden_fields 	= array( 'uri' => $settings['connect']['newsletter_service_id'], 'title' => get_bloginfo( 'name' ), 'loc' => 'en_US' );
 		break;
 
@@ -158,18 +165,26 @@ function subscribe_and_connect_get_subscribe () {
 			array_pop( $cm_array );
 			$cm_id 			= end( $cm_array );
 			$form_action 	= $settings['connect']['newsletter_service_form_action'];
-			$text_fields 	= array( 'name' => __( 'Name', 'subscribe-and-connect' ), 'cm-' . $cm_id . '-' . $cm_id => __( 'Your Email Address', 'subscribe-and-connect' ) );
+			$text_fields 	= apply_filters( 'subscribe-and-connect-campaign-monitor-text-fields', array(
+									'name' 							=> __( 'Name', 'subscribe-and-connect' ),
+									'cm-' . $cm_id . '-' . $cm_id 	=> __( 'Your Email Address', 'subscribe-and-connect' )
+									) );
 			$hidden_fields 	= array( 'uri' => $settings['connect']['newsletter_service_id'], 'title' => get_bloginfo( 'name' ), 'loc' => 'en_US' );
 		break;
 
 		case 'mailchimp':
 			$form_action = $settings['connect']['newsletter_mail_chimp_list_subscription_url'];
-			$text_fields = array( 'EMAIL' => __( 'Your Email Address', 'subscribe-and-connect' ) );
+			$text_fields = apply_filters( 'subscribe-and-connect-mailchimp-text-fields', array(
+								'EMAIL' => __( 'Your Email Address', 'subscribe-and-connect' )
+								) );
 		break;
 
 		case 'aweber':
 			$form_action 	= 'http://www.aweber.com/scripts/addlead.pl';
-			$text_fields 	= array( 'name' => __( 'Name', 'subscribe-and-connect' ), 'email' => __( 'Your Email Address', 'subscribe-and-connect' ) );
+			$text_fields 	= apply_filters( 'subscribe-and-connect-aweber-text-fields', array(
+									'name' 		=> __( 'Name', 'subscribe-and-connect' ),
+									'email' 	=> __( 'Your Email Address', 'subscribe-and-connect' )
+									) );
 			$hidden_fields 	= array(
 									'meta_web_form_id' => '1687488389',
 									'meta_split_id' => '',
@@ -184,12 +199,28 @@ function subscribe_and_connect_get_subscribe () {
 
 		case 'madmimi':
 			$form_action = $settings['general']['newsletter_mad_mimi_subscription_url'];
-			$text_fields = array( 'email' => __( 'Your Email Address', 'subscribe-and-connect' ) );
+			$text_fields = apply_filters( 'subscribe-and-connect-madmimi-text-fields', array(
+								'email' => __( 'Your Email Address', 'subscribe-and-connect' )
+								) );
+		break;
+
+		case 'wysija':
+			$form_action = '';
+			$text_fields 	= apply_filters( 'subscribe-and-connect-wysija-text-fields', array(
+									'subscribe_and_connect_wysija_name' 	=> __( 'Name', 'subscribe-and-connect' ),
+									'subscribe_and_connect_wysija_email' 	=> __( 'Your Email Address', 'subscribe-and-connect' )
+									) );
+			$hidden_fields 	= array(
+									'list_ids' 								=> $settings['connect']['newsletter_wysija_list_id'],
+									'subscribe_and_connect_wysija_submit' 	=> true
+								);
 		break;
 
 		default:
 			$form_action 	= '';
-			$text_fields 	= array( 'email' => __( 'Your Email Address', 'subscribe-and-connect' ) );
+			$text_fields 	= apply_filters( 'subscribe-and-connect-text-fields', array(
+									'email' => __( 'Your Email Address', 'subscribe-and-connect' )
+									) );
 			$hidden_fields 	= array();
 		break;
 	}
