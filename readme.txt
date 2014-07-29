@@ -63,7 +63,7 @@ We encourage everyone to contribute their ideas, thoughts and code snippets. Thi
 == Changelog ==
 
 = 1.1.0 =
-* 2014-07-25
+* 2014-07-29
 * New - MailPoet integration.
 * New - Display of social icons / form in widget now optional.
 * Tweak - Only display s&c on single post pages when using 'display after posts' option.
