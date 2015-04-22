@@ -122,7 +122,7 @@ class Subscribe_And_Connect_Admin {
 
 			$redirect_url = remove_query_arg( 'action', remove_query_arg( 'nonce', $_SERVER['REQUEST_URI'] ) );
 
-			wp_safe_redirect( $redirect_url );
+			wp_safe_redirect( esc_url( $redirect_url ) );
 			exit;
 		}
 	} // End maybe_process_dismiss_link()
@@ -200,7 +200,7 @@ class Subscribe_And_Connect_Admin {
 			update_option( 'subscribe_and_connect_importer_has_run', true );
 		}
 
-		wp_safe_redirect( add_query_arg( 'updated', urlencode( $status ), add_query_arg( 'page', 'subscribe-and-connect-wf-importer', admin_url( 'tools.php' ) ) ) );
+		wp_safe_redirect( esc_url( add_query_arg( 'updated', urlencode( $status ), add_query_arg( 'page', 'subscribe-and-connect-wf-importer', admin_url( 'tools.php' ) ) ) ) );
 		exit;
 	} // End maybe_process_imports()
 
