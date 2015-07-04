@@ -36,7 +36,7 @@ class Subscribe_And_Connect_Widget extends WP_Widget {
 	public function __construct() {
 		/* Widget variable settings. */
 		$this->subscribe_and_connect_widget_cssclass 	= 'widget_subscribe_and_connect_items';
-		$this->subscribe_and_connect_widget_description = __( 'Subcribe & Connect.', 'subscribe-and-connect' );
+		$this->subscribe_and_connect_widget_description = __( 'Subscribe & Connect.', 'subscribe-and-connect' );
 		$this->subscribe_and_connect_widget_idbase 		= 'subscribe-and-connect';
 		$this->subscribe_and_connect_widget_title 		= __( 'Subscribe & Connect', 'subscribe-and-connect' );
 
