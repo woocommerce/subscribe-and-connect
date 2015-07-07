@@ -4,7 +4,7 @@ Donate link: http://woothemes.com/
 Tags: social networks, newsletters, subscribe, connect, widget, social
 Requires at least: 3.8.1
 Tested up to: 4.1.1
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -56,6 +56,10 @@ We encourage everyone to contribute their ideas, thoughts and code snippets. Thi
 
 == Upgrade Notice ==
 
+= 1.1.2 =
+* 2015-07-07
+* Removes deprecated constructor call for WP_Widget
+
 = 1.1.1 =
 * 2015-04-22
 * Security Fix for remove_query_arg and add_query_arg vulnerability
@@ -65,6 +69,10 @@ We encourage everyone to contribute their ideas, thoughts and code snippets. Thi
 * Initial release. Woo!
 
 == Changelog ==
+
+= 1.1.2 =
+* 2015-07-07
+* Removes deprecated constructor call for WP_Widget
 
 = 1.1.1 =
 * 2015-04-22

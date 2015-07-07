@@ -57,7 +57,7 @@ class Subscribe_And_Connect_Widget extends WP_Widget {
 			);
 
 		/* Create the widget. */
-		$this->WP_Widget( $this->subscribe_and_connect_widget_idbase, $this->subscribe_and_connect_widget_title, $widget_ops, $control_ops );
+		parent::__construct( $this->subscribe_and_connect_widget_idbase, $this->subscribe_and_connect_widget_title, $widget_ops, $control_ops );
 	} // End __construct()
 
 	/**
