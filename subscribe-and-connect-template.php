@@ -153,7 +153,7 @@ function subscribe_and_connect_get_subscribe () {
 
 	switch ( $settings['connect']['newsletter_service'] ) {
 		case 'feedburner':
-			$form_action 	= 'http://feedburner.google.com/fb/a/mailverify';
+			$form_action 	= '//feedburner.google.com/fb/a/mailverify';
 			$text_fields 	= apply_filters( 'subscribe-and-connect-feedburner-text-fields', array(
 									'email' => __( 'Your Email Address', 'subscribe-and-connect' )
 									) );
@@ -180,7 +180,7 @@ function subscribe_and_connect_get_subscribe () {
 		break;
 
 		case 'aweber':
-			$form_action 	= 'http://www.aweber.com/scripts/addlead.pl';
+			$form_action 	= '//www.aweber.com/scripts/addlead.pl';
 			$text_fields 	= apply_filters( 'subscribe-and-connect-aweber-text-fields', array(
 									'name' 		=> __( 'Name', 'subscribe-and-connect' ),
 									'email' 	=> __( 'Your Email Address', 'subscribe-and-connect' )
