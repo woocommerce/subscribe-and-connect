@@ -160,7 +160,7 @@ class Subscribe_And_Connect {
 			$detected_sc = false;
 			foreach ( $options as $k => $v ) {
 				// Remove the section heading. This will kick start the removal of fields.
-				if ( 'heading' == $v['type'] && 'connect' == $v['icon'] ) {
+				if ( isset($v['type']) && 'heading' == $v['type'] && isset($v['icon']) && 'connect' == $v['icon'] ) {
 					$detected_sc = true;
 					unset( $options[$k] );
 					continue; // Move to the next itteration.

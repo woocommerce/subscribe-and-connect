@@ -34,6 +34,9 @@
   text-align: center;
   content: "\f179";
 }
+.subscribe-and-connect-connect .icons a {
+  border-bottom: none;
+}
 .subscribe-and-connect-connect .rss a:before {
   content: '\f09e';
 }
