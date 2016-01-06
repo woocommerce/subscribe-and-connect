@@ -1,9 +1,9 @@
 === Subscribe & Connect ===
-Contributors: woothemes,mattyza,jameskoster
+Contributors: woothemes,mattyza,jameskoster,jeffikus,danieldudzic
 Donate link: http://woothemes.com/
 Tags: social networks, newsletters, subscribe, connect, widget, social
 Requires at least: 3.8.1
-Tested up to: 4.1.1
+Tested up to: 4.4.0
 Stable tag: 1.1.3
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -57,7 +57,7 @@ We encourage everyone to contribute their ideas, thoughts and code snippets. Thi
 == Upgrade Notice ==
 
 = 1.1.3 =
-* 2015-10-30
+* 2016-01-06
 * Ensures the social icons have the correct margin and no border.
 
 = 1.1.2 =
@@ -75,7 +75,7 @@ We encourage everyone to contribute their ideas, thoughts and code snippets. Thi
 == Changelog ==
 
 = 1.1.3 =
-* 2015-10-30
+* 2016-01-06
 * Ensures the social icons have the correct margin and no border.
 
 = 1.1.2 =

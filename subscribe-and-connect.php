@@ -31,7 +31,7 @@
 
 	global $subscribe_and_connect;
 	$subscribe_and_connect = new Subscribe_And_Connect( __FILE__ );
-	$subscribe_and_connect->version = '1.1.2';
+	$subscribe_and_connect->version = '1.1.3';
 
     if ( ! is_admin() ) {
 
