@@ -177,6 +177,7 @@ function subscribe_and_connect_get_subscribe () {
 			$text_fields = apply_filters( 'subscribe-and-connect-mailchimp-text-fields', array(
 								'EMAIL' => __( 'Your Email Address', 'subscribe-and-connect' )
 								) );
+			$hidden_fields 	= array();
 		break;
 
 		case 'aweber':
@@ -202,6 +203,7 @@ function subscribe_and_connect_get_subscribe () {
 			$text_fields = apply_filters( 'subscribe-and-connect-madmimi-text-fields', array(
 								'email' => __( 'Your Email Address', 'subscribe-and-connect' )
 								) );
+			$hidden_fields 	= array();
 		break;
 
 		case 'wysija':
