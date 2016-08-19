@@ -2,9 +2,9 @@
 Contributors: woothemes,mattyza,jameskoster,jeffikus,danieldudzic
 Donate link: http://woothemes.com/
 Tags: social networks, newsletters, subscribe, connect, widget, social
-Requires at least: 3.8.1
-Tested up to: 4.4.0
-Stable tag: 1.1.3
+Requires at least: 4.5.0
+Tested up to: 4.6.0
+Stable tag: 1.1.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -56,6 +56,12 @@ We encourage everyone to contribute their ideas, thoughts and code snippets. Thi
 
 == Upgrade Notice ==
 
+= 1.1.4 =
+* 2016-08-19
+* Replaces broken mailchimp links.
+* Fixes undefined variable notices.
+* Fixes mixed protocol URLs.
+
 = 1.1.3 =
 * 2016-01-06
 * Ensures the social icons have the correct margin and no border.
@@ -73,6 +79,12 @@ We encourage everyone to contribute their ideas, thoughts and code snippets. Thi
 * Initial release. Woo!
 
 == Changelog ==
+
+= 1.1.4 =
+* 2016-08-19
+* Replaces broken mailchimp links.
+* Fixes undefined variable notices.
+* Fixes mixed protocol URLs.
 
 = 1.1.3 =
 * 2016-01-06
