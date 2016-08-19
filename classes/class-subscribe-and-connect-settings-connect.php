@@ -121,7 +121,7 @@ class Subscribe_And_Connect_Settings_Connect extends Subscribe_And_Connect_Setti
 
     	$fields['newsletter_service'] = array(
 								'name' 			=> __( 'Newsletter Service', 'subscribe-and-connect' ),
-								'description' 	=> __( 'Select the newsletter service you are using.', 'subscribe-and-connect' ) . '<br /><small>' . sprintf( __( '(Need a hand setting up your newsletter subscriptions? %1$sSee our documentation%2$s for a helping hand.)', 'subscribe-and-connect' ), '<a href="' . esc_url( 'http://docs.woothemes.com/document/subscribe-and-connect/#section-2' ) . '">', '</a>' ) . '</small>',
+								'description' 	=> __( 'Select the newsletter service you are using.', 'subscribe-and-connect' ) . '<br /><small>' . sprintf( __( '(Need a hand setting up your newsletter subscriptions? %1$sSee our documentation%2$s.)', 'subscribe-and-connect' ), '<a href="' . esc_url( 'http://docs.woothemes.com/document/subscribe-and-connect/#section-2' ) . '">', '</a>' ) . '</small>',
 								'type' 			=> 'select',
 								'default' 		=> 'none',
 								'options' 		=> $newsletter_services,
@@ -130,7 +130,7 @@ class Subscribe_And_Connect_Settings_Connect extends Subscribe_And_Connect_Setti
 
     	$fields['newsletter_service_id'] = array(
 								'name' 			=> __( 'Feedburner Feed ID', 'subscribe-and-connect' ),
-								'description' 	=> sprintf( __( 'Enter the your Feedburner Feed ID %s(?)%s.', 'subscribe-and-connect' ), '<a href="' . esc_url( 'http://support.google.com/feedburner/bin/answer.py?hl=en&answer=78982' ) . '" target="_blank">', '</a>' ),
+								'description' 	=> sprintf( __( 'Follow %sthese steps%s to find your Feed ID', 'subscribe-and-connect' ), '<a href="' . esc_url( 'https://docs.woocommerce.com/document/subscribe-and-connect/#feedburner' ) . '" target="_blank">', '</a>' ),
 								'type' 			=> 'text',
 								'default' 		=> '' ,
 								'section' 		=> 'subscriptions'
@@ -138,7 +138,7 @@ class Subscribe_And_Connect_Settings_Connect extends Subscribe_And_Connect_Setti
 
 		$fields['newsletter_service_form_action'] = array(
 								'name' 			=> __( 'Newsletter Form Action', 'subscribe-and-connect' ),
-								'description' 	=> __( 'Enter the the form action if required.', 'subscribe-and-connect' ),
+								'description' 	=> sprintf( __( 'The form action URL is required. Follow %sthese steps%s to find your form action URL', 'subscribe-and-connect' ), '<a href="' . esc_url( 'https://docs.woocommerce.com/document/subscribe-and-connect/#campaign-monitor' ) . '" target="_blank">', '</a>' ),
 								'type' 			=> 'text',
 								'default' 		=> '' ,
 								'section' 		=> 'subscriptions'
@@ -146,7 +146,7 @@ class Subscribe_And_Connect_Settings_Connect extends Subscribe_And_Connect_Setti
 
 		$fields['newsletter_mail_chimp_list_subscription_url'] = array(
 								'name' 			=> __( 'MailChimp List Subscription URL', 'subscribe-and-connect' ),
-								'description' 	=> sprintf( __( 'If you have a MailChimp account you can enter the %sMailChimp List Subscribe URL%s to allow your users to subscribe to a MailChimp List.', 'subscribe-and-connect' ), '<a href="' . esc_url( 'http://woochimp.heroku.com/' ) . '" target="_blank">', '</a>' ),
+								'description' 	=> sprintf( __( 'Follow %sthese steps%s to find your MailChimp list URL', 'subscribe-and-connect' ), '<a href="' . esc_url( 'https://docs.woocommerce.com/document/subscribe-and-connect/#mailchimp' ) . '" target="_blank">', '</a>' ),
 								'type' 			=> 'text',
 								'default' 		=> '' ,
 								'section' 		=> 'subscriptions'
@@ -154,7 +154,7 @@ class Subscribe_And_Connect_Settings_Connect extends Subscribe_And_Connect_Setti
 
 		$fields['newsletter_mad_mimi_subscription_url'] = array(
 								'name' 			=> __( 'Mad Mimi Webform URL', 'subscribe-and-connect' ),
-								'description' 	=> __( 'Your Mad Mini Webform URL, eg. https://madmimi.com/signups/subscribe/84680', 'subscribe-and-connect' ),
+								'description' 	=> sprintf( __( 'Your %sMad Mimi Webform URL%s (eg. https://madmimi.com/signups/subscribe/84680)', 'subscribe-and-connect' ), '<a href="' . esc_url( 'https://docs.woocommerce.com/document/subscribe-and-connect/#mad-mimi' ) . '" target="_blank">', '</a>' ),
 								'type' 			=> 'text',
 								'default' 		=> '' ,
 								'section' 		=> 'subscriptions'
@@ -162,7 +162,8 @@ class Subscribe_And_Connect_Settings_Connect extends Subscribe_And_Connect_Setti
 
 		$fields['newsletter_aweber_list_id'] = array(
 								'name' 			=> __( 'Aweber List Name', 'subscribe-and-connect' ),
-								'description' 	=> __( 'The name of the list to subscribe users to.', 'subscribe-and-connect' ),
+								'description' 	=> sprintf( __( 'List name is required. Follow %sthese steps%s to find your list name', 'subscribe-and-connect' ), '<a href="' . esc_url( 'https://docs.woocommerce.com/document/subscribe-and-connect/#aweber' ) . '" target="_blank">', '</a>' ),
+
 								'type' 			=> 'text',
 								'default' 		=> '' ,
 								'section' 		=> 'subscriptions'
