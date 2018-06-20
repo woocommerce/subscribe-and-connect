@@ -137,7 +137,7 @@ class Subscribe_And_Connect {
 		if ( is_array( $this->_settings ) && 0 < count( $this->_settings ) ) return $this->_settings;
 
 		$this->_settings = array();
-		if ( 0 < count( $this->settings_objs ) ) {
+		if ( $this->settings_objs && 0 < count( $this->settings_objs ) ) {
 			foreach ( $this->settings_objs as $k => $v ) {
 				$this->_settings[$k] = $v->get_settings();
 			}

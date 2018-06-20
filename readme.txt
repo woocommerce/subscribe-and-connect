@@ -4,7 +4,7 @@ Donate link: http://woothemes.com/
 Tags: social networks, newsletters, subscribe, connect, widget, social
 Requires at least: 4.5.0
 Tested up to: 4.6.0
-Stable tag: 1.1.4
+Stable tag: 1.1.5
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
