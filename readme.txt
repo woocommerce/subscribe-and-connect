@@ -56,6 +56,10 @@ We encourage everyone to contribute their ideas, thoughts and code snippets. Thi
 
 == Upgrade Notice ==
 
+= 1.1.5 =
+* 2018-06-20
+* Adds PHP 7.2.0 compatibility fixes.
+
 = 1.1.4 =
 * 2016-08-19
 * Replaces broken mailchimp links.
@@ -79,6 +83,10 @@ We encourage everyone to contribute their ideas, thoughts and code snippets. Thi
 * Initial release. Woo!
 
 == Changelog ==
+
+= 1.1.5 =
+* 2018-06-20
+* Adds PHP 7.2.0 compatibility fixes.
 
 = 1.1.4 =
 * 2016-08-19
