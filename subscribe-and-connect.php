@@ -3,7 +3,7 @@
  * Plugin Name: Subscribe & Connect
  * Plugin URI: http://woothemes.com/
  * Description: Hi, I'm here to help your visitors subscribe to your content, as well as share it across various social networks.
- * Version: 1.1.4
+ * Version: 1.1.5
  * Author: WooThemes
  * Author URI: http://woothemes.com/
  * License: GPL version 2 or later - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html

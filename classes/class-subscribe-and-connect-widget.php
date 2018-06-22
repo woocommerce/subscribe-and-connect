@@ -117,11 +117,11 @@ class Subscribe_And_Connect_Widget extends WP_Widget {
 		echo '<div class="subscribe-and-connect-connect">';
 		echo $description;
 
-		if ( true == $instance['subscribe'] ) {
+		if ( ! empty( $instance['subscribe'] ) && true == $instance['subscribe'] ) {
 			subscribe_and_connect_subscribe();
 		}
 
-		if ( true == $instance['social'] ) {
+		if ( ! empty( $instance['social'] ) && true == $instance['social'] ) {
 			subscribe_and_connect_connect();
 		}
 		echo '</div><!--/.subscribe-and-connect-connect-->';
@@ -144,16 +144,16 @@ class Subscribe_And_Connect_Widget extends WP_Widget {
 	 * @param  array $old_instance Previous settings.
 	 * @return array               Updated settings.
 	 */
-	public function update ( $new_instance, $old_instance ) {
+	public function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
 
 		/* Strip tags for title and name to remove HTML (important for text inputs). */
-		$instance['title'] 			= strip_tags( $new_instance['title'] );
-		$instance['description'] 	= wp_kses( $new_instance['description'] );
+		$instance['title'] = strip_tags( $new_instance['title'] );
+		$instance['description'] = esc_textarea( $new_instance['description'] );
 
 		/* Escape checkbox values */
-		$instance['social']  		= esc_attr( $new_instance['social'] );
-		$instance['subscribe']  	= esc_attr( $new_instance['subscribe'] );
+		$instance['social'] = isset( $new_instance['social'] ) ? (bool) $new_instance['social'] : false;
+		$instance['subscribe'] = isset( $new_instance['subscribe'] ) ? (bool) $new_instance['subscribe'] : false;
 
 		/* Flush cache. */
 		$this->flush_widget_cache();
@@ -223,4 +223,8 @@ class Subscribe_And_Connect_Widget extends WP_Widget {
 } // End Class
 
 /* Register the widget. */
-add_action( 'widgets_init', create_function( '', 'return register_widget( "Subscribe_And_Connect_Widget" );' ), 1 );
+function subscribe_and_connect_widget_init() {
+	register_widget( "Subscribe_And_Connect_Widget" );
+}
+
+add_action( 'widgets_init', 'subscribe_and_connect_widget_init' );

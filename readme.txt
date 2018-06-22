@@ -4,7 +4,7 @@ Donate link: http://woothemes.com/
 Tags: social networks, newsletters, subscribe, connect, widget, social
 Requires at least: 4.5.0
 Tested up to: 4.6.0
-Stable tag: 1.1.4
+Stable tag: 1.1.5
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -56,6 +56,10 @@ We encourage everyone to contribute their ideas, thoughts and code snippets. Thi
 
 == Upgrade Notice ==
 
+= 1.1.5 =
+* 2018-06-20
+* Adds PHP 7.2.0 compatibility fixes.
+
 = 1.1.4 =
 * 2016-08-19
 * Replaces broken mailchimp links.
@@ -79,6 +83,10 @@ We encourage everyone to contribute their ideas, thoughts and code snippets. Thi
 * Initial release. Woo!
 
 == Changelog ==
+
+= 1.1.5 =
+* 2018-06-20
+* Adds PHP 7.2.0 compatibility fixes.
 
 = 1.1.4 =
 * 2016-08-19
